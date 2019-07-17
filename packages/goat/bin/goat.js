@@ -23,7 +23,6 @@
     return
   }
 
-
   const config = await require('../scripts/config/goatConfig')();
   if (!config) {
     return
@@ -31,13 +30,9 @@
 
   if (config) {
     const Goat = require('../scripts/bootstrap/bootstrap');
-
-    const packages = [
-      '@goat-cli/styles',
-      '@goat-cli/es6',
-      '@goat-cli/modernizr'
-    ]
-
+    const plugins = require('../plugins');
+    const packages = plugins.map(item => item.package)
+    
     packages.forEach((goatPackage) => {
       if (config.functions.includes(goatPackage)) {
         const plugin = require(goatPackage);

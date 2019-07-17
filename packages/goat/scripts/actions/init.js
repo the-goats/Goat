@@ -10,6 +10,7 @@ const {
 const {
   normalize
 } = require('path');
+const plugins = require('../../plugins');
 
 const configFileName = 'goat.config.json';
 const directory = normalize(`./.goat`);
@@ -33,21 +34,19 @@ const initQuestions = async () => {
       type: 'checkbox',
       message: 'Select packages',
       name: 'project_packages',
-      choices: [{
-          name: 'Goat Styles',
-          value: '@goat-cli/styles',
-        },
-        {
-          name: 'Goat JS',
-          value: '@goat-cli/es6',
-        },
-        {
-          name: 'Goat Modernizr',
-          value: '@goat-cli/modernizr',
-        },
-      ],
+      choices: plugins.map(item => {
+        return {
+          ...item,
+          value: item.package,
+        }
+      }),
       default: () => {
-        return ['@goat-cli/styles', '@goat-cli/es6', '@goat-cli/modernizr'];
+        return (plugins.map(item => {
+          if (!item.default) {
+            return null;
+          }
+          return item.package
+        })).filter(item => item !== null);
       }
     }
   ];

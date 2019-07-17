@@ -1,13 +1,22 @@
 module.exports = {
-  id: '/SyneticEs6',
+  id: '/SyneticFractal',
   type: 'object',
   properties: {
-    browserSupport: {
-      type: 'array'
-    },
     locations: {
       type: 'object',
       properties: {
+        styles: {
+          type: 'object',
+          properties: {
+            src: {
+              type: 'string'
+            },
+            dist: {
+              type: 'string'
+            },
+          },
+          required: ['src']
+        },
         javascript: {
           type: 'object',
           properties: {
@@ -21,23 +30,7 @@ module.exports = {
           required: ['src', 'libraries']
         }
       },
-      required: ['javascript']
+      required: ['javascript', 'styles']
     },
-  },
-  js: {
-    type: 'object',
-    properties: {
-      eslint: {
-        type: 'object',
-        properties: {
-          es6: {
-            type: 'boolean'
-          },
-          config: {
-            type: 'object'
-          }
-        }
-      }
-    }
   }
 }

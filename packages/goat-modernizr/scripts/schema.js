@@ -1,5 +1,5 @@
 module.exports = {
-  id: '/SyneticJs',
+  id: '/SyneticModernizr',
   type: 'object',
   properties: {
     locations: {

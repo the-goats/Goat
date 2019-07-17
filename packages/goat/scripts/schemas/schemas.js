@@ -9,5 +9,5 @@ module.exports = {
       $type: 'string'
     },
   },
-  required: ['functions', 'version']
+  required: ['version']
 };
