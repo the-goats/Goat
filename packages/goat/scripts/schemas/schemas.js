@@ -5,9 +5,6 @@ module.exports = {
     name: {
       type: 'string'
     },
-    functions: {
-      type: 'array'
-    },
     version: {
       $type: 'string'
     },

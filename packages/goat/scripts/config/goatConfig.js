@@ -11,6 +11,7 @@ const {
   major,
   satisfies,
 } = require('semver');
+const { normalize } = require('path');
 const GoatNotifier = require('../notifier');
 const Notifier = new GoatNotifier;
 const init = require('../actions/init');
@@ -44,7 +45,7 @@ const getConfig = async () => {
 const updateConfig = (config) => {
   if (satisfies(config.goatVersion, `${major(version)}.x.x`)) {
     config.goatVersion = version;
-    writeFile(configFile, JSON.stringify(config, null, 2));
+    writeFile(normalize(configFile), JSON.stringify(config, null, 2));
     console.log('The Goat version of this project has been updated, no further changes needed')
     return config
   }

@@ -87,7 +87,6 @@ const compileStyles = ({
 const watch = (config, settings) => {
   compileStyles(config, settings).pipe(sizeReport());
   chokidar.watch(settings.source, {
-    ignored: settings.ignore,
     persistent: true,
     ignoreInitial: true,
   }).on('change', (path) => {
