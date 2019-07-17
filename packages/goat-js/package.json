@@ -1,0 +1,18 @@
+{
+  "name": "@goat/js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stef Spakman <mail@stefspakman.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.5.4",
+    "babel-preset-airbnb": "^4.0.1",
+    "chokidar": "^3.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0"
+  }
+}

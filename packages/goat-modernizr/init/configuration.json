@@ -1,0 +1,19 @@
+{
+  "locations" : {
+    "styles" : {
+      "src": "components/",
+      "dist": "css/"
+    },
+    "javascript" : {
+      "src": ["components"],
+      "libraries": "js/libraries/"
+    }
+  },
+  "js" : {
+    "minify" : false,
+    "modernizr" : {
+      "include" : ["inputtypes"],
+      "exclude" : ["hidden"]
+    }
+  }
+}

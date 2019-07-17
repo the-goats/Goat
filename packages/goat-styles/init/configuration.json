@@ -1,0 +1,34 @@
+{
+  "browserSupport": ["> 1%", "last 2 versions"],
+  "locations" : {
+    "node_modules": "./node_modules",
+    "styles" : {
+      "src": "components/",
+      "dist": "css/"
+    }
+  },
+  "styles" : {
+    "minify" : false,
+    "compass" :  true,
+    "exclude" : [],
+    "sourceMaps" : {
+      "generate" :  true,
+      "location" : "/",
+      "loadMaps" : false,
+      "identityMap" : false,
+      "debug" : false,
+      "addComment" : true,
+      "includeContent" : true,
+      "charset" : "utf8",
+      "destPath" : "",
+      "sourceMappingUrlPrefix" : ""
+    },
+    "pxToRem": {
+      "enabled": false,
+      "settings": {
+        "rootValue": 10,
+        "replace": false
+      }
+    }
+  }
+}

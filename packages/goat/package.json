@@ -1,0 +1,25 @@
+{
+  "name": "@goat/goat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stef Spakman <mail@stefspakman.com>",
+  "license": "GNU",
+  "dependencies": {
+    "commander": "^2.20.0",
+    "inquirer": "^6.5.0",
+    "jsonschema": "^1.2.4",
+    "kleur": "^3.0.3",
+    "lodash": "^4.17.14",
+    "node-emoji": "^1.10.0",
+    "semver": "^6.2.0"
+  },
+  "bin": {
+    "goat": "./bin/goat.js",
+    "billy": "./bin/goat.js",
+    "kevin": "./bin/goat.js"
+  }
+}
