@@ -1,5 +1,5 @@
 {
-  "name": "@goat/styles",
+  "name": "@goat-cli/styles",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

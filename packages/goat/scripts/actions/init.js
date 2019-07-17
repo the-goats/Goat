@@ -35,19 +35,19 @@ const initQuestions = async () => {
       name: 'project_packages',
       choices: [{
           name: 'Goat Styles',
-          value: '@goatstyles',
+          value: '@goat-cli/styles',
         },
         {
           name: 'Goat JS',
-          value: '@goat/js',
+          value: '@goat-cli/es6',
         },
         {
           name: 'Goat Modernizr',
-          value: '@goat/modernizr',
+          value: '@goat-cli/modernizr',
         },
       ],
       default: () => {
-        return ['goat-styles', 'goat-js', 'goat-modernizr'];
+        return ['@goat-cli/styles', '@goat-cli/es6', '@goat-cli/modernizr'];
       }
     }
   ];
