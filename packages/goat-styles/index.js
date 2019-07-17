@@ -31,16 +31,16 @@ function wrapPath(paths, prefix, suffix = '', extra = []) {
 
 module.exports = {
   actions(goat, Goat) {
-    const styles = new Goat(
-      'Synetic Styles',
+    const styles = new Goat({
+      name: 'Synetic Styles',
       schema,
-      (config) => {
+      method: (config) => {
         const settings = getSettings(config);
         return new Promise((resolve, reject) => {
           resolve(compileStyles(config, settings))
         });
       }
-    );
+    });
   
     goat
       .command('styles')

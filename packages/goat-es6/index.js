@@ -15,25 +15,25 @@ module.exports = {
       }
     );
   
-    const babel = new Goat(
-      'Babel',
+    const babel = new Goat({
+      name: 'Babel',
       schema,
-      (config) => {
+      method: (config) => {
         return new Promise((resolve, reject) => {
           resolve(runBabel(config));
         });
       }
-    );
+    });
   
-    const eslint = new Goat(
-      'Eslint',
+    const eslint = new Goat({
+      name: 'Eslint',
       schema,
-      (config) => {
+      method: (config) => {
         return new Promise((resolve, reject) => {
           resolve(runEslint(config));
         })
       }
-    );
+    });
   
     goat
       .command('modernizr')

@@ -7,10 +7,10 @@ const Notifier = require('../notifier');
  * @class Goat
  */
 class Goat {
-  constructor(name, schema, method) {
-    this.name = name;
-    this.schema = schema;
-    this.method = method;
+  constructor(build) {
+    this.name = build.name;
+    this.schema = build.schema;
+    this.method = build.method;
     this.path = process.cwd();
     this.Notifier =  new Notifier();
     this.configuration;

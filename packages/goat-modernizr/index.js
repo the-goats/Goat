@@ -4,15 +4,15 @@ const initConfiguration = require('./init/configuration.json')
 
 module.exports = {
   actions(goat, Goat) {
-    const modernizr = new Goat(
-      'Modernizr',
+    const modernizr = new Goat({
+      name: 'Modernizr',
       schema,
-      (config) => {
+      method: (config) => {
         return new Promise((resolve, reject) => {
           resolve(buildModernizr(config));
         });
       }
-    );
+    });
 
     goat
       .command('modernizr')
