@@ -1,6 +1,6 @@
 {
   "name": "@goat-cli/goat",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "script.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "dependencies": {
     "@goat-cli/es6": "^1.0.0",
     "@goat-cli/modernizr": "^1.0.0",
-    "@goat-cli/styles": "^1.0.0",
+    "@goat-cli/styles": "^1.0.1",
     "commander": "^2.20.0",
     "inquirer": "^6.5.0",
     "jsonschema": "^1.2.4",
