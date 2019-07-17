@@ -33,9 +33,9 @@
     const Goat = require('../scripts/bootstrap/bootstrap');
 
     const packages = [
-      '@goat/styles',
-      '@goat/js',
-      '@goat/modernizr'
+      '@goat-cli/styles',
+      '@goat-cli/es6',
+      '@goat-cli/modernizr'
     ]
 
     packages.forEach((goatPackage) => {
