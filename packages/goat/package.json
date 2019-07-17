@@ -1,6 +1,6 @@
 {
   "name": "@goat-cli/goat",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "script.js",
   "scripts": {
@@ -9,8 +9,8 @@
   "author": "Stef Spakman <mail@stefspakman.com>",
   "license": "GNU",
   "dependencies": {
-    "@goat-cli/es6": "^1.0.1",
-    "@goat-cli/modernizr": "^1.0.1",
+    "@goat-cli/es6": "^1.0.2",
+    "@goat-cli/modernizr": "^1.0.2",
     "@goat-cli/styles": "^1.0.2",
     "commander": "^2.20.0",
     "inquirer": "^6.5.0",
