@@ -12,13 +12,14 @@
     "@goat-cli/es6": "^1.0.2",
     "@goat-cli/modernizr": "^1.0.2",
     "@goat-cli/styles": "^1.0.2",
+    "chokidar": "^3.0.2",
     "commander": "^2.20.0",
     "inquirer": "^6.5.0",
     "jsonschema": "^1.2.4",
     "kleur": "^3.0.3",
     "lodash": "^4.17.14",
-    "node-emoji": "^1.10.0",
-    "semver": "^6.2.0"
+    "semver": "^6.2.0",
+    "single-line-log": "^1.1.2"
   },
   "bin": {
     "goat": "./bin/goat.js",

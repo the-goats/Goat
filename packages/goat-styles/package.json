@@ -9,7 +9,6 @@
   "author": "Stef Spakman <mail@stefspakman.com>",
   "license": "GNU",
   "dependencies": {
-    "chokidar": "^3.0.2",
     "compass-importer": "^0.4.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",

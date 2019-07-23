@@ -39,13 +39,13 @@ module.exports = ({
   /* Specify a directory of static assets */
   fractal.web.set('static.path', normalize(`${path}/`));
   /* Set the static HTML build destination */
-  fractal.web.set('builder.dest', normalize(`${path}/dest`));
+  fractal.web.set('builder.dest', normalize(`${path}/.goat/temp/fractal/styleguide`));
   console.log('hi');
 
 
   const builder = fractal.web.builder();
   const logger = fractal.cli.console;
-  builder.on('progress', (completed, total) => console.log(`Exported ${completed} of ${total} items`, 'info'));
+  builder.on('progress', (completed, total) => Notifier.singleLine(`Exported ${completed} of ${total} items`, 'info'));
   builder.on('error', err => console.error(err.message));
   builder.build().then(() => {
     console.log('Fractal build completed!');

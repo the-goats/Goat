@@ -1,6 +1,5 @@
 const babel = require("@babel/core");
 const getFiles = require('./helpers/readdir');
-const chokidar = require('chokidar');
 const {
   readFile,
   writeFile
@@ -9,24 +8,25 @@ const {
   normalize
 } = require('path');
 
-let Logger;
-let basePath;
-let browserSupport;
-
-const processFiles = async (path, browserSupport) => {
-  for await (const file of getFiles(path,  /\.es6\.js$/gm)) {
-    readJsFile(file);
-  };
-}
-
-const readJsFile = (file) => {
+/**
+ * Process single .es6.js file. This function generates the new es5 ready file.
+ * @param {Object} config
+ */
+const processBabelFile = (config) => {
+  const { file, configuration, Notifier } = config;
   readFile(file, async (err, data) => {
     if (err) throw err;
-    const code = (await bablyfy(data.toString(), browserSupport)).code
-    writeFile(file.replace('.es6', ''), code, () => Logger.icon(`${file} processed`, 'success'));
+    const code = (await bablyfy(data.toString(), configuration.browserSupport)).code
+    writeFile(file.replace('.es6', ''), code, () => Notifier.log(`${file} processed`));
   });
 }
 
+/**
+ * Convert Supplied data to es5 ready js with babel
+ * @param {String} data
+ * @param {Array, String} browserSupport
+ * @returns {String} result
+ */
 const bablyfy = (data, browserSupport) => babel.transformAsync(data, {
   presets: [
     [require.resolve('babel-preset-airbnb'),
@@ -40,40 +40,22 @@ const bablyfy = (data, browserSupport) => babel.transformAsync(data, {
   ],
 });
 
-const process = (sources) => {
+/**
+ * Process all files in the supplied paths
+ * @param {Object} config - Object containing all configuration supplied by goat
+ */
+const processBabel = (config) => {
+  const { sources, path } = config;
   sources.forEach((source) => {
-    processFiles(normalize(`${basePath}/${source}`));
+    (async (path) => {
+      for await (const file of getFiles(path,  /\.es6\.js$/gm)) {
+        processBabelFile({
+          ...config,
+          file,
+        });
+      };
+    })(normalize(`${path}/${source}`));
   });
 }
 
-const watch = (configuration, sources) => {
-  process(sources);
-  const paths = configuration.locations.javascript.src.map(item => normalize(`${basePath}/${item}/**/*.es6.js`));
-  chokidar.watch(paths, {
-    persistent: true,
-    ignoreInitial: true,
-  }).on('change', (path) => {
-    Logger.log(Logger.style.bold(`\nFile ${path} has been changed`));
-    readJsFile(path);
-  });
-};
-
-module.exports = ({
-  path,
-  configuration,
-  Notifier,
-  options,
-}) => {
-  Logger = Notifier;
-  basePath = path;
-  browserSupport = configuration.browserSupport;
-
-  const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
-  
-  if (options.watch) {
-    watch(configuration, sources);
-    return null;
-  }
-  
-  process(sources);
-}
+module.exports = { processBabel, processBabelFile } 

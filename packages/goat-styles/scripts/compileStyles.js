@@ -8,15 +8,23 @@ const postcss = require('gulp-postcss');
 const pxToRem = require('postcss-pxtorem');
 const sass = require('gulp-sass');
 const sassGlob = require('gulp-sass-glob');
-const sizeReport = require('gulp-sizereport');
 const sourcemaps = require('gulp-sourcemaps');
 const aliasImporter = require("node-sass-alias-importer");
-const chokidar = require('chokidar');
 
+/**
+ * Process scss files using gulp-sass
+ * @param {Object} {
+ *   configuration,
+ *   Notifier,
+ *   settings,
+ * }
+ * @returns {Object} stream - Returns a gulp stream
+ */
 const compileStyles = ({
   configuration,
   Notifier,
-}, settings) => {
+  settings,
+}) => {
   settings.dest = typeof settings.dest === 'string' ? [settings.dest] : settings.dest;
   let stream = gulp.src(settings.source);
   stream = stream
@@ -84,23 +92,4 @@ const compileStyles = ({
   return stream;
 }
 
-const watch = (config, settings) => {
-  compileStyles(config, settings).pipe(sizeReport());
-  chokidar.watch(settings.source, {
-    persistent: true,
-    ignoreInitial: true,
-  }).on('change', (path) => {
-    console.log(`File ${path} has been changed`)
-    compileStyles(config, settings)
-      .pipe(sizeReport());
-  });
-};
-
-module.exports = (config, settings) => {
-  if (config.options.watch) {
-    watch(config, settings);
-    return null;
-  }
-  const result = compileStyles(config, settings);
-  return () => result.pipe(sizeReport());
-};
+module.exports = { compileStyles };

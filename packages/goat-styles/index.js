@@ -1,7 +1,8 @@
-const compileStyles = require('./scripts/compileStyles');
+const { compileStyles } = require('./scripts/compileStyles');
 const schema = require('./scripts/schema');
 const path = require('path');
-const initConfiguration = require('./init/configuration.json')
+const initConfiguration = require('./init/configuration.json');
+const sizeReport = require('gulp-sizereport');
 
 /**
  * @function  [getSettings]
@@ -37,9 +38,20 @@ module.exports = {
       method: (config) => {
         const settings = getSettings(config);
         return new Promise((resolve, reject) => {
-          resolve(compileStyles(config, settings))
+          compileStyles({ ...config, settings }).pipe(sizeReport());
+          resolve(true);
         });
-      }
+      },
+      watch: (config) => {
+        const { watch, Notifier } = config;
+        const settings = getSettings(config);
+        compileStyles({ ...config, settings }).pipe(sizeReport());
+        watch(settings.source)
+        .on('change', (file) => {
+          Notifier.log(Notifier.style.bold(`\nFile ${file} has been changed`));
+          compileStyles({ ...config, settings }).pipe(sizeReport());
+        });
+      },
     });
   
     goat

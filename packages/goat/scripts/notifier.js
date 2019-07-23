@@ -1,18 +1,18 @@
 const style = require('kleur');
-const emoji = require('node-emoji');
+const single = require('single-line-log').stdout;
 
 /**
  * Goat's Notification services
  * @class Notifier
  */
-class Notifier {
+class Notifier {  
   constructor() {
     this.style = style;
   }
 
   /**
    * Basic logging functionality
-   * @param {*} text - Value to log
+   * @param {String} text - Value to log
    * @memberof Notifier
    */
   log(text) {
@@ -21,7 +21,7 @@ class Notifier {
 
   /**
    * Inform user about something (hopefully interesting)
-   * @param {*} text - value to inform about
+   * @param {String} text - value to inform about
    * @memberof Notifier
    */
   info(text) {
@@ -35,23 +35,19 @@ class Notifier {
    */
   error(error) {
     if (error.messageFormatted) {
-      console.error(this.style.bold().red(error.messageFormatted));
+      console.error(style.bold().red(error.messageFormatted));
       return
     }
-    console.error(this.style.bold().red(error));
+    console.error(style.bold().red(error));
   }
 
   /**
-   * @description
+   * Write console messages on a single line.
    * @param {String} text
-   * @param {String} icon
    * @memberof Notifier
    */
-  icon(text, icon) {
-    if (typeof text !== 'string') {
-      text = text.toString();
-    }
-    this.log(`${emoji.get(icon)} ${text}`);
+  singleLine(text) {
+    single(text);
   }
 }
 

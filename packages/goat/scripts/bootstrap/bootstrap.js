@@ -1,6 +1,7 @@
 const getConfig = require('../config/config');
 const checkSchema = require('../validators/schema');
 const Notifier = require('../notifier');
+const chokidar = require('chokidar');
 
 /**
  * Class defining all Goat tasks
@@ -11,8 +12,9 @@ class Goat {
     this.name = build.name;
     this.schema = build.schema;
     this.method = build.method;
+    this.watch = build.watch;
     this.path = process.cwd();
-    this.Notifier =  new Notifier();
+    this.Notifier = new Notifier();
     this.configuration;
   }
 
@@ -22,7 +24,15 @@ class Goat {
    * @memberof Goat
    */
   action(options) {
+    this.configuration = this.getConfiguration();
+    if (options.watch) {
+      return this.watchBase();
+    }
     this.actionBase(options);
+  }
+
+  watch(source) {
+
   }
 
   /**
@@ -31,7 +41,13 @@ class Goat {
    * @memberof Goat
    */
   getConfiguration() {
-    return getConfig();
+    const configuration = getConfig();
+    // Validate used config
+    if (this.schema && !checkSchema(this.configuration, this.schema)) {
+      // return null;
+      throw 'The configuration is not correct';
+    }
+    return configuration
   }
 
   /**
@@ -41,28 +57,33 @@ class Goat {
    * @memberof Goat
    */
   actionBase(options) {
-    this.configuration = this.getConfiguration();
-    const hrstart = process.hrtime();
-    this.Notifier.icon(`Running ${this.name || 'task'} in ${process.cwd()}\n`, 'goat')
-
-    // Validate used config
-    if (this.schema && !checkSchema(this.configuration, this.schema)) {
-      return null;
-    }
+    this.Notifier.log('\u1F410', `Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
     const result = this.method({
       ...this,
       options,
     });
-    result.then((callback) => {
-      if (typeof callback === 'function') {
-        callback()
-      };
-      const hrend = process.hrtime(hrstart)
-      this.Notifier.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
-    })
+    if (result instanceof Promise) {
+      result.then((callback) => {
+        if (typeof callback === 'function') {
+          callback()
+        };
+      })
+    }
   }
-  
+
+  watchBase() {
+    this.Notifier.log(`Watching ${this.name || 'task'} in ${process.cwd()}\n`);
+    const result = this.watch({
+      ...this,
+      watch: (source) => {
+        return chokidar.watch(source, {
+          persistent: true,
+          ignoreInitial: true,
+        })
+      },
+    });
+  }
 }
 
 module.exports = Goat;
