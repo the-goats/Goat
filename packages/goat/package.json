@@ -1,6 +1,6 @@
 {
   "name": "@goat-cli/goat",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "script.js",
   "scripts": {
@@ -10,8 +10,8 @@
   "license": "GNU",
   "dependencies": {
     "@goat-cli/es6": "^1.0.2",
-    "@goat-cli/modernizr": "^1.0.2",
-    "@goat-cli/styles": "^1.0.2",
+    "@goat-cli/modernizr": "^1.0.3",
+    "@goat-cli/styles": "^1.0.3",
     "chokidar": "^3.0.2",
     "commander": "^2.20.0",
     "inquirer": "^6.5.0",
@@ -22,8 +22,6 @@
     "single-line-log": "^1.1.2"
   },
   "bin": {
-    "goat": "./bin/goat.js",
-    "billy": "./bin/goat.js",
-    "kevin": "./bin/goat.js"
+    "goat": "./bin/goat.js"
   }
 }
