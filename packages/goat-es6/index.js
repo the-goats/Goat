@@ -13,10 +13,12 @@ const {
   normalize
 } = require('path');
 
-module.exports = {
-  actions(goat, Goat) {
-    const babel = new Goat({
+module.exports = [
+  (Goat) => {
+    return new Goat({
       name: 'Babel',
+      command: 'babel',
+      description: 'Compile .es6.js files using babel',
       schema,
       method: (config) => {
         return new Promise((resolve, reject) => {
@@ -47,10 +49,16 @@ module.exports = {
           });
         });
       },
+      init: {
+        configuration: initConfiguration,
+      }
     });
-
-    const eslint = new Goat({
+  },
+  (Goat) => {
+    return new Goat({
       name: 'Eslint',
+      command: 'eslint',
+      description: 'Run eslint',
       schema,
       method: (config) => {
         return new Promise((resolve, reject) => {
@@ -81,30 +89,9 @@ module.exports = {
           });
         });
       },
+      init: {
+        configuration: initConfiguration,
+      }
     });
-
-    goat
-      .command('babel')
-      .description('Compile .es6.js files using babel')
-      .option('-w, --watch', 'Keep watching the .es6.js files')
-      .action(({
-        watch
-      }) => babel.action({
-        watch
-      }));
-
-    goat
-      .command('eslint')
-      .description('Run eslint')
-      .option('-w, --watch', 'Keep watching the js files')
-      .action(({
-        watch
-      }) => eslint.action({
-        watch
-      }));
-    return goat;
-  },
-  init: {
-    configuration: initConfiguration,
-  },
-};
+  }
+];

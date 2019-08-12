@@ -10,10 +10,13 @@ const chokidar = require('chokidar');
 class Goat {
   constructor(build) {
     this.name = build.name;
+    this.command = build.command;
+    this.description = build.description;
     this.schema = build.schema;
     this.method = build.method;
     this.watch = build.watch;
     this.path = process.cwd();
+    this.init = build.init;
     this.Notifier = new Notifier();
     this.configuration;
   }
@@ -24,15 +27,10 @@ class Goat {
    * @memberof Goat
    */
   action(options) {
-    this.configuration = this.getConfiguration();
     if (options.watch) {
       return this.watchBase();
     }
     this.actionBase(options);
-  }
-
-  watch(source) {
-
   }
 
   /**
@@ -57,6 +55,7 @@ class Goat {
    * @memberof Goat
    */
   actionBase(options) {
+    this.configuration = this.getConfiguration();
     this.Notifier.log('\u1F410', `Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
     const result = this.method({
@@ -72,17 +71,41 @@ class Goat {
     }
   }
 
+  /**
+   * Base function for watch tasks
+   * @memberof Goat
+   */
   watchBase() {
-    this.Notifier.log(`Watching ${this.name || 'task'} in ${process.cwd()}\n`);
-    const result = this.watch({
-      ...this,
-      watch: (source) => {
-        return chokidar.watch(source, {
-          persistent: true,
-          ignoreInitial: true,
-        })
-      },
-    });
+    this.configuration = this.getConfiguration();
+    if (!this.watch) {
+      this.Notifier.log('This command has no watch option');
+      return;
+    }
+    this.Notifier.log(`Watching ${this.name || 'task'} in ${process.cwd()}`);
+      const result = this.watch({
+        ...this,
+        watch: (source) => {
+          return chokidar.watch(source, {
+            persistent: true,
+            ignoreInitial: true,
+          })
+        },
+      });
+  }
+
+  /**
+   * Build command
+   * @param {object} goat
+   * @returns {object} goat
+   * @memberof Goat
+   */
+  getCommand(goat) {
+    goat
+      .command(this.command)
+      .description(this.description)
+      .option(this.watch ? '-w, --watch' : '', this.watch ? 'Watch for file changes' : '')
+      .action(({watch}) => this.action({ watch }));
+    return goat;
   }
 }
 

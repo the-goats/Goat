@@ -30,38 +30,31 @@ function wrapPath(paths, prefix, suffix = '', extra = []) {
   ];
 }
 
-module.exports = {
-  actions(goat, Goat) {
-    const styles = new Goat({
-      name: 'Synetic Styles',
-      schema,
-      method: (config) => {
-        const settings = getSettings(config);
-        return new Promise((resolve, reject) => {
-          compileStyles({ ...config, settings }).pipe(sizeReport());
-          resolve(true);
-        });
-      },
-      watch: (config) => {
-        const { watch, Notifier } = config;
-        const settings = getSettings(config);
+module.exports = (Goat) => {
+  return new Goat({
+    name: 'Synetic Styles',
+    command: 'styles',
+    description: 'Compile Styles',
+    schema,
+    method: (config) => {
+      const settings = getSettings(config);
+      return new Promise((resolve, reject) => {
         compileStyles({ ...config, settings }).pipe(sizeReport());
-        watch(settings.source)
-        .on('change', (file) => {
-          Notifier.log(Notifier.style.bold(`\nFile ${file} has been changed`));
-          compileStyles({ ...config, settings }).pipe(sizeReport());
-        });
-      },
-    });
-  
-    goat
-      .command('styles')
-      .description('Compile Styles')
-      .option('-w, --watch', 'Keep watching the scss files')
-      .action(({watch}) => styles.action({ watch }));
-    return goat;
-  },
-  init: {
-    configuration: initConfiguration,
-  },
-}
+        resolve(true);
+      });
+    },
+    watch: (config) => {
+      const { watch, Notifier } = config;
+      const settings = getSettings(config);
+      compileStyles({ ...config, settings }).pipe(sizeReport());
+      watch(settings.source)
+      .on('change', (file) => {
+        Notifier.log(Notifier.style.bold(`\nFile ${file} has been changed`));
+        compileStyles({ ...config, settings }).pipe(sizeReport());
+      });
+    },
+    init: {
+      configuration: initConfiguration,
+    }
+  });
+};

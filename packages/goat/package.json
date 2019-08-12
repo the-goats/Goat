@@ -23,5 +23,8 @@
   },
   "bin": {
     "goat": "./bin/goat.js"
+  },
+  "engines" : { 
+    "node" : ">=11.00" 
   }
 }

@@ -15,6 +15,7 @@ const plugins = require('../../plugins');
 const configFileName = 'goat.config.json';
 const directory = normalize(`./.goat`);
 const { version } = require('../../package.json');
+const Goat = require('../bootstrap/bootstrap');
 
 /**
  * Inquire the user preferences.
@@ -75,7 +76,6 @@ const initializeGoatConfig = async (answers) => {
       writeConfig();
     })
   }
- 
   return
 }
 
@@ -88,8 +88,9 @@ const initializeProjectConfig = (answers) => {
     name: answers['project_name'],
     version: '1.x',
   }
-  answers['project_packages'].forEach(package => {
-    projectConfiguration = merge(projectConfiguration, require(package).init.configuration)
+  answers['project_packages'].forEach((package) => {
+    const packageConfig = require(package);
+    projectConfiguration = merge(projectConfiguration, !Array.isArray(packageConfig) ? packageConfig(Goat).init.configuration : packageConfig.map(item => item(Goat).init.configuration));
   });
   writeFile(configFileName, JSON.stringify(projectConfiguration, null, 2));
 }
