@@ -13,9 +13,9 @@ module.exports = [{
     package: '@goat-cli/modernizr',
     default: true,
   },
-  // {
-  //   name: 'Goat Styleguide',
-  //   package: '@goat-cli/fractal',
-  //   default: false,
-  // },
+  {
+    name: 'Goat Styleguide',
+    package: '@goat-cli/fractal',
+    default: false,
+  },
 ]

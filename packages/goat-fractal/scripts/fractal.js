@@ -5,6 +5,7 @@ const fractal = require('@frctl/fractal').create();
 const mandelbrot = require('@frctl/mandelbrot');
 const twigAdapter = require('@wondrousllc/fractal-twig-drupal-adapter');
 const { get } = require('lodash');
+const fs = require('fs');
 
 module.exports = ({
   path,
@@ -13,7 +14,15 @@ module.exports = ({
 }) => {
 
   fractal.components.engine(twigAdapter({
-    handlePrefix: '@components/'
+    handlePrefix: '@components/',
+    filters: {
+      render(str) {
+        return str;
+      },
+      without(str) {
+        return str;
+      }
+    }
   }));
   fractal.components.set('ext', '.twig');
 
@@ -32,16 +41,19 @@ module.exports = ({
     fractal.set('project.author', configuration.author);
   }
 
+  fs.symlink(normalize(`${path}`), normalize(`${path}/.goat/temp/fractal/assets`), () => console.log('Symlink created'));
+  // fs.symlink(normalize(`${path}/css`), normalize(`${path}/.goat/temp/fractal/assets/css`), () => console.log('CSS symlink created'));
+  // fs.symlink(normalize(`${path}/test`), normalize(`${path}/.goat/temp/fractal/assets/test`), () => console.log('Test symlink created'));
+  // fs.symlink(normalize(`${path}/fonts`), normalize(`${path}/.goat/temp/fractal/assets/fonts`), () => console.log('fonts symlink created'));
+
   /* Tell Fractal where the components will live */
   fractal.components.set('path', normalize(`${path}/components`));
   /* Tell Fractal where the documentation pages will live */
   fractal.docs.set('path', normalize(`${path}/docs`));
   /* Specify a directory of static assets */
-  fractal.web.set('static.path', normalize(`${path}/`));
+  fractal.web.set('static.path', normalize(`${path}/.goat/temp/fractal/assets/`));
   /* Set the static HTML build destination */
   fractal.web.set('builder.dest', normalize(`${path}/.goat/temp/fractal/styleguide`));
-  console.log('hi');
-
 
   const builder = fractal.web.builder();
   const logger = fractal.cli.console;
