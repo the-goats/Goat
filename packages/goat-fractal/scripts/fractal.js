@@ -3,7 +3,7 @@ const {
 } = require('path');
 const fractal = require('@frctl/fractal');
 const mandelbrot = require('@frctl/mandelbrot');
-const twigAdapter = require('@wondrousllc/fractal-twig-drupal-adapter');
+const twigAdapter = require('@goat-cli/fractal-twig-adapter');
 const { get } = require('lodash');
 const fs = require('fs');
 
@@ -24,7 +24,11 @@ const checkSymLinkExists = (source) => {
 
 const fractalAddEngine = (styleguide) => {
   styleguide.components.engine(twigAdapter({
-    handlePrefix: '@components/',
+    nameSpaces: {
+      'atoms': '02-atoms',
+      'molecules': '03-molecules',
+    },
+    handlePrefix: '@',
     filters: {
       render(str) {
         return str;
@@ -32,7 +36,26 @@ const fractalAddEngine = (styleguide) => {
       without(str) {
         return str;
       }
-    }
+    },
+    functions : {
+      bem(base, modifiers, element, extra) {
+        const classes = [];
+        if (extra) {
+          classes.push(extra);
+        } 
+        const className = element !== undefined ? `${base}__${element}` : base;
+        classes.push(className);
+        if (!modifiers) {
+          return { class: classes.flat() };
+        }
+        modifiers.forEach(modifier => classes.push(`${className}--${modifier}`))
+        return { class: classes.flat() };
+      },
+      add_attributes(attributesOne, attributesTwo) {
+        const attributes = Object.assign(attributesOne, attributesTwo);
+        return Object.keys(attributes).map(attribute => `${attribute}="${Array.isArray(attributes[attribute]) ? attributes[attribute].join(' '): attributes[attribute]}"`).join(' ');
+      }
+    },
   }));
   styleguide.components.set('ext', '.twig');
   return styleguide;
