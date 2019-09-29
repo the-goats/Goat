@@ -1,3 +1,4 @@
+const { get } = require('lodash');
 const { normalize } = require('path');
 
 /**
@@ -9,7 +10,7 @@ const { normalize } = require('path');
 const fractalSetMeta = (configuration, styleguide) => {
   styleguide.set('project.title', configuration.name);
   if (configuration.author) {
-    styleguide.set('project.author', configuration.author);
+    styleguide.set('project.author', get(configuration, 'author') || 'Goat');
   }
   return styleguide;
 }

@@ -1,3 +1,4 @@
+const { get } = require('lodash');
 const twigAdapter = require('@goat-cli/fractal-twig-adapter');
 const render = require('../twig/filters/render');
 const without = require('../twig/filters/render');
@@ -6,14 +7,17 @@ const add_attributes = require('../twig/functions/add_attributes');
 
 /**
  * Add templating engine to Fractal
+ * @param {object} configuration
  * @param {object} styleguide
  * @returns {object}
  */
-const fractalAddEngine = (styleguide) => {
+const fractalAddEngine = (configuration, styleguide) => {
   styleguide.components.engine(twigAdapter({
-    nameSpaces: {
-      'atoms': '02-atoms',
-      'molecules': '03-molecules',
+    nameSpaces:  get(configuration, 'nameSpaces') || {
+      base: '01-base',
+      atoms: '02-atoms',
+      molecules: '03-molecules',
+      organisms: '04-organisms',
     },
     handlePrefix: '@',
     filters: {

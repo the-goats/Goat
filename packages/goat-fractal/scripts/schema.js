@@ -2,35 +2,33 @@ module.exports = {
   id: '/SyneticFractal',
   type: 'object',
   properties: {
-    locations: {
+    author: {
+      type: 'string'
+    },
+    nameSpaces: {
+      type: 'object'
+    },
+    styleguide: {
       type: 'object',
       properties: {
-        styles: {
-          type: 'object',
-          properties: {
-            src: {
-              type: 'string'
-            },
-            dist: {
-              type: 'string'
-            },
-          },
-          required: ['src']
+        skin: {
+          type: 'string'
         },
-        javascript: {
+        panels: {
+          type: 'array'
+        },
+        server: {
           type: 'object',
           properties: {
-            src: {
-              type: 'array'
+            concurrency: {
+              type: 'number'
             },
-            libraries: {
-              type: 'string'
-            },
-          },
-          required: ['src', 'libraries']
+            sync: {
+              type: 'boolean',
+            }
+          }
         }
-      },
-      required: ['javascript', 'styles']
-    },
+      }
+    }
   }
 }

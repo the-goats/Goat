@@ -1,19 +1,19 @@
 {
-  "locations" : {
-    "styles" : {
-      "src": "components/",
-      "dist": "css/"
-    },
-    "javascript" : {
-      "src": ["components"],
-      "libraries": "js/libraries/"
-    }
+  "author": "PROJECT_AUTHOR",
+  "nameSpaces": {
+    "protons": "01-protons",
+    "atoms": "02-atoms",
+    "molecules": "03-molecules",
+    "organisms": "04-organisms",
+    "templates": "05-templates",
+    "pages": "06-pages"
   },
-  "js" : {
-    "minify" : false,
-    "modernizr" : {
-      "include" : ["inputtypes"],
-      "exclude" : ["hidden"]
+  "styleguide": {
+    "skin": "navy",
+    "panels": ["info", "html", "view", "context", "resources", "notes"],
+    "server": {
+      "concurrency": 10,
+      "sync": true
     }
   }
 }

@@ -1,6 +1,4 @@
-const {
-  normalize
-} = require('path');
+const { normalize } = require('path');
 const fractal = require('@frctl/fractal');
 const { createSymlink, checkSymLinkExists } = require('./symlinks');
 const { fractalAddEngine } = require('./fractal/engine');
@@ -23,12 +21,12 @@ module.exports = async ({
 
   let styleguide = fractal.create();
 
-  styleguide = fractalAddEngine(styleguide);
+  styleguide = fractalAddEngine(configuration, styleguide);
   styleguide = fractalAddTheme(configuration, currentPath, styleguide);
   styleguide = fractalSetMeta(configuration, styleguide);
   styleguide = fractalSetPaths(configuration, currentPath, styleguide);
 
-  const build = fractalBuilder(Notifier, styleguide);
+  const build = fractalBuilder(configuration, Notifier, styleguide);
 
   build.then(() => {
     Notifier.log('Fractal build completed!');

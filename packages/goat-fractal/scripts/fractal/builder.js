@@ -1,13 +1,16 @@
+const { get } = require('lodash');
+
 /**
  * Build an fractal instance
+ * @param {object} configuration
  * @param {object} Notifier
  * @param {object} styleguide
  * @returns {*}
  */
-const fractalBuilder = (Notifier, styleguide) => {
+const fractalBuilder = (configuration, Notifier, styleguide) => {
   const builder = styleguide.web.builder();
-  styleguide.web.set('builder.concurrency', 10);
-  styleguide.web.set('server.sync', true);
+  styleguide.web.set('builder.concurrency', get(configuration, 'styleguide.server.concurrency') || 10);
+  styleguide.web.set('server.sync', get(configuration, 'styleguide.server.sync') || false);
   builder.on('progress', (completed, total) => {
     Notifier.singleLine(`Exported ${completed} of ${total} items`, 'info');
     if (completed === total) {

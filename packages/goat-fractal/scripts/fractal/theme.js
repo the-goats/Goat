@@ -11,8 +11,8 @@ const { normalize } = require('path');
  */
 const fractalAddTheme = (configuration, currentPath, styleguide) => {
   const theme = mandelbrot({
-    skin: get(configuration, 'configuration.fractal.theme.skin') || "navy",
-    panels: get(configuration, 'configuration.fractal.theme.panels') || ["info", "html", "view", "context", "resources", "notes"],
+    skin: get(configuration, 'styleguide.skin') || "navy",
+    panels: get(configuration, 'styleguide.panels') || ["info", "html", "view", "context", "resources", "notes"],
     styles: ['default', normalize(`/${currentPath}/styleguide/theme/overrides.css`)]
   });
 
