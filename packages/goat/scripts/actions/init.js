@@ -90,9 +90,24 @@ const initializeProjectConfig = (answers) => {
   }
   answers['project_packages'].forEach((package) => {
     const packageConfig = require(package);
-    projectConfiguration = merge(projectConfiguration, !Array.isArray(packageConfig) ? packageConfig(Goat).init.configuration : packageConfig.map(item => item(Goat).init.configuration));
+    projectConfiguration = merge(projectConfiguration, getPackageConfig(packageConfig, Goat));
   });
   writeFile(configFileName, JSON.stringify(projectConfiguration, null, 2));
+}
+
+/**
+ * Get config of packages
+ * @param {array} packageConfig
+ * @param {object} Goat
+ * @returns {object}
+ */
+const getPackageConfig = (packageConfig, Goat) => {
+  if (!Array.isArray(packageConfig)) {
+    return packageConfig(Goat).init.configuration
+  }
+  return packageConfig.reduce((result = {}, currentValue) => {
+    return merge(result, currentValue(Goat).init.configuration);
+  });
 }
 
 /**
