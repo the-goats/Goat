@@ -1,4 +1,4 @@
-const scriptFractal = require('./scripts/fractal');
+const scriptFractal = require('./scripts/script');
 const schema = require('./scripts/schema');
 const initConfiguration = require('./init/configuration.json')
 
