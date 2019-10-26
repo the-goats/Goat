@@ -1,56 +1,31 @@
 const { compileStyles } = require('./scripts/compileStyles');
 const schema = require('./scripts/schema');
-const path = require('path');
 const initConfiguration = require('./init/configuration.json');
 const sizeReport = require('gulp-sizereport');
-
-/**
- * @function  [getSettings]
- * @returns {object} settings
- */
-function getSettings({
-  path,
-  configuration
-}) {
-  return {
-    source: wrapPath(configuration.locations.styles.src, `${path}/`, '/**/*.s+(a|c)ss', []),
-    dest: [`${path}/${configuration.locations.styles.dist}`],
-    ignore: ['**/+*', '**/~*'], //Ignore scss files prefixed by ~ and +, these files need to be specifically imported
-  };
-}
-
-/**
- * @function  [wrapPath]
- * @returns {array} paths
- */
-function wrapPath(paths, prefix, suffix = '', extra = []) {
-  return [
-    ...Array.isArray(paths) ? (paths).map(item => path.normalize(`${prefix}${item}${suffix}`)) : [path.normalize(`${prefix}${paths}${suffix}`)],
-    ...extra
-  ];
-}
+const getSettings = require('./scripts/getSettings');
 
 module.exports = (Goat) => {
   return new Goat({
-    name: 'Synetic Styles',
+    name: 'Styles',
     command: 'styles',
     description: 'Compile Styles',
     schema,
     method: (config) => {
       const settings = getSettings(config);
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         compileStyles({ ...config, settings }).pipe(sizeReport());
         resolve(true);
       });
     },
     watch: (config) => {
-      const { watch, Notifier } = config;
+      const { events } = config;
       const settings = getSettings(config);
       compileStyles({ ...config, settings }).pipe(sizeReport());
-      watch(settings.source)
-      .on('change', (file) => {
-        Notifier.log(Notifier.style.bold(`\nFile ${file} has been changed`));
+      events.watch(() => {
         compileStyles({ ...config, settings }).pipe(sizeReport());
+      }, {
+        name: 'Synetic Styles',
+        pattern: '**/*.s+(a|c)ss',
       });
     },
     init: {

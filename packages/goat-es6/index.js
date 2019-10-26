@@ -6,12 +6,9 @@ const {
   processEslint,
   processEslintFile,
 } = require('./scripts/eslint');
-const runEslint = require('./scripts/eslint');
 const schema = require('./scripts/schema');
 const initConfiguration = require('./init/configuration.json');
-const {
-  normalize
-} = require('path');
+const { normalize } = require('path');
 
 module.exports = [
   (Goat) => {
@@ -34,20 +31,23 @@ module.exports = [
         });
       },
       watch: (config) => {
-        const { configuration, watch, Notifier, path } = config;
+        const { configuration, events } = config;
         const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
         processBabel({
           ...config,
           sources,
         })
-        watch(sources.map(item => normalize(`${path}/${item}/**/*.es6.js`)))
-        .on('change', (file) => {
-          Notifier.log(Notifier.style.bold(`\nFile ${file} has been changed`));
+        const paths = sources.map(item => normalize(`${item}/**/*.es6.js`));
+        events.watch((data) => {
           processBabelFile({
             ...config,
-            file,
+            file: data.path,
           });
+        }, {
+          name: 'Babel',
+          pattern: paths,
         });
+        
       },
       init: {
         configuration: initConfiguration,
@@ -61,10 +61,8 @@ module.exports = [
       description: 'Run eslint',
       schema,
       method: (config) => {
-        return new Promise((resolve, reject) => {
-          const {
-            configuration
-          } = config;
+        return new Promise((resolve) => {
+          const { configuration } = config;
           const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
           processEslint({
             ...config,
@@ -74,19 +72,21 @@ module.exports = [
         });
       },
       watch: (config) => {
-        const { configuration, watch, Notifier, path } = config;
+        const { configuration, events } = config;
         const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
         processEslint({
           ...config,
           sources,
         })
-        watch(sources.map(item => normalize(`${path}/${item}/**/*.js`)))
-        .on('change', (file) => {
-          Notifier.log(Notifier.style.bold(`\nFile ${file} has been changed`));
+        const paths = sources.map(item => normalize(`${item}/**/*.es6.js`));
+        events.watch((data) => {
           processEslintFile({
             ...config,
-            file,
+            file: data.path,
           });
+        }, {
+          name: 'Eslint',
+          pattern: paths,
         });
       },
       init: {

@@ -20,7 +20,7 @@ class Goat {
     this.Notifier = new Notifier();
     this.configuration;
   }
-
+ 
   /**
    * Method to be executed by running Goat command.
    * @param {Object} options
@@ -28,7 +28,10 @@ class Goat {
    */
   action(options) {
     if (options.watch) {
-      return this.watchBase();
+      const { watch, goatEvents } = require('./watch');
+      const events = new goatEvents();
+      watch(events);
+      return this.watchBase(events);
     }
     this.actionBase(options);
   }
@@ -75,22 +78,17 @@ class Goat {
    * Base function for watch tasks
    * @memberof Goat
    */
-  watchBase() {
+  watchBase(events) {
     this.configuration = this.getConfiguration();
     if (!this.watch) {
       this.Notifier.log('This command has no watch option');
       return;
     }
     this.Notifier.log(`Watching ${this.name || 'task'} in ${process.cwd()}`);
-      const result = this.watch({
-        ...this,
-        watch: (source) => {
-          return chokidar.watch(source, {
-            persistent: true,
-            ignoreInitial: true,
-          })
-        },
-      });
+    this.watch({
+      ...this,
+      events,
+    });
   }
 
   /**

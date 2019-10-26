@@ -24,6 +24,7 @@ const compileStyles = ({
   configuration,
   Notifier,
   settings,
+  events
 }) => {
   settings.dest = typeof settings.dest === 'string' ? [settings.dest] : settings.dest;
   let stream = gulp.src(settings.source);
@@ -88,6 +89,16 @@ const compileStyles = ({
     .pipe(filter(['**/*', '!**/*.map'], {
       restore: false
     }))
+
+  // if (events) {
+  //   events.emit('goat', { 
+  //     event,
+  //     extension: getFileType(path),
+  //     properties: {
+  //       path,
+  //     }, 
+  //   })
+  // }
 
   return stream;
 }
