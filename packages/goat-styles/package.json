@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stef Spakman <mail@stefspakman.com>",
-  "license": "GNU",
+  "license": "MIT",
   "dependencies": {
     "compass-importer": "^0.4.1",
     "gulp": "^4.0.2",

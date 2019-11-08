@@ -5,7 +5,7 @@ const single = require('single-line-log').stdout;
  * Goat's Notification services
  * @class Notifier
  */
-class Notifier {  
+class Notifier {
   constructor() {
     this.style = style;
   }
@@ -16,7 +16,7 @@ class Notifier {
    * @memberof Notifier
    */
   log(text) {
-    console.log(text);    
+    console.log(text);
   }
 
   /**
@@ -25,7 +25,7 @@ class Notifier {
    * @memberof Notifier
    */
   info(text) {
-    console.info(text);    
+    console.info(text);
   }
 
   /**
@@ -36,7 +36,7 @@ class Notifier {
   error(error) {
     if (error.messageFormatted) {
       console.error(style.bold().red(error.messageFormatted));
-      return
+      return;
     }
     console.error(style.bold().red(error));
   }

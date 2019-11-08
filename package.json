@@ -4,19 +4,43 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint packages/**/src",
+    "fix": ".eslint --fix packages/**/src"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stefspakman/Goat.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Stef Spakman <mail@stefspakman.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/stefspakman/Goat/issues"
   },
   "homepage": "https://github.com/stefspakman/Goat#readme",
   "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "eslint": "^6.2",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.16.0",
+    "husky": "^3.0.4",
     "jest": "^24.9.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  },
+  "engines" : { 
+    "node" : ">=11" 
   }
 }

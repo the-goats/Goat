@@ -1,7 +1,8 @@
 const getConfig = require('../config/config');
 const checkSchema = require('../validators/schema');
-const Notifier = require('../notifier');
-const chokidar = require('chokidar');
+const Notifier = require('../notifier/notifier');
+const watchFiles = require('../events/watch');
+const GoatEvents = require('../events/goatEvents');
 
 /**
  * Class defining all Goat tasks
@@ -18,9 +19,10 @@ class Goat {
     this.path = process.cwd();
     this.init = build.init;
     this.Notifier = new Notifier();
-    this.configuration;
+    this.configuration = null;
+    this.events = new GoatEvents();
   }
- 
+
   /**
    * Method to be executed by running Goat command.
    * @param {Object} options
@@ -28,12 +30,10 @@ class Goat {
    */
   action(options) {
     if (options.watch) {
-      const { watch, goatEvents } = require('./watch');
-      const events = new goatEvents();
-      watch(events);
-      return this.watchBase(events);
+      watchFiles(this.events);
+      return this.watchBase(this.events);
     }
-    this.actionBase(options);
+    return this.actionBase(options);
   }
 
   /**
@@ -44,11 +44,10 @@ class Goat {
   getConfiguration() {
     const configuration = getConfig();
     // Validate used config
-    if (this.schema && !checkSchema(this.configuration, this.schema)) {
-      // return null;
-      throw 'The configuration is not correct';
+    if (this.schema && !checkSchema(configuration, this.schema)) {
+      throw new Error('The configuration is not correct');
     }
-    return configuration
+    return configuration;
   }
 
   /**
@@ -68,9 +67,9 @@ class Goat {
     if (result instanceof Promise) {
       result.then((callback) => {
         if (typeof callback === 'function') {
-          callback()
-        };
-      })
+          callback();
+        }
+      });
     }
   }
 
@@ -79,15 +78,14 @@ class Goat {
    * @memberof Goat
    */
   watchBase(events) {
+    this.events = events;
     this.configuration = this.getConfiguration();
     if (!this.watch) {
       this.Notifier.log('This command has no watch option');
       return;
     }
-    this.Notifier.log(`Watching ${this.name || 'task'} in ${process.cwd()}`);
     this.watch({
       ...this,
-      events,
     });
   }
 
@@ -102,7 +100,7 @@ class Goat {
       .command(this.command)
       .description(this.description)
       .option(this.watch ? '-w, --watch' : '', this.watch ? 'Watch for file changes' : '')
-      .action(({watch}) => this.action({ watch }));
+      .action(({ watch }) => this.action({ watch }));
     return goat;
   }
 }

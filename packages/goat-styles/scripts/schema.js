@@ -3,74 +3,74 @@ module.exports = {
   type: 'object',
   properties: {
     browserSupport: {
-      type: 'array'
+      type: 'array',
     },
     locations: {
       type: 'object',
       properties: {
         node_modules: {
-          type: 'string'
+          type: 'string',
         },
         styles: {
           type: 'object',
           properties: {
             src: {
-              type: 'string'
+              type: 'string',
             },
             dist: {
-              type: 'string'
+              type: 'string',
             },
           },
-          required: ['src', 'dist']
-        }
+          required: ['src', 'dist'],
+        },
       },
-      required: ['styles']
+      required: ['styles'],
     },
   },
   styles: {
     type: 'object',
     properties: {
       minify: {
-        type: 'boolean'
+        type: 'boolean',
       },
       compass: {
-        type: 'boolean'
+        type: 'boolean',
       },
       exclude: {
-        type: 'array'
+        type: 'array',
       },
       sourceMaps: {
         type: 'object',
         properties: {
           generate: {
-            type: 'boolean'
+            type: 'boolean',
           },
           location: {
-            type: 'string'
+            type: 'string',
           },
           loadMaps: {
-            type: 'boolean'
+            type: 'boolean',
           },
           identityMap: {
-            type: 'boolean'
+            type: 'boolean',
           },
           debug: {
-            type: 'boolean'
+            type: 'boolean',
           },
           addComment: {
-            type: 'boolean'
+            type: 'boolean',
           },
           includeContent: {
-            type: 'boolean'
+            type: 'boolean',
           },
           charset: {
-            type: 'string'
+            type: 'string',
           },
           destPath: {
-            type: 'string'
+            type: 'string',
           },
           sourceMappingUrlPrefix: {
-            type: 'string'
+            type: 'string',
           },
         },
       },
@@ -78,21 +78,21 @@ module.exports = {
         type: 'object',
         properties: {
           enabled: {
-            type: 'boolean'
+            type: 'boolean',
           },
           settings: {
             type: 'object',
             properties: {
               rootValue: {
-                type: 'number'
+                type: 'number',
               },
               replace: {
-                type: 'boolean'
+                type: 'boolean',
               },
             },
-          }
+          },
         },
-      }
+      },
     },
-  }
-}
+  },
+};

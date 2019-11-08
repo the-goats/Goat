@@ -21,11 +21,13 @@ module.exports = (Goat) => {
       const { events } = config;
       const settings = getSettings(config);
       compileStyles({ ...config, settings }).pipe(sizeReport());
-      events.watch(() => {
-        compileStyles({ ...config, settings }).pipe(sizeReport());
-      }, {
+      events.watch({
         name: 'Synetic Styles',
         pattern: '**/*.s+(a|c)ss',
+        events: /file:/,
+        method: () => {
+          compileStyles({ ...config, settings }).pipe(sizeReport());
+        },
       });
     },
     init: {

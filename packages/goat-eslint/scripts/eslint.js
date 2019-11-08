@@ -14,7 +14,7 @@ const {
  * @param {Object} config
  */
 const processEslintFile = (config) => {
-  const { file, configuration, Notifier, path } = config;
+  const { file, configuration, Notifier, path, events } = config;
   const { eslint } = configuration;
   readFile(file, async (err, data) => {
     if (err) throw err;
@@ -32,6 +32,15 @@ const processEslintFile = (config) => {
         }
       })
       Notifier.log('\n');
+    }
+    if (events) {
+      events.emit({ 
+        event: 'js:lint',
+        path: file,
+        properties: {
+          result,
+        }, 
+      });
     }
   });
 }
@@ -66,6 +75,9 @@ const processEslint = (config) => {
   sources.forEach((source) => {
     (async (path) => {
       for await (const file of getFiles(path, /\.js$/gm)) {
+        if ((/\.config\.js$/gm).test(file)) {
+          continue;
+        }
         processEslintFile({
           ...config,
           file,

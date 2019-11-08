@@ -13,11 +13,19 @@ const {
  * @param {Object} config
  */
 const processBabelFile = (config) => {
-  const { file, configuration, Notifier } = config;
+  const { file, configuration, Notifier, events } = config;
   readFile(file, async (err, data) => {
     if (err) throw err;
     const code = (await bablyfy(data.toString(), configuration.browserSupport)).code
-    writeFile(file.replace('.es6', ''), code, () => Notifier.log(`${file} processed`));
+    writeFile(file.replace('.es6', ''), code, () => {
+      if (events) {
+        events.emit({ 
+          event: 'js:compile',
+          path: file,
+          properties: {}, 
+        });
+      }
+    });
   });
 }
 

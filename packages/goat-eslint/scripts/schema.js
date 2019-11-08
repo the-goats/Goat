@@ -20,5 +20,21 @@ module.exports = {
       },
       required: ['javascript']
     },
+  },
+  js: {
+    type: 'object',
+    properties: {
+      eslint: {
+        type: 'object',
+        properties: {
+          es6: {
+            type: 'boolean'
+          },
+          config: {
+            type: 'object'
+          }
+        }
+      }
+    }
   }
 }

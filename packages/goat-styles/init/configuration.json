@@ -9,7 +9,7 @@
   },
   "styles" : {
     "minify" : false,
-    "compass" :  true,
+    "compass" :  false,
     "exclude" : [],
     "sourceMaps" : {
       "generate" :  true,
@@ -26,7 +26,7 @@
     "pxToRem": {
       "enabled": false,
       "settings": {
-        "rootValue": 10,
+        "rootValue": 16,
         "replace": false
       }
     }

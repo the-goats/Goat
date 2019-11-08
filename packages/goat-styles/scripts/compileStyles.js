@@ -91,12 +91,10 @@ const compileStyles = ({
     }))
 
   // if (events) {
-  //   events.emit('goat', { 
-  //     event,
-  //     extension: getFileType(path),
-  //     properties: {
-  //       path,
-  //     }, 
+  //   events.emit({ 
+  //     event: 'sass:compile',
+  //     path,
+  //     properties: {}, 
   //   })
   // }
 

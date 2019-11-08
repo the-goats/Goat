@@ -3,11 +3,11 @@ module.exports = {
   type: 'object',
   properties: {
     name: {
-      type: 'string'
+      type: 'string',
     },
     version: {
-      $type: 'string'
+      $type: 'string',
     },
   },
-  required: ['version']
+  required: ['version'],
 };

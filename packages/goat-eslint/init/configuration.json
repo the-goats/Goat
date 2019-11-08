@@ -1,0 +1,20 @@
+{
+  "browserSupport": ["> 1%", "last 2 versions"],
+  "locations" : {
+    "node_modules": "./node_modules",
+    "javascript" : {
+      "src": ["components"]
+    }
+  },
+  "js" : {
+    "eslint": {
+      "es6": true,
+      "config": {
+        "rules": {
+          "no-console":"error",
+          "no-debugger":"error"
+        }
+      }
+    }
+  }
+}

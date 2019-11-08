@@ -1,17 +1,17 @@
-const fs = require('fs')
-const schemaBase = require('../schemas/schemas');
+const fs = require('fs');
+const schemaBase = require('../schemas/schema');
 const checkSchema = require('../validators/schema');
 const checkVersion = require('../validators/version');
-const GoatNotifier = require('../notifier');
-const Notifier = new GoatNotifier;
+const GoatNotifier = require('../notifier/notifier');
 
-const configPath = './goat.config.json'
+const Notifier = new GoatNotifier();
+const configPath = './goat.config.json';
 
 /**
  * Get configuration object
  * @returns
  */
-const getConfig = () => {
+function getConfig() {
   if (!fs.existsSync(configPath)) {
     Notifier.error('No config file could be found, please check your path or create a \'goat.config.json\' file');
     return null;
@@ -21,7 +21,7 @@ const getConfig = () => {
   let config;
   try {
     config = JSON.parse(file);
-  } catch {
+  } catch (error) {
     Notifier.error('Your config file is not valid JSON, please check your config file');
     return null;
   }

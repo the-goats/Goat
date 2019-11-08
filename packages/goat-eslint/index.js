@@ -1,50 +1,47 @@
 const {
-  processBabel,
-  processBabelFile,
-} = require('./scripts/babel');
+  processEslint,
+  processEslintFile,
+} = require('./scripts/eslint');
 const schema = require('./scripts/schema');
 const initConfiguration = require('./init/configuration.json');
 const { normalize } = require('path');
 
 module.exports = (Goat) => {
   return new Goat({
-    name: 'Babel',
-    command: 'babel',
-    description: 'Compile .es6.js files using babel',
+    name: 'Eslint',
+    command: 'eslint',
+    description: 'Run eslint',
     schema,
     method: (config) => {
-      return new Promise((resolve, reject) => {
-        const {
-          configuration
-        } = config;
+      return new Promise((resolve) => {
+        const { configuration } = config;
         const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
-        processBabel({
+        processEslint({
           ...config,
           sources,
-        })
+        });
         resolve(true);
       });
     },
     watch: (config) => {
       const { configuration, events } = config;
       const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
-      processBabel({
+      processEslint({
         ...config,
         sources,
       })
       const paths = sources.map(item => normalize(`${item}/**/*.es6.js`));
       events.watch({
-        name: 'Babel',
+        name: 'Eslint',
         pattern: paths,
         events: /file:/,
         method: (data) => {
-          processBabelFile({
+          processEslintFile({
             ...config,
             file: data.path,
           });
         },
       });
-      
     },
     init: {
       configuration: initConfiguration,
