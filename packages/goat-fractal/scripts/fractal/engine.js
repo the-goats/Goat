@@ -1,5 +1,5 @@
 const { get } = require('lodash');
-const twigAdapter = require('@goat-cli/fractal-twig-adapter');
+const twigAdapter = require('@geit/fractal-twig-adapter');
 const render = require('../twig/filters/render');
 const without = require('../twig/filters/render');
 const bem = require('../twig/functions/bem');

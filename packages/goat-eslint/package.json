@@ -1,12 +1,12 @@
 {
-  "name": "@goat-cli/eslint",
+  "name": "@geit/eslint",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Stef Spakman <mail@stefspakman.com>",
+  "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "ISC",
   "dependencies": {
     "eslint": "^6.0.1",

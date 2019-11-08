@@ -1,10 +1,10 @@
+const { normalize } = require('path');
 const {
   processBabel,
   processBabelFile,
 } = require('./scripts/babel');
 const schema = require('./scripts/schema');
 const initConfiguration = require('./init/configuration.json');
-const { normalize } = require('path');
 
 module.exports = (Goat) => {
   return new Goat({
@@ -15,7 +15,7 @@ module.exports = (Goat) => {
     method: (config) => {
       return new Promise((resolve, reject) => {
         const {
-          configuration
+          configuration,
         } = config;
         const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
         processBabel({
@@ -44,10 +44,9 @@ module.exports = (Goat) => {
           });
         },
       });
-      
     },
     init: {
       configuration: initConfiguration,
-    }
+    },
   });
 };

@@ -3,11 +3,11 @@ const getPackages = require('./getPackages');
 const config = {
   "goatVersion": "1.2.1",
   "functions": [
-    "@goat-cli/styles",
-    "@goat-cli/es6",
-    "@goat-cli/eslint",
-    "@goat-cli/modernizr",
-    "@goat-cli/fractal"
+    "@geit/styles",
+    "@geit/es6",
+    "@geit/eslint",
+    "@geit/modernizr",
+    "@geit/fractal"
   ]
 };
 

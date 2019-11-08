@@ -1,18 +1,19 @@
 {
-  "name": "@goat-cli/goat",
-  "version": "1.2.1",
+  "name": "@geit/goat",
+  "version": "1.0.0",
   "description": "",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Stef Spakman <mail@stefspakman.com>",
+  "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
-    "@goat-cli/es6": "^1.1.0",
-    "@goat-cli/fractal": "^1.0.0",
-    "@goat-cli/modernizr": "^1.1.0",
-    "@goat-cli/styles": "^1.1.0",
+    "@geit/babel": "^1.0.0",
+    "@geit/eslint": "^1.0.0",
+    "@geit/fractal": "^1.0.0",
+    "@geit/modernizr": "^1.0.0",
+    "@geit/styles": "^1.0.0",
     "chokidar": "^3.0.2",
     "commander": "^2.20.0",
     "inquirer": "^6.5.0",

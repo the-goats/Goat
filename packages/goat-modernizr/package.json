@@ -1,12 +1,12 @@
 {
-  "name": "@goat-cli/modernizr",
-  "version": "1.1.0",
+  "name": "@geit/modernizr",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Stef Spakman <mail@stefspakman.com>",
+  "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
     "chokidar": "^3.0.2",

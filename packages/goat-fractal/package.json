@@ -1,16 +1,16 @@
 {
-  "name": "@goat-cli/fractal",
+  "name": "@geit/fractal",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Stef Spakman <mail@stefspakman.com>",
+  "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
     "@frctl/fractal": "^1.1.7",
-    "@goat-cli/fractal-twig-adapter": "^1.4.0",
+    "@geit/fractal-twig-adapter": "^1.4.0",
     "faker": "^4.1.0",
     "fractal": "0.0.3",
     "lodash": "^4.17.14"
