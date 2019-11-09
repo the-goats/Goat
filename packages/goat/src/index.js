@@ -1,9 +1,12 @@
+const updateNotifier = require('update-notifier');
 const initGoat = require('./commands/goat');
 const setCommandInit = require('./commands/init');
 const loadCommands = require('./commands/loadCommands');
 const setCommandWatch = require('./commands/watch');
+const pkg = require('../package.json');
 
 async function base() {
+  updateNotifier({ pkg }).notify();
   let goat = initGoat();
 
   goat = setCommandInit(goat);

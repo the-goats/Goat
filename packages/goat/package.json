@@ -36,7 +36,8 @@
     "lodash": "^4.17.14",
     "minimatch": "^3.0.4",
     "semver": "^6.2.0",
-    "single-line-log": "^1.1.2"
+    "single-line-log": "^1.1.2",
+    "update-notifier": "^3.0.1"
   },
   "bin": {
     "goat": "./bin/goat.js"
