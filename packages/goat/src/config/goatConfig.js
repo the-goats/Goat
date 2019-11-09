@@ -25,7 +25,7 @@ async function getConfig() {
   let config = JSON.parse(await readFile(configFile));
 
   if (!eq(version, config.goatVersion)) {
-    config = updateConfig(config);
+    config = await updateConfig(config);
   }
   return config;
 }

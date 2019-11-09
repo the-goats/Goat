@@ -14,11 +14,11 @@ const configFile = './.goat/config';
  * @param {Object} config
  * @returns {Object} config
  */
-function updateConfig(config) {
+async function updateConfig(config) {
   const newConfig = config;
   if (satisfies(config.goatVersion, `${major(version)}.x.x`)) {
     newConfig.goatVersion = version;
-    writeFile(normalize(configFile), JSON.stringify(config, null, 2));
+    await writeFile(normalize(configFile), JSON.stringify(config, null, 2));
     console.log('The Goat version of this project has been updated, no further changes needed');
     return newConfig;
   }
