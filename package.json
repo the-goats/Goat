@@ -18,6 +18,19 @@
     "type": "git",
     "url": "git+https://github.com/stefspakman/Goat.git"
   },
+  "keywords": [
+    "frontend",
+    "tooling",
+    "goat",
+    "gulp",
+    "eslint",
+    "babel",
+    "sass",
+    "scss",
+    "compile",
+    "lint",
+    "fractal"
+  ],
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "bugs": {

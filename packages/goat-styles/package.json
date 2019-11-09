@@ -22,5 +22,6 @@
     "gulp-sourcemaps": "^2.6.5",
     "node-sass-alias-importer": "^1.0.0",
     "postcss-pxtorem": "^4.0.1"
-  }
+  },
+  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889"
 }

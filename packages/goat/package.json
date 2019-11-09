@@ -2,11 +2,25 @@
   "name": "@geit/goat",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefspakman/Goat.git"
   },
   "author": "Stef Spakman <goat@stefspakman.com>",
+  "keywords": [
+    "frontend",
+    "tooling",
+    "goat",
+    "gulp",
+    "eslint",
+    "babel",
+    "sass",
+    "scss",
+    "compile",
+    "lint",
+    "fractal"
+  ],
   "license": "MIT",
   "dependencies": {
     "@geit/babel": "^1.0.0",
@@ -29,5 +43,6 @@
   },
   "engines": {
     "node": ">=11.00"
-  }
+  },
+  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889"
 }
