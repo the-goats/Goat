@@ -1,5 +1,5 @@
 module.exports = {
-  id: '/SyneticEs6',
+  id: '/Babel',
   type: 'object',
   properties: {
     browserSupport: {

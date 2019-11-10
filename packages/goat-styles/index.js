@@ -1,7 +1,7 @@
+const sizeReport = require('gulp-sizereport');
 const { compileStyles } = require('./scripts/compileStyles');
 const schema = require('./scripts/schema');
 const initConfiguration = require('./init/configuration.json');
-const sizeReport = require('gulp-sizereport');
 const getSettings = require('./scripts/getSettings');
 
 module.exports = (Goat) => {
@@ -22,7 +22,7 @@ module.exports = (Goat) => {
       const settings = getSettings(config);
       compileStyles({ ...config, settings }).pipe(sizeReport());
       events.watch({
-        name: 'Synetic Styles',
+        name: 'Styles',
         pattern: '**/*.s+(a|c)ss',
         events: /file:/,
         method: () => {
@@ -32,6 +32,6 @@ module.exports = (Goat) => {
     },
     init: {
       configuration: initConfiguration,
-    }
+    },
   });
 };

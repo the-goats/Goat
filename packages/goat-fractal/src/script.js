@@ -31,11 +31,11 @@ module.exports = async ({
   build.then(() => {
     Notifier.log('Fractal build completed!');
     const server = styleguide.web.server({
-      sync: true
+      sync: true,
     });
     server.on('error', err => Notifier.error(err.message));
     return server.start().then(() => {
       Notifier.log(Notifier.style.green(`Fractal server is now running at ${server.url}`));
     });
   });
-}
+};

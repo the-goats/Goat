@@ -1,5 +1,5 @@
 module.exports = {
-  id: '/SyneticStyles',
+  id: '/Styles',
   type: 'object',
   properties: {
     browserSupport: {

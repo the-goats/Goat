@@ -1,5 +1,5 @@
 module.exports = {
-  id: '/SyneticEs6',
+  id: '/ESlint',
   type: 'object',
   properties: {
     browserSupport: {

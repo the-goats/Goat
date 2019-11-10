@@ -3,7 +3,7 @@ const twigAdapter = require('@geit/fractal-twig-adapter');
 const render = require('../twig/filters/render');
 const without = require('../twig/filters/render');
 const bem = require('../twig/functions/bem');
-const add_attributes = require('../twig/functions/add_attributes');
+const addAttributes = require('../twig/functions/add_attributes');
 
 /**
  * Add templating engine to Fractal
@@ -13,7 +13,7 @@ const add_attributes = require('../twig/functions/add_attributes');
  */
 const fractalAddEngine = (configuration, styleguide) => {
   styleguide.components.engine(twigAdapter({
-    nameSpaces:  get(configuration, 'nameSpaces') || {
+    nameSpaces: get(configuration, 'nameSpaces') || {
       base: '01-base',
       atoms: '02-atoms',
       molecules: '03-molecules',
@@ -24,13 +24,13 @@ const fractalAddEngine = (configuration, styleguide) => {
       render,
       without,
     },
-    functions : {
+    functions: {
       bem,
-      add_attributes,
+      add_attributes: addAttributes,
     },
   }));
   styleguide.components.set('ext', '.twig');
   return styleguide;
-}
+};
 
 module.exports = { fractalAddEngine };
