@@ -3,7 +3,13 @@
   "locations" : {
     "node_modules": "./node_modules",
     "javascript" : {
-      "src": ["components"]
+      "src": ["components"],
+      "dist": "<source>"
+    }
+  },
+  "js" : {
+    "babel": {
+      "keep_path": true
     }
   }
 }

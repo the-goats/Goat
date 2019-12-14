@@ -12,16 +12,7 @@ module.exports = function styleguide(Goat) {
       scriptFractal(config);
     },
     watch: (config) => {
-      const { events } = config;
-
-      events.watch({
-        name: 'Styleguide',
-        pattern: '**/*.s+(a|c)ss',
-        events: /file:/,
-        method: () => {
-
-        },
-      });
+      scriptFractal(config);
     },
     init: {
       configuration: initConfiguration,

@@ -7,6 +7,10 @@ const {
 const {
   normalize
 } = require('path');
+const {
+  get,
+} = require('lodash');
+const mkdirp = require('mkdirp');
 
 /**
  * Process single .es6.js file. This function generates the new es5 ready file.
@@ -16,18 +20,33 @@ const processBabelFile = (config) => {
   const { file, configuration, Notifier, events } = config;
   readFile(file, async (err, data) => {
     if (err) throw err;
-    const code = (await bablyfy(data.toString(), configuration.browserSupport)).code
-    writeFile(file.replace('.es6', ''), code, () => {
-      if (events) {
-        events.emit({ 
-          event: 'js:compile',
-          path: file,
-          properties: {}, 
-        });
+    const { code } = (await bablyfy(data.toString(), configuration.browserSupport));
+    let dist = file.replace('.es6', '');
+    if (configuration.locations.javascript.dist !== '<source>' && configuration.locations.javascript.dist) {
+      if (get(configuration, 'js.babel.keep_path')) {
+        const cleanPath = dist.replace(`${config.path}/`, '');
+        dist = `${configuration.locations.javascript.dist}${cleanPath.substr(cleanPath.indexOf('/'))}`;
+      } else {
+        dist = `${configuration.locations.javascript.dist}${dist.substr(dist.lastIndexOf('/'))}`;
       }
+    }
+    mkdirp(dist.substr(0, dist.lastIndexOf('/')), (error) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+      writeFile(dist, code, () => {
+        if (events) {
+          events.emit({
+            event: 'js:compile',
+            path: file,
+            properties: {},
+          });
+        }
+      });
     });
   });
-}
+};
 
 /**
  * Convert Supplied data to es5 ready js with babel

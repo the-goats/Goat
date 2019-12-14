@@ -3,7 +3,7 @@ module.exports = {
   type: 'object',
   properties: {
     browserSupport: {
-      type: 'array'
+      type: 'array',
     },
     locations: {
       type: 'object',
@@ -12,13 +12,26 @@ module.exports = {
           type: 'object',
           properties: {
             src: {
-              type: 'array'
-            }
+              type: 'array',
+            },
           },
-          required: ['src']
-        }
+          required: ['src'],
+        },
       },
-      required: ['javascript']
+      required: ['javascript'],
     },
-  }
-}
+  },
+  js: {
+    type: 'object',
+    properties: {
+      babel: {
+        type: 'object',
+        properties: {
+          keep_path: {
+            type: 'boolean',
+          },
+        },
+      },
+    },
+  },
+};
