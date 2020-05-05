@@ -9,11 +9,11 @@
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
-    "@frctl/fractal": "^1.1.7",
+    "@frctl/fractal": "^1.2.1",
     "@geit/fractal-twig-adapter": "^1.4.0",
     "faker": "^4.1.0",
     "fractal": "0.0.3",
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.15"
   },
   "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889"
 }
