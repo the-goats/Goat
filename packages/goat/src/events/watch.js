@@ -6,6 +6,9 @@ const chokidar = require('chokidar');
  */
 function watch(events) {
   chokidar.watch('./**/*', {
+    ignored: [
+      /(^|[\/\\])\../,
+    ],
     persistent: true,
     ignoreInitial: true,
   })
