@@ -4,6 +4,8 @@ const configFileName = require('./modules/configFileName');
 const initQuestions = require('./modules/questions');
 const initializeGoatConfig = require('./modules/initConfig');
 const initializeProjectConfig = require('./modules/projectConfig');
+const getPackageInit = require('./modules/getPackageInitSettings');
+const packageFiles = require('./modules/packageFiles');
 
 /**
  * Initialize Goat inside the current folder, this is the entry point of this command.
@@ -12,8 +14,10 @@ const initializeProjectConfig = require('./modules/projectConfig');
 const action = async (options = {}) => {
   const init = async () => {
     const answers = await initQuestions();
+    const initSettings = getPackageInit(answers.project_packages);
     initializeGoatConfig(answers);
-    initializeProjectConfig(answers);
+    initializeProjectConfig(answers, initSettings);
+    packageFiles(initSettings);
   };
   if (options.reset) {
     init();

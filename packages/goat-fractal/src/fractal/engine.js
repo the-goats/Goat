@@ -12,13 +12,15 @@ const addAttributes = require('../twig/functions/add_attributes');
  * @returns {object}
  */
 const fractalAddEngine = (configuration, styleguide) => {
+  const nameSpaces = get(configuration, 'nameSpaces') || {
+    base: '01-base',
+    atoms: '02-atoms',
+    molecules: '03-molecules',
+    organisms: '04-organisms',
+  }
+  nameSpaces.goat = '../.goat/styleguide/goatComponents';
   styleguide.components.engine(twigAdapter({
-    nameSpaces: get(configuration, 'nameSpaces') || {
-      base: '01-base',
-      atoms: '02-atoms',
-      molecules: '03-molecules',
-      organisms: '04-organisms',
-    },
+    nameSpaces,
     handlePrefix: '@',
     filters: {
       render,

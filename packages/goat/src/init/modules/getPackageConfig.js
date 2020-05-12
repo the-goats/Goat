@@ -6,13 +6,13 @@ const { merge } = require('lodash');
  * @param {object} Goat
  * @returns {object}
  */
-function getPackageConfig(packageConfig, Goat) {
-  if (!Array.isArray(packageConfig)) {
-    return packageConfig(Goat).init.configuration;
+function getPackageConfig(packageInit) {
+  if (!Array.isArray(packageInit)) {
+    return packageInit.configuration;
   }
   // eslint-disable-next-line
   return packageConfig.reduce((result = {}, currentValue) => {
-    return merge(result, currentValue(Goat).init.configuration);
+    return merge(result, currentValue.configuration);
   });
 }
 

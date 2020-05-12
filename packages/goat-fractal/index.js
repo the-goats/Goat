@@ -16,6 +16,7 @@ module.exports = function styleguide(Goat) {
     },
     init: {
       configuration: initConfiguration,
+      files: () => require('./init/files.js'),
     },
   });
 };

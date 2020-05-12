@@ -1,5 +1,11 @@
 {
   "author": "PROJECT_AUTHOR",
+  "locations" : {
+    "styleguide" : {
+      "components": "components/",
+      "docs": "docs/"
+    }
+  },
   "nameSpaces": {
     "protons": "01-protons",
     "atoms": "02-atoms",

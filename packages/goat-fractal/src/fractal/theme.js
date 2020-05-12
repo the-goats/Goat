@@ -13,7 +13,7 @@ const fractalAddTheme = (configuration, currentPath, styleguide) => {
   const theme = mandelbrot({
     skin: get(configuration, 'styleguide.skin') || "navy",
     panels: get(configuration, 'styleguide.panels') || ["info", "html", "view", "context", "resources", "notes"],
-    styles: ['default', normalize(`/${currentPath}/styleguide/theme/overrides.css`)]
+    styles: ['default', normalize(`/.goat/styleguide/fractalOverrides.css`)]
   });
 
   styleguide.web.theme(theme);

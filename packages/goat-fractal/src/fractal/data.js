@@ -23,10 +23,10 @@ const fractalSetMeta = (configuration, styleguide) => {
  * @returns {object}
  */
 const fractalSetPaths = (configuration, currentPath, styleguide) => {
-  styleguide.components.set('path', normalize(`${currentPath}/components`));
-  styleguide.docs.set('path', normalize(`${currentPath}/docs`));
-  styleguide.web.set('static.path', normalize(`${currentPath}/.goat/temp/fractal/assets/`));
-  styleguide.web.set('builder.dest', normalize(`${currentPath}/.goat/temp/fractal/styleguide`));
+  styleguide.components.set('path', normalize(`${currentPath}/${get(configuration, 'locations.styleguide.components') || 'components'}`));
+  styleguide.docs.set('path', normalize(`${currentPath}/${get(configuration, 'locations.styleguide.docs') || 'docs'}`));
+  styleguide.web.set('static.path', normalize(`${currentPath}/.goat/styleguide/assets/`));
+  styleguide.web.set('builder.dest', normalize(`${currentPath}/.goat/styleguide/styleguide`));
   return styleguide;
 }
 

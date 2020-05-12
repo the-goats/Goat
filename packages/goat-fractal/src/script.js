@@ -12,7 +12,7 @@ module.exports = async ({
   Notifier,
 }) => {
   const currentPath = normalize(`${path}`);
-  const styleGuideAssetsPath = normalize(`${path}/.goat/temp/fractal/assets`);
+  const styleGuideAssetsPath = normalize(`${path}/.goat/styleguide/assets`);
 
   if (await checkSymLinkExists(styleGuideAssetsPath) !== currentPath) {
     createSymlink(currentPath, styleGuideAssetsPath);

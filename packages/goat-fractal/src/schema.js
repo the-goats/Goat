@@ -5,6 +5,22 @@ module.exports = {
     author: {
       type: 'string',
     },
+    locations : {
+      type: 'object',
+      properties: {
+        styleguide : {
+          type: 'object',
+          properties: {
+            components: {
+                type: 'string'
+              },
+            docs: {
+              type: 'string'
+            }
+          }
+        }
+      }
+    },
     nameSpaces: {
       type: 'object',
     },
