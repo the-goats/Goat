@@ -1,23 +1,26 @@
 const Goat = require('../bootstrap/bootstrap');
-const plugins = require('../../plugins');
+const loadModule = require('../modules/loadModule');
 
 /**
- * Collect plugins
+ * Collect modules
  * @param {object} config
- * @returns {array} plugins
+ * @returns {array} modules
  */
-function getPackages({ functions }) {
-  return plugins.flatMap((item) => {
+async function getPackages({ functions }) {
+  const modules = await require('../modules/collectModules');
+  return modules.flatMap((item) => {
     if (!functions.includes(item.package)) {
       return null;
     }
     // eslint-disable-next-line
-    const plugin = require(item.package);
-    if (Array.isArray(plugin)) {
-      return plugin.map(task => task(Goat));
+    const module = loadModule(item);
+    if (Array.isArray(module)) {
+      return module.map(task => task(Goat));
     }
-    return plugin(Goat);
+    return module(Goat);
   }).filter(item => !!item);
 }
+
+
 
 module.exports = getPackages;

@@ -15,13 +15,13 @@ async function loadWatchCommands() {
   if (!config) {
     return;
   }
-  const packages = getPackages(config);
-  const watchPackages = packages.filter(plugin => plugin.watch !== undefined);
+  const packages = await getPackages(config);
+  const watchPackages = packages.filter(module => module.watch !== undefined);
   const events = new GoatEvents();
   watch(events);
   Notifier.log(Notifier.style.green('Watching Tasks:'));
-  watchPackages.forEach(plugin => Notifier.log(Notifier.style.green(`\t- ${plugin.name}`)));
-  watchPackages.map(plugin => plugin.watchBase(events));
+  watchPackages.forEach(module => Notifier.log(Notifier.style.green(`\t- ${module.name}`)));
+  watchPackages.map(module => module.watchBase(events));
 }
 
 /**
