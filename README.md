@@ -12,8 +12,8 @@ Goat is a simple to use taskrunner for frontend development.
 ## Why Goat
 Instead of defining and maintaining separate setups for compiling, linting and building your code, goat aims to have a predefined, flexible setup that's easy to initialize and to keep up to date. 
 
-## Available Task
-Goat contains separate packages which define tasks. Per project you can choose which tasks you want to configure. Each package defines tasks which can be run manually or, if supported, use the integrated watch flag to watch relevant files and run the tasks when a change is detected. 
+## Build-in modules
+Goat contains modules which define tasks. Per project you can choose which tasks you want to configure. Each module defines tasks which can be run manually or, if supported, use the integrated watch flag to watch relevant files and run the tasks when a change is detected. 
 
 Also goat includes an integrated watch command which combines all watch enabled tasks in one command.
 
@@ -36,6 +36,11 @@ To start using goat in your project, just run `goat init`.
 Run `goat` to display the help which lists all the available tasks.
 #### Watch project
 Run all watch enabled tasks simultaneously typing `goat watch` in your terminal.
+
+## Extending Goat
+It is possible to write your own modules which can be installed seperatly from Goat. These modules have to be globally installed node modules and have to be added to the settings file located in `~/.goat`. Each module Intergrates via the Goat class which offers various build-in methods such as notifications and the Goat watcher.
+
+An example will be provided in an upcomming version.
 
 ## License
 

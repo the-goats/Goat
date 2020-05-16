@@ -6,12 +6,8 @@ const loadModule = require('../modules/loadModule');
  * @param {object} config
  * @returns {array} modules
  */
-async function getPackages({ functions }) {
-  const modules = await require('../modules/collectModules');
+async function getPackages({ modules }) {
   return modules.flatMap((item) => {
-    if (!functions.includes(item.package)) {
-      return null;
-    }
     // eslint-disable-next-line
     const module = loadModule(item);
     if (Array.isArray(module)) {

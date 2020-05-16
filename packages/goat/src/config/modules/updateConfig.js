@@ -2,6 +2,7 @@ const { writeFile } = require('fs').promises;
 const {
   major,
   satisfies,
+  lte,
 } = require('semver');
 const { normalize } = require('path');
 const { version } = require('../../../package.json');
@@ -15,7 +16,11 @@ const configFile = './.goat/config';
  * @returns {Object} config
  */
 async function updateConfig(config) {
-  const newConfig = config;
+  let newConfig = config;
+  if (lte(newConfig.goatVersion, '1.4.0')) {
+    const upgrade = require('../versionUpgrades/upgrade-1-4-0');
+    newConfig = upgrade(newConfig);
+  }
   if (satisfies(config.goatVersion, `${major(version)}.x.x`)) {
     newConfig.goatVersion = version;
     await writeFile(normalize(configFile), JSON.stringify(config, null, 2));
