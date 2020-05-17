@@ -29,7 +29,7 @@
     "@geit/modernizr": "^1.4.0",
     "@geit/styles": "^1.4.0",
     "chokidar": "^3.0.2",
-    "commander": "^2.20.0",
+    "commander": "^5.1.0",
     "inquirer": "^6.5.0",
     "jsonschema": "^1.2.4",
     "kleur": "^3.0.3",

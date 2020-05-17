@@ -4,6 +4,7 @@ const checkSchema = require('../validators/schema');
 const Notifier = require('../notifier/notifier');
 const watchFiles = require('../events/watch');
 const GoatEvents = require('../events/goatEvents');
+const commander = require('commander');
 
 /**
  * Class defining all Goat tasks
@@ -92,17 +93,15 @@ class Goat {
 
   /**
    * Build command
-   * @param {object} goat
-   * @returns {object} goat
+   * @returns {function} command
    * @memberof Goat
    */
-  getCommand(goat) {
-    goat
+  getCommand() {
+    return new commander.Command(this.command)
       .command(this.command)
       .description(this.description)
       .option(this.watch ? '-w, --watch' : '', this.watch ? 'Watch for file changes' : '')
       .action(({ watch }) => this.action({ watch }));
-    return goat;
   }
 }
 

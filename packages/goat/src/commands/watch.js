@@ -1,3 +1,4 @@
+const commander = require('commander');
 const getPackages = require('../packages/getPackages');
 const Notify = require('../notifier/notifier');
 const watch = require('../events/watch');
@@ -25,17 +26,15 @@ async function loadWatchCommands() {
 }
 
 /**
- * Add watch command to goat
- * @param {object} goat
- * @returns {object} goat
+ * Create Watch command
+ * @returns {function} command
  */
-function setCommandWatch(goat) {
-  goat
+function setCommandWatch() {
+  return new commander.Command('watch')
     .command('watch')
     .alias('w')
     .description('Watch Tasks')
     .action(() => loadWatchCommands());
-  return goat;
 }
 
 module.exports = setCommandWatch;
