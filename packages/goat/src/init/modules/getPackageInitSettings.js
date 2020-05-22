@@ -1,5 +1,5 @@
 const Goat = require('../../bootstrap/bootstrap');
-const loadModule = require('../../modules/loadModule');
+const loadModule = require('../../methods/modules/loadModule');
 
 /**
  * Collect initialisation settings for packages

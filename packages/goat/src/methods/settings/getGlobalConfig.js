@@ -4,11 +4,8 @@ const {
   readFile,
   F_OK,
 } = require('fs').promises;
-const homedir = require('os').homedir();
-const Notify = require('../notifier/notifier');
-const folder = `${homedir}/.goat`;
-const file = 'settings';
-const settingsFile = `${folder}/${file}`;
+const Notify = require('../../notifier/notifier');
+const settingsRef = require('../../references/settings');
 const Notifier = new Notify();
 
 /**
@@ -17,7 +14,7 @@ const Notifier = new Notify();
  */
 function getGlobalConfig() {
   return new Promise((resolve, reject) => {
-    access(settingsFile, F_OK)
+    access(settingsRef.settingsFile, F_OK)
     .then(async() => {
       try {
         resolve(await loadConfig());
@@ -41,7 +38,7 @@ function getGlobalConfig() {
 function loadConfig() {
   return new Promise(async (resolve, reject) => {
     try {
-      const config = JSON.parse(await readFile(settingsFile));
+      const config = JSON.parse(await readFile(settingsRef.settingsFile));
       resolve(config);
     } catch(error) {
       reject(error);
@@ -55,11 +52,11 @@ function loadConfig() {
  */
 function createGlobalConfig() {
   return new Promise((resolve, reject) => {
-    const config = require('../modules/.goat.settings.js');
+    const config = require('./template/.goat.settings.js');
     const mkdirp = require('mkdirp');
-    mkdirp(folder)
+    mkdirp(settingsRef.folder)
     .then(async () => {
-      writeFile(`${folder}/${file}`, JSON.stringify(config, null, 2));
+      writeFile(settingsRef.settingsFile, JSON.stringify(config, null, 2));
       resolve(await loadConfig());
     })
     .catch(error => reject(error));

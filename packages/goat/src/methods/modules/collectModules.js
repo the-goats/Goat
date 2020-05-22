@@ -1,9 +1,9 @@
 const { get } = require('lodash');
-const getGlobalConfig = require('../global/getGlobalConfig');
+const getGlobalConfig = require('../settings/getGlobalConfig');
 
 async function collectModules() {
   const globalGoat = await getGlobalConfig();
-  const modules = require('../../modules');
+  const modules = require('../../../modules');
   let userModules = get(globalGoat, 'modules');
   if (!userModules) {
     return modules;

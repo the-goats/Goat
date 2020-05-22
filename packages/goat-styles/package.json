@@ -23,5 +23,9 @@
     "node-sass-alias-importer": "^1.0.0",
     "postcss-pxtorem": "^5.1.1"
   },
-  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889"
+  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889",
+  "goat": {
+    "name": "Goat Styles",
+    "description": "A comprehensive task to compile SCSS to CSS"
+  }
 }

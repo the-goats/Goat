@@ -59,8 +59,5 @@
   "engines": {
     "node": ">=11"
   },
-  "dependencies": {
-    "import-global": "^0.1.0",
-    "requireg": "^0.2.2"
-  }
+  "dependencies": {}
 }

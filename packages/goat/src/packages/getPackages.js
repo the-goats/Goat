@@ -1,12 +1,12 @@
 const Goat = require('../bootstrap/bootstrap');
-const loadModule = require('../modules/loadModule');
+const loadModule = require('../methods/modules/loadModule');
 
 /**
  * Collect modules
  * @param {object} config
  * @returns {array} modules
  */
-async function getPackages({ modules }) {
+async function getModules({ modules }) {
   return modules.flatMap((item) => {
     // eslint-disable-next-line
     const module = loadModule(item);
@@ -19,4 +19,4 @@ async function getPackages({ modules }) {
 
 
 
-module.exports = getPackages;
+module.exports = getModules;

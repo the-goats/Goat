@@ -1,4 +1,4 @@
-const getPackages = require('../packages/getPackages');
+const getPackages = require('../../packages/getPackages');
 
 /**
  * Collect commands defined by the modules
@@ -6,7 +6,7 @@ const getPackages = require('../packages/getPackages');
  */
 async function CollectCommands() {
   // eslint-disable-next-line
-  const config = await require('../config/goatConfig')();
+  const config = await require('../../config/goatConfig')();
   if (!config) {
     return;
   }

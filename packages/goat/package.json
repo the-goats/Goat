@@ -30,6 +30,7 @@
     "@geit/styles": "^1.4.0",
     "chokidar": "^3.0.2",
     "commander": "^5.1.0",
+    "import-global": "^0.1.0",
     "inquirer": "^6.5.0",
     "jsonschema": "^1.2.4",
     "kleur": "^3.0.3",

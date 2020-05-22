@@ -1,7 +1,8 @@
 const updateNotifier = require('update-notifier');
+const CollectCommands = require('./methods/commands/CollectCommands');
 const setCommandInit = require('./commands/init');
-const CollectCommands = require('./commands/CollectCommands');
 const setCommandWatch = require('./commands/watch');
+const setCommandGlobal = require('./commands/global');
 const pkg = require('../package.json');
 const { version } = require('../package.json');
 const commander = require('commander');
@@ -23,7 +24,8 @@ async function base() {
     goat.addCommand(setCommandInit());
   }
 
-  goat.addCommand(await setCommandWatch());
+  goat.addCommand(setCommandWatch());
+  goat.addCommand(await setCommandGlobal());
 
   goat.parse(process.argv);
   // No command specified

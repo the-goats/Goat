@@ -1,5 +1,5 @@
 const importGlobal = require('import-global');
-const Notify = require('../notifier/notifier');
+const Notify = require('../../notifier/notifier');
 const Notifier = new Notify();
 
 /**
