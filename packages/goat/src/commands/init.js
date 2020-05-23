@@ -1,4 +1,4 @@
-const init = require('../init/init');
+const init = require('../methods/init/init');
 const commander = require('commander');
 
 /**

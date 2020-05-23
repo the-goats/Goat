@@ -13,5 +13,9 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2"
   },
-  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889"
+  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889",
+  "goat": {
+    "name": "Goat Eslint",
+    "description": "Lint JS code"
+  }
 }

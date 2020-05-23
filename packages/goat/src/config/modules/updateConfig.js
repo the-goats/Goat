@@ -6,7 +6,7 @@ const {
 } = require('semver');
 const { normalize } = require('path');
 const { version } = require('../../../package.json');
-const init = require('../../init/init');
+const init = require('../../methods/init/init');
 
 const configFile = './.goat/config';
 

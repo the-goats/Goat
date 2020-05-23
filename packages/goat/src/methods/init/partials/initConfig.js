@@ -5,7 +5,7 @@ const {
   mkdir,
 } = require('fs').promises;
 const { omit } = require('lodash');
-const { version } = require('../../../package.json');
+const { version } = require('../../../../package.json');
 
 const directory = normalize('./.goat');
 

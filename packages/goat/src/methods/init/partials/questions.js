@@ -5,7 +5,7 @@ const inquirer = require('inquirer');
  * @returns {Object} answers
  */
 async function initQuestions() {
-  const modules = await require('../../methods/modules/collectModules');
+  const modules = await require('../../modules/collectModules');
   const questions = [{
     type: 'input',
     name: 'project_name',

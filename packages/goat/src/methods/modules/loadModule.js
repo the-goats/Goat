@@ -4,7 +4,7 @@ const Notifier = new Notify();
 
 /**
  * Require local or global module
- * @param {object} module
+ * @param {Object} module
  * @returns module
  */
 function loadModule(module) {

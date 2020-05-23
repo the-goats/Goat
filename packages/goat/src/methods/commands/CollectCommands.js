@@ -2,7 +2,7 @@ const getPackages = require('../../packages/getPackages');
 
 /**
  * Collect commands defined by the modules
- * @returns {array} commands
+ * @returns {Array} commands
  */
 async function CollectCommands() {
   // eslint-disable-next-line

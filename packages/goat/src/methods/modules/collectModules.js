@@ -1,6 +1,10 @@
 const { get } = require('lodash');
 const getGlobalConfig = require('../settings/getGlobalConfig');
 
+/**
+ * Collect available modules
+ * @returns {Array}
+ */
 async function collectModules() {
   const globalGoat = await getGlobalConfig();
   const modules = require('../../../modules');
