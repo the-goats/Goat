@@ -19,12 +19,12 @@ async function base() {
   if (moduleCommands) {
     moduleCommands.forEach(command => {
       goat.addCommand(command);
+      goat.addCommand(setCommandWatch());
     });
   } else {
     goat.addCommand(setCommandInit());
   }
 
-  goat.addCommand(setCommandWatch());
   goat.addCommand(await setCommandGlobal());
 
   goat.parse(process.argv);

@@ -15,7 +15,7 @@ function loadModule(module) {
     return importGlobal(module.package);
   } catch(error) {
     Notifier.error(`The module ${module.package} doesn't seem to be installed on your system`)
-    Notifier.log(`Please install by running: ${Notifier.style.black(Notifier.style.bgYellow(` npm install ${module.package} -g `))}`)
+    Notifier.log(`Please install by running: ${Notifier.style.black(Notifier.style.bgYellow(` goat settings add ${module.package} `))}`)
     process.exit();
   }
 }
