@@ -4,6 +4,7 @@ const updateGlobalSettings = require('../settings/updateGlobalSettings');
 const confirm = require('../helpers/confirm');
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
+const Notifier = require('../notifications/notifyHandler');
 
 /**
  * Action to add a module to Goat
@@ -12,12 +13,12 @@ const exec = promisify(require('child_process').exec);
 async function actionAddModule(module) {
   const config = await getGlobalConfig();
   if (checkInstalledModules(config, module)) {
-    console.error(`${module} is already installed`);
+    Notifier.error(`${module} is already installed`);
     process.exit();
   }
   const modulePacakge = await getModulePackage(module);
   if (!modulePacakge.goat) {
-    console.error(`${module} doesn\'t seem to be a Goat Module`);
+    Notifier.error(`${module} doesn\'t seem to be a Goat Module`);
     const confirmUninstallModule = await confirm({
       message: 'Do you want to uninstall this module?',
       default: false,
@@ -28,7 +29,7 @@ async function actionAddModule(module) {
     process.exit();
   }
   addToSettings(config, modulePacakge);
-  console.log(`${module} is succesfully installed`);
+  Notifier.log(`${module} is succesfully installed`);
 }
 
 /**
@@ -38,7 +39,7 @@ async function actionAddModule(module) {
 async function actionRemoveModule(module) {
   const config = await getGlobalConfig();
   if (!checkInstalledModules(config, module)) {
-    console.error(`${module} is not installed`);
+    Notifier.error(`${module} is not installed`);
     process.exit();
   }
   const confirmUninstallModule = await confirm({
@@ -49,7 +50,7 @@ async function actionRemoveModule(module) {
     await uninstallModule(module);
   }
   removeFromSettings(config, module);
-  console.log(`${module} is succesfully removed`);
+  Notifier.log(`${module} is succesfully removed`);
 }
 
 /**
@@ -74,7 +75,7 @@ async function getModulePackage(module) {
     if (code !== 'MODULE_NOT_FOUND') {
       throw new Error(`Error: ${code}`);
     }
-    console.log(`${module} is not yet installed, installing it now`)
+    Notifier.log(`${module} is not yet installed, installing it now`)
     await installModule(module);
     return importGlobal(`${module}/package.json`);
   }

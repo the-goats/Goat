@@ -1,9 +1,5 @@
-const getConfig = require('../config/config');
-const checkSchema = require('../validators/schema');
 const Notifier = require('../methods/notifications/notifier');
-const watchFiles = require('../events/watch');
 const GoatEvents = require('../events/goatEvents');
-const commander = require('commander');
 
 /**
  * Class defining all Goat tasks
@@ -31,6 +27,7 @@ class Goat {
    */
   action(options) {
     if (options.watch) {
+      const watchFiles = require('../events/watch');
       watchFiles(this.events);
       return this.watchBase(this.events);
     }
@@ -43,6 +40,8 @@ class Goat {
    * @memberof Goat
    */
   getConfiguration() {
+    const getConfig = require('../config/config');
+    const checkSchema = require('../validators/schema');
     const configuration = getConfig();
     // Validate used config
     if (this.schema && !checkSchema(configuration, this.schema)) {
@@ -96,6 +95,7 @@ class Goat {
    * @memberof Goat
    */
   getCommand() {
+    const commander = require('commander');
     return new commander.Command(this.command)
       .command(this.command)
       .description(this.description)

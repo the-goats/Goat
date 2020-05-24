@@ -6,8 +6,7 @@ const {
 } = require('semver');
 const { normalize } = require('path');
 const { version } = require('../../../package.json');
-const init = require('../../methods/init/init');
-
+const Notifier = require('../../methods/notifications/notifyHandler');
 const configFile = './.goat/config';
 
 /**
@@ -24,15 +23,20 @@ async function updateConfig(config) {
   if (satisfies(config.goatVersion, `${major(version)}.x.x`)) {
     newConfig.goatVersion = version;
     await writeFile(normalize(configFile), JSON.stringify(config, null, 2));
-    console.log('The Goat version of this project has been updated, no further changes needed');
+    Notifier.log('The Goat version of this project has been updated, no further changes needed');
     return newConfig;
   }
 
-  console.log(`Versions to far apart, please reinitialize Goat\nGoat version: ${version}\nProject version: ${config.goatVersion}`);
+  Notifier.log(`Versions to far apart, please reinitialize Goat\nGoat version: ${version}\nProject version: ${config.goatVersion}`);
+  reInit();
+  return null;
+}
+
+function reInit() {
+  const init = require('../../methods/init/init');
   init({
     reset: true,
   });
-  return null;
 }
 
 module.exports = updateConfig;

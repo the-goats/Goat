@@ -1,16 +1,13 @@
-const sizeReport = require('gulp-sizereport');
-const { compileStyles } = require('./scripts/compileStyles');
-const schema = require('./scripts/schema');
-const initConfiguration = require('./init/configuration.json');
-const getSettings = require('./scripts/getSettings');
-
 module.exports = (Goat) => {
   return new Goat({
     name: 'Styles',
     command: 'styles',
     description: 'Compile Styles',
-    schema,
+    schema: require('./scripts/schema'),
     method: (config) => {
+      const sizeReport = require('gulp-sizereport');
+      const getSettings = require('./scripts/getSettings');
+      const { compileStyles } = require('./scripts/compileStyles');
       const settings = getSettings(config);
       return new Promise((resolve) => {
         compileStyles({ ...config, settings }).pipe(sizeReport());
@@ -18,6 +15,8 @@ module.exports = (Goat) => {
       });
     },
     watch: (config) => {
+      const sizeReport = require('gulp-sizereport');
+      const getSettings = require('./scripts/getSettings');
       const { events } = config;
       const settings = getSettings(config);
       compileStyles({ ...config, settings }).pipe(sizeReport());
@@ -26,12 +25,13 @@ module.exports = (Goat) => {
         pattern: '**/*.s+(a|c)ss',
         events: /file:/,
         method: () => {
+          const { compileStyles } = require('./scripts/compileStyles');
           compileStyles({ ...config, settings }).pipe(sizeReport());
         },
       });
     },
     init: {
-      configuration: initConfiguration,
+      configuration: require('./init/configuration.json'),
     },
   });
 };
