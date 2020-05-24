@@ -1,6 +1,4 @@
-const Notify = require('../../notifier/notifier');
-
-const Notifier = new Notify();
+const Notifier = require('../../methods/notifications/notifyHandler');
 
 /**
  * @description

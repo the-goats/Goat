@@ -13,7 +13,7 @@ async function actionAddModule(module) {
   const config = await getGlobalConfig();
   if (checkInstalledModules(config, module)) {
     console.error(`${module} is already installed`);
-    process.exit(0);
+    process.exit();
   }
   const modulePacakge = await getModulePackage(module);
   if (!modulePacakge.goat) {
@@ -25,7 +25,7 @@ async function actionAddModule(module) {
     if (confirmUninstallModule) {
       await uninstallModule(module);
     }
-    process.exit(1);
+    process.exit();
   }
   addToSettings(config, modulePacakge);
   console.log(`${module} is succesfully installed`);
@@ -39,7 +39,7 @@ async function actionRemoveModule(module) {
   const config = await getGlobalConfig();
   if (!checkInstalledModules(config, module)) {
     console.error(`${module} is not installed`);
-    process.exit(0);
+    process.exit();
   }
   const confirmUninstallModule = await confirm({
     message: 'Do you want to uninstall this module completely?',

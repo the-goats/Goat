@@ -1,6 +1,5 @@
 const importGlobal = require('import-global');
-const Notify = require('../../notifier/notifier');
-const Notifier = new Notify();
+const Notifier = require('../notifications/notifyHandler');
 
 /**
  * Require local or global module

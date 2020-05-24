@@ -1,4 +1,3 @@
-const emoji = require('node-emoji');
 const getConfig = require('../config/config');
 const checkSchema = require('../validators/schema');
 const Notifier = require('../notifier/notifier');
@@ -60,7 +59,7 @@ class Goat {
    */
   actionBase(options) {
     this.configuration = this.getConfiguration();
-    this.Notifier.log(emoji.get('goat'), `Running ${this.name || 'task'} in ${process.cwd()}\n`);
+    this.Notifier.log(`${this.Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
     const result = this.method({
       ...this,

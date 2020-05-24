@@ -4,9 +4,8 @@ const {
   readFile,
   F_OK,
 } = require('fs').promises;
-const Notify = require('../../notifier/notifier');
 const settingsRef = require('../../references/settings');
-const Notifier = new Notify();
+const Notifier = require('../notifications/notifyHandler');
 
 /**
  * Check if Global config exists and retrieve it.

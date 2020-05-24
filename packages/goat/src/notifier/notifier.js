@@ -1,5 +1,7 @@
 const style = require('kleur');
 const single = require('single-line-log').stdout;
+const { get: getEmoji } = require('node-emoji');
+const clipboardy = require('clipboardy');
 
 /**
  * Goat's Notification services
@@ -9,7 +11,6 @@ class Notifier {
   constructor() {
     this.style = style;
   }
-
   /**
    * Basic logging functionality
    * @param {String} text - Value to log
@@ -48,6 +49,21 @@ class Notifier {
    */
   singleLine(text) {
     single(text);
+  }
+
+  /**
+   * Get an emoji by name
+   * @param {String} emoji
+   * @returns {String}
+   * @memberof Notifier
+   */
+  emoji(emoji) {
+    return getEmoji(emoji);
+  }
+
+  script(content) {
+    clipboardy.writeSync(content);
+    return this.style.black().italic().bgWhite(content);
   }
 }
 

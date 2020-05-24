@@ -1,10 +1,8 @@
 const commander = require('commander');
 const getPackages = require('../packages/getPackages');
-const Notify = require('../notifier/notifier');
 const watch = require('../events/watch');
 const GoatEvents = require('../events/goatEvents');
-
-const Notifier = new Notify();
+const Notifier = require('../methods/notifications/notifyHandler');
 
 /**
  * Load watch capable tasks
