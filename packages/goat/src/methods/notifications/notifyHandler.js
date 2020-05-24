@@ -1,4 +1,4 @@
-const Notify = require('../../notifier/notifier');
+const Notify = require('./notifier');
 const Notifier = new Notify();
 
 module.exports = Notifier;

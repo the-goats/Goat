@@ -1,6 +1,6 @@
 const getConfig = require('../config/config');
 const checkSchema = require('../validators/schema');
-const Notifier = require('../notifier/notifier');
+const Notifier = require('../methods/notifications/notifier');
 const watchFiles = require('../events/watch');
 const GoatEvents = require('../events/goatEvents');
 const commander = require('commander');

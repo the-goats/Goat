@@ -69,7 +69,7 @@ class Notifier {
    */
   script(content) {
     clipboardy.writeSync(content);
-    return this.style.black().italic().bgWhite(` ${content} `);
+    return this.style.black().italic().bgYellow(` ${content} `);
   }
 }
 

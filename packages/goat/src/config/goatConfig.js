@@ -4,10 +4,8 @@ const {
 } = require('fs').promises;
 const { eq } = require('semver');
 const { version } = require('../../package.json');
-const GoatNotifier = require('../notifier/notifier');
 const updateConfig = require('./modules/updateConfig');
-
-const Notifier = new GoatNotifier();
+const Notifier = require('../methods/notifications/notifyHandler');
 const configFile = './.goat/config';
 
 /**
