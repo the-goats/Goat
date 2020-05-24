@@ -61,9 +61,15 @@ class Notifier {
     return getEmoji(emoji);
   }
 
+  /**
+   * Format a command to log and copy to clipboard for use
+   * @param {String} content
+   * @returns {String}
+   * @memberof Notifier
+   */
   script(content) {
     clipboardy.writeSync(content);
-    return this.style.black().italic().bgWhite(content);
+    return this.style.black().italic().bgWhite(` ${content} `);
   }
 }
 
