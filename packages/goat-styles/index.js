@@ -17,6 +17,7 @@ module.exports = (Goat) => {
     watch: (config) => {
       const sizeReport = require('gulp-sizereport');
       const getSettings = require('./scripts/getSettings');
+      const { compileStyles } = require('./scripts/compileStyles');
       const { events } = config;
       const settings = getSettings(config);
       compileStyles({ ...config, settings }).pipe(sizeReport());

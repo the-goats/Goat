@@ -17,12 +17,15 @@ async function initQuestions() {
   },
   {
     type: 'checkbox',
-    message: 'Select packages',
+    message: 'Select modules',
     name: 'project_packages',
-    choices: modules.map(item => ({
-      ...item,
-      value: item,
-    })),
+    choices: modules.map(item => {
+      return ({
+        ...item,
+        name: item.description ? `${item.name} - ${item.description}` : item.name,
+        value: item,
+      });
+    }),
     default: () => ((modules.map((item) => {
       if (!item.default) {
         return null;

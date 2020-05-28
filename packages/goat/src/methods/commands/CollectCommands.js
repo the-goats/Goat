@@ -2,10 +2,10 @@ const getPackages = require('../../packages/getPackages');
 
 /**
  * Collect commands defined by the modules
+ * @param {Array} packages
  * @returns {Array} commands
  */
-async function CollectCommands(config) {
-  const packages = await getPackages(config);
+async function CollectCommands(packages) {
   return packages.map(module => module.getCommand());
 }
 

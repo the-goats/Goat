@@ -19,6 +19,4 @@ async function getModules({ modules }) {
   }).filter(item => !!item);
 }
 
-
-
 module.exports = getModules;
