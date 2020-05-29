@@ -32,7 +32,7 @@ Generate custom modernizr.js files by analizing your css and js files.
 Initialize a styleguide using Fractal.
 
 ### Using Third party modules
-Goat modules are installable directly from Goat itself. By running `goat settings add MODULE_NAME`, goat will install the module (npm package) globaly on your system and add it to the configuration. After this, the module can be used on your system. 
+Goat modules are installable directly from Goat itself. By running `goat module add MODULE_NAME`, goat will install the module (npm package) globaly on your system and add it to the configuration. After this, the module can be used on your system. 
 
 ## Usage
 #### Initialize
