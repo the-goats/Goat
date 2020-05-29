@@ -8,10 +8,14 @@ const loadModule = require('../methods/modules/loadModule');
  */
 async function getModules({ modules }) {
   return modules.flatMap((item) => {
-    console.time(item.name);
+    if (global.DEBUG) {
+      console.time(item.name);
+    }
     // eslint-disable-next-line
     const module = loadModule(item);
-    console.timeEnd(item.name);
+    if (global.DEBUG) {
+      console.timeEnd(item.name);
+    }
     if (Array.isArray(module)) {
       return module.map(task => task(Goat));
     }

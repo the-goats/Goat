@@ -1,5 +1,3 @@
-const getPackages = require('../../packages/getPackages');
-
 /**
  * Collect commands defined by the modules
  * @param {Array} packages

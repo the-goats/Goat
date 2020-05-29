@@ -2,7 +2,7 @@ const {
   readFile,
   stat,
 } = require('fs').promises;
-const { lt, gt, satisfies, major } = require('semver');
+const { lt, gt, satisfies, major, minor } = require('semver');
 const { version } = require('../../package.json');
 const Notifier = require('../methods/notifications/notifyHandler');
 const configFile = './.goat/config';
@@ -21,14 +21,15 @@ async function getConfig() {
   }
 
   let config = JSON.parse(await readFile(configFile));
-  console.log(satisfies(config.goatVersion, `>=${major(version)}.0.0 <2.0.0-0`));
-  if (!satisfies(config.goatVersion, `${major(version)}.x.x`)) {
-    console.log('This project requires a newer version of Goat, please update');
-    process.exit();
-  }
   if (gt(version, config.goatVersion)) {
     const updateConfig = require('./modules/updateConfig');
     return updateConfig(config);
+  }
+  const goatVersion = `${major(version)}.${minor(version)}.x`;
+  // If the version doesn't match on Minor, 
+  if (!satisfies(config.goatVersion, goatVersion)) {
+    console.log('This project requires a newer version of Goat, please update');
+    process.exit();
   }
   return config;
 }

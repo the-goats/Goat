@@ -10,7 +10,9 @@ const getPackages = require('./packages/getPackages');
 let goat = new commander.Command();
 
 async function base() {
-  console.time('goat');
+  if (global.DEBUG) {
+    console.time('goat');
+  }
   updateNotifier({ pkg }).notify();;
   goat
     .version(version)
@@ -41,7 +43,9 @@ async function base() {
   
   goat.addCommand(setCommandGlobal());
   
-  console.timeEnd('goat');
+  if (global.DEBUG) {
+    console.timeEnd('goat');
+  }
   goat.parse(process.argv);
 }
 
