@@ -29,6 +29,9 @@ Generate custom modernizr.js files by analizing your css and js files.
 #### Fractal
 Initialize a styleguide using Fractal.
 
+### Using Third party modules
+Goat modules are installable directly from Goat itself. By running `goat settings add MODULE_NAME`, goat will install the module (npm package) globaly on your system and add it to the configuration. After this, the module can be used on your system.
+
 ## Usage
 #### Initialize
 To start using goat in your project, just run `goat init`.
@@ -37,10 +40,44 @@ Run `goat` to display the help which lists all the available tasks.
 #### Watch project
 Run all watch enabled tasks simultaneously typing `goat watch` in your terminal.
 
-## Extending Goat
-It is possible to write your own modules which can be installed seperatly from Goat. These modules have to be globally installed node modules and have to be added to the settings file located in `~/.goat`. Each module Intergrates via the Goat class which offers various build-in methods such as notifications and the Goat watcher.
+## Building a module
+Each goat module must include two things.
+1. A `goat` property inside the package.json 
+  "goat": {
+    "name": "Module name",
+    "description": "Brief description of the functionality"
+  }
+2. a entry file which exports a function, this function receives the Goat class, which can be used to build your module.
+  ```
+    module.exports = function my_module(Goat) {
+      return new Goat({
+        name: 'My Module',
+        command: 'my-module',
+        description: 'a example module',
+        schema: require('./src/schema'), // localtion of a schema describing the module config
+        method: (config) => {
+          // method to be executed
+        },
+        watch: (config) => {
+          // Optional method which is executed when the -w flag is added or by running goat watch
+          // config includes a event watch property
+          const { events } = config;
+          events.watch({
+            name: 'Watch event',
+            pattern: '**/*.s+(a|c)ss',
+            events: /file:/,
+            method: () => {
+              //method to be executed
+            },
+          });
+        },
+        init: {
+          configuration: require('./init/configuration.json'), // default configuration for your module
+        },
+      });
+    };
+  ```
 
-An example will be provided in an upcomming version.
 
 ## License
 

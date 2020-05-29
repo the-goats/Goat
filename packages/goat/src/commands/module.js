@@ -6,22 +6,22 @@ const { actionAddModule, actionRemoveModule } = require('../methods/modules/mana
  * @returns {function} command
  */
 function commandSettings() {
-  const program =  new commander.Command('settings')
-  .description('Change Goat Settings')
+  const program =  new commander.Command('module')
+  .description('Manage Goat modules')
   program.addCommand(commandAddModule());   
   program.addCommand(commandRemoveModule());   
   return program;
 }
 
 function commandAddModule() {
-  return new commander.Command('settings')
+  return new commander.Command('module')
     .command('add <module>')
     .description('Add module to Goat')
     .action(actionAddModule);
 }
 
 function commandRemoveModule() {
-  return new commander.Command('settings')
+  return new commander.Command('module')
     .command('remove <module>')
     .description('Remove module from Goat')
     .action(actionRemoveModule);

@@ -1,7 +1,7 @@
 const updateNotifier = require('update-notifier');
 const CollectCommands = require('./methods/commands/CollectCommands');
 const setCommandWatch = require('./commands/watch');
-const setCommandGlobal = require('./commands/global');
+const setCommandModule = require('./commands/module');
 const pkg = require('../package.json');
 const { version } = require('../package.json');
 const commander = require('commander');
@@ -41,7 +41,7 @@ async function base() {
     } 
   }
   
-  goat.addCommand(setCommandGlobal());
+  goat.addCommand(setCommandModule());
   
   if (global.DEBUG) {
     console.timeEnd('goat');
