@@ -1,18 +1,11 @@
-const {
-  processEslint,
-  processEslintFile,
-} = require('./scripts/eslint');
-const schema = require('./scripts/schema');
-const initConfiguration = require('./init/configuration.json');
-const { normalize } = require('path');
-
 module.exports = (Goat) => {
   return new Goat({
     name: 'Eslint',
     command: 'eslint',
     description: 'Run eslint',
-    schema,
+    schema: require('./scripts/schema'),
     method: (config) => {
+      const { processEslint } = require('./scripts/eslint');
       return new Promise((resolve) => {
         const { configuration } = config;
         const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
@@ -24,6 +17,11 @@ module.exports = (Goat) => {
       });
     },
     watch: (config) => {
+      const {
+        processEslint,
+        processEslintFile,
+      } = require('./scripts/eslint');
+      const { normalize } = require('path');
       const { configuration, events } = config;
       const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
       processEslint({
@@ -44,7 +42,7 @@ module.exports = (Goat) => {
       });
     },
     init: {
-      configuration: initConfiguration,
+      configuration: require('./init/configuration.json'),
     }
   });
 };

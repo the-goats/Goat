@@ -1,20 +1,17 @@
-const buildModernizr = require('./scripts/modernizr');
-const schema = require('./scripts/schema');
-const initConfiguration = require('./init/configuration.json')
-
 module.exports = (Goat) => {
   return new Goat({
     name: 'Modernizr',
     command: 'modernizr',
     description: 'Generate a custom Modernizr file',
-    schema,
+    schema: require('./scripts/schema'),
     method: (config) => {
-      return new Promise((resolve, reject) => {
+      const buildModernizr = require('./scripts/modernizr');
+      return new Promise((resolve) => {
         resolve(buildModernizr(config));
       });
     },
     init: {
-      configuration: initConfiguration,
+      configuration: require('./init/configuration.json'),
     }
   });
 };

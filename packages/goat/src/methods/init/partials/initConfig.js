@@ -4,7 +4,8 @@ const {
   stat,
   mkdir,
 } = require('fs').promises;
-const { version } = require('../../../package.json');
+const { omit } = require('lodash');
+const { version } = require('../../../../package.json');
 
 const directory = normalize('./.goat');
 
@@ -16,7 +17,8 @@ async function initializeGoatConfig(answers) {
   const writeConfig = () => {
     const goatConfig = {
       goatVersion: version,
-      functions: answers.project_packages,
+      functions: answers.project_packages.map(module => module.package),
+      modules: answers.project_packages.map(module => omit(module, ['default'])),
     };
     writeFile(normalize(`${directory}/config`), JSON.stringify(goatConfig, null, 2));
   };

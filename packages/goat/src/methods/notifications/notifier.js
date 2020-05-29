@@ -1,5 +1,4 @@
 const style = require('kleur');
-const single = require('single-line-log').stdout;
 
 /**
  * Goat's Notification services
@@ -9,7 +8,6 @@ class Notifier {
   constructor() {
     this.style = style;
   }
-
   /**
    * Basic logging functionality
    * @param {String} text - Value to log
@@ -47,7 +45,31 @@ class Notifier {
    * @memberof Notifier
    */
   singleLine(text) {
+    const single = require('single-line-log').stdout;
     single(text);
+  }
+
+  /**
+   * Get an emoji by name
+   * @param {String} emoji
+   * @returns {String}
+   * @memberof Notifier
+   */
+  emoji(emoji) {
+    const { get: getEmoji } = require('node-emoji');
+    return getEmoji(emoji);
+  }
+
+  /**
+   * Format a command to log and copy to clipboard for use
+   * @param {String} content
+   * @returns {String}
+   * @memberof Notifier
+   */
+  script(content) {
+    const clipboardy = require('clipboardy');
+    clipboardy.writeSync(content);
+    return this.style.black().italic().bgYellow(` ${content} `);
   }
 }
 

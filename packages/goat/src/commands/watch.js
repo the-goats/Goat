@@ -1,41 +1,32 @@
-const getPackages = require('../packages/getPackages');
-const Notify = require('../notifier/notifier');
+const commander = require('commander');
 const watch = require('../events/watch');
 const GoatEvents = require('../events/goatEvents');
-
-const Notifier = new Notify();
+const Notifier = require('../methods/notifications/notifyHandler');
 
 /**
  * Load watch capable tasks
- * @returns {array} packages;
+ * @param {Array} packages
  */
-async function loadWatchCommands() {
-  // eslint-disable-next-line
-  const config = await require('../config/goatConfig')();
-  if (!config) {
-    return;
-  }
-  const packages = getPackages(config);
-  const watchPackages = packages.filter(plugin => plugin.watch !== undefined);
+async function loadWatchCommands(packages) {
+  const watchPackages = packages.filter(module => module.watch !== undefined);
   const events = new GoatEvents();
   watch(events);
   Notifier.log(Notifier.style.green('Watching Tasks:'));
-  watchPackages.forEach(plugin => Notifier.log(Notifier.style.green(`\t- ${plugin.name}`)));
-  watchPackages.map(plugin => plugin.watchBase(events));
+  watchPackages.forEach(module => Notifier.log(Notifier.style.green(`\t- ${module.name}`)));
+  watchPackages.map(module => module.watchBase(events));
 }
 
 /**
- * Add watch command to goat
- * @param {object} goat
- * @returns {object} goat
+ * Create Watch command
+ * @param {Array} packages
+ * @returns {function}
  */
-function setCommandWatch(goat) {
-  goat
+function setCommandWatch(packages) {
+  return new commander.Command('watch')
     .command('watch')
     .alias('w')
     .description('Watch Tasks')
-    .action(() => loadWatchCommands());
-  return goat;
+    .action(() => loadWatchCommands(packages));
 }
 
 module.exports = setCommandWatch;

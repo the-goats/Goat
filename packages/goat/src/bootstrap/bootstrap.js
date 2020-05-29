@@ -1,8 +1,4 @@
-const emoji = require('node-emoji');
-const getConfig = require('../config/config');
-const checkSchema = require('../validators/schema');
-const Notifier = require('../notifier/notifier');
-const watchFiles = require('../events/watch');
+const Notifier = require('../methods/notifications/notifier');
 const GoatEvents = require('../events/goatEvents');
 
 /**
@@ -31,6 +27,7 @@ class Goat {
    */
   action(options) {
     if (options.watch) {
+      const watchFiles = require('../events/watch');
       watchFiles(this.events);
       return this.watchBase(this.events);
     }
@@ -43,6 +40,8 @@ class Goat {
    * @memberof Goat
    */
   getConfiguration() {
+    const getConfig = require('../config/config');
+    const checkSchema = require('../validators/schema');
     const configuration = getConfig();
     // Validate used config
     if (this.schema && !checkSchema(configuration, this.schema)) {
@@ -59,7 +58,7 @@ class Goat {
    */
   actionBase(options) {
     this.configuration = this.getConfiguration();
-    this.Notifier.log(emoji.get('goat'), `Running ${this.name || 'task'} in ${process.cwd()}\n`);
+    this.Notifier.log(`${this.Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
     const result = this.method({
       ...this,
@@ -92,17 +91,16 @@ class Goat {
 
   /**
    * Build command
-   * @param {object} goat
-   * @returns {object} goat
+   * @returns {function} command
    * @memberof Goat
    */
-  getCommand(goat) {
-    goat
+  getCommand() {
+    const commander = require('commander');
+    return new commander.Command(this.command)
       .command(this.command)
       .description(this.description)
       .option(this.watch ? '-w, --watch' : '', this.watch ? 'Watch for file changes' : '')
       .action(({ watch }) => this.action({ watch }));
-    return goat;
   }
 }
 

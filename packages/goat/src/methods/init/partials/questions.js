@@ -1,11 +1,11 @@
 const inquirer = require('inquirer');
-const plugins = require('../../../plugins');
 
 /**
  * Inquire the user preferences.
  * @returns {Object} answers
  */
 async function initQuestions() {
+  const modules = await require('../../modules/collectModules');
   const questions = [{
     type: 'input',
     name: 'project_name',
@@ -17,17 +17,20 @@ async function initQuestions() {
   },
   {
     type: 'checkbox',
-    message: 'Select packages',
+    message: 'Select modules',
     name: 'project_packages',
-    choices: plugins.map(item => ({
-      ...item,
-      value: item.package,
-    })),
-    default: () => ((plugins.map((item) => {
+    choices: modules.map(item => {
+      return ({
+        ...item,
+        name: item.description ? `${item.name} - ${item.description}` : item.name,
+        value: item,
+      });
+    }),
+    default: () => ((modules.map((item) => {
       if (!item.default) {
         return null;
       }
-      return item.package;
+      return item;
     })).filter(item => item !== null)),
   },
   ];

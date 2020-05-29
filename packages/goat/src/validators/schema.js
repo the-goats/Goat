@@ -1,7 +1,5 @@
 const { validate } = require('jsonschema');
-const GoatNotifier = require('../notifier/notifier');
-
-const Notifier = new GoatNotifier();
+const Notifier = require('../methods/notifications/notifyHandler');
 
 /**
  * Validate the config object against the provided schema

@@ -1,5 +1,6 @@
 const { writeFile } = require('fs').promises;
 const mkdirp = require('mkdirp');
+const Notifier = require('../../notifications/notifyHandler');
 
 /**
  * Check if a package has any project files
@@ -23,7 +24,7 @@ function copyPackageFiles(files) {
   files.forEach((file) => {
     mkdirp(file.destination)
     .then(() => writeFile(`${file.destination}/${file.name}`, file.data))
-    .catch(error => console.error(error));
+    .catch(error => Notifier.error(error));
   })
 }
 

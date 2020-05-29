@@ -2,12 +2,9 @@ const {
   readFile,
   stat,
 } = require('fs').promises;
-const { eq } = require('semver');
+const { lt, gt, satisfies, major, minor } = require('semver');
 const { version } = require('../../package.json');
-const GoatNotifier = require('../notifier/notifier');
-const updateConfig = require('./modules/updateConfig');
-
-const Notifier = new GoatNotifier();
+const Notifier = require('../methods/notifications/notifyHandler');
 const configFile = './.goat/config';
 
 /**
@@ -17,15 +14,22 @@ const configFile = './.goat/config';
 async function getConfig() {
   try {
     await stat('./.goat');
-  } catch (error) {
-    Notifier.error('No Goat project seems to be initiated here, please check your path or run `goat init`');
-    return null;
+  } catch {
+    const error = new Error(`No Goat project seems to be initiated here, please check your path or run ${Notifier.script('goat init')}`);
+    error.name = 'NO_GOAT_PROJECT';
+    throw error;
   }
 
   let config = JSON.parse(await readFile(configFile));
-
-  if (!eq(version, config.goatVersion)) {
-    config = await updateConfig(config);
+  if (gt(version, config.goatVersion)) {
+    const updateConfig = require('./modules/updateConfig');
+    return updateConfig(config);
+  }
+  const goatVersion = `${major(version)}.${minor(version)}.x`;
+  // If the version doesn't match on Minor, 
+  if (!satisfies(config.goatVersion, goatVersion)) {
+    console.log('This project requires a newer version of Goat, please update');
+    process.exit();
   }
   return config;
 }

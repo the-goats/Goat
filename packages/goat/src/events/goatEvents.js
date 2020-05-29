@@ -3,9 +3,7 @@ const { parse } = require('path');
 const matchPattern = require('./modules/matchPattern');
 const matchEvent = require('./modules/matchEvent');
 const eventMessage = require('./modules/eventMessage');
-const Notify = require('../notifier/notifier');
-
-const Notifier = new Notify();
+const Notifier = require('../methods/notifications/notifyHandler');
 
 /**
  * Execute callback event based on event data

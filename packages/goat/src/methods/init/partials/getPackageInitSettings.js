@@ -1,16 +1,16 @@
-const { merge } = require('lodash');
-const Goat = require('../../bootstrap/bootstrap');
+const Goat = require('../../../bootstrap/bootstrap');
+const loadModule = require('../../modules/loadModule');
 
 /**
  * Collect initialisation settings for packages
  * @param {object} answers
  */
 function getPackageInitialisation(packages) {
-  return packages.map((plugin) => {
+  return packages.map((module) => {
     // eslint-disable-next-line
-    const packageConfig = require(plugin);
+    const packageConfig = loadModule(module);
     return {
-      plugin,
+      module,
       package: packageConfig,
       init: getPackageInitSettings(packageConfig, Goat),
     }

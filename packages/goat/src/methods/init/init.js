@@ -1,11 +1,12 @@
 const { stat } = require('fs').promises;
 const { normalize } = require('path');
-const configFileName = require('./modules/configFileName');
-const initQuestions = require('./modules/questions');
-const initializeGoatConfig = require('./modules/initConfig');
-const initializeProjectConfig = require('./modules/projectConfig');
-const getPackageInit = require('./modules/getPackageInitSettings');
-const packageFiles = require('./modules/packageFiles');
+const configFileName = require('./partials/configFileName');
+const initQuestions = require('./partials/questions');
+const initializeGoatConfig = require('./partials/initConfig');
+const initializeProjectConfig = require('./partials/projectConfig');
+const getPackageInit = require('./partials/getPackageInitSettings');
+const packageFiles = require('./partials/packageFiles');
+const Notifier = require('../notifications/notifyHandler');
 
 /**
  * Initialize Goat inside the current folder, this is the entry point of this command.
@@ -26,7 +27,7 @@ const action = async (options = {}) => {
 
   try {
     await stat(normalize(`./${configFileName}`));
-    console.log('Goat is already initialized');
+    Notifier.log('Goat is already initialized');
     return;
   } catch (error) {
     init();

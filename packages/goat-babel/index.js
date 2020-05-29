@@ -1,19 +1,12 @@
-const { normalize } = require('path');
-const {
-  processBabel,
-  processBabelFile,
-} = require('./scripts/babel');
-const schema = require('./scripts/schema');
-const initConfiguration = require('./init/configuration.json');
-
 module.exports = (Goat) => {
   return new Goat({
     name: 'Babel',
     command: 'babel',
     description: 'Compile .es6.js files using babel',
-    schema,
+    schema: require('./scripts/schema'),
     method: (config) => {
-      return new Promise((resolve, reject) => {
+      const { processBabel } = require('./scripts/babel');
+      return new Promise((resolve) => {
         const {
           configuration,
         } = config;
@@ -26,6 +19,11 @@ module.exports = (Goat) => {
       });
     },
     watch: (config) => {
+      const { normalize } = require('path');
+      const {
+        processBabel,
+        processBabelFile,
+      } = require('./scripts/babel');
       const { configuration, events } = config;
       const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
       processBabel({
@@ -46,7 +44,7 @@ module.exports = (Goat) => {
       });
     },
     init: {
-      configuration: initConfiguration,
+      configuration: require('./init/configuration.json'),
     },
   });
 };

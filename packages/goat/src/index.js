@@ -1,31 +1,52 @@
 const updateNotifier = require('update-notifier');
-const initGoat = require('./commands/goat');
-const setCommandInit = require('./commands/init');
-const loadCommands = require('./commands/loadCommands');
+const CollectCommands = require('./methods/commands/CollectCommands');
 const setCommandWatch = require('./commands/watch');
+const setCommandModule = require('./commands/module');
 const pkg = require('../package.json');
+const { version } = require('../package.json');
+const commander = require('commander');
+const Notifier = require('./methods/notifications/notifyHandler');
+const getPackages = require('./packages/getPackages');
+let goat = new commander.Command();
 
 async function base() {
-  updateNotifier({ pkg }).notify();
-  let goat = initGoat();
+  if (global.DEBUG) {
+    console.time('goat');
+  }
+  updateNotifier({ pkg }).notify();;
+  goat
+    .version(version)
+    .name('Goat')
+    .description('Goat');
 
-  goat = setCommandInit(goat);
-  if (!goat) {
-    return;
+  let config;
+  try {
+    config = await require('./config/goatConfig')();
+  } catch(error) {
+    const setCommandInit = require('./commands/init');
+    goat.addCommand(setCommandInit());
+    if (process.argv.length === 2) {
+      Notifier.error(error.message);
+     }
   }
 
-  goat = await loadCommands(goat);
-  if (!goat) {
-    return;
+  if (config) {
+    const packages = await getPackages(config);
+    const moduleCommands = await CollectCommands(packages);
+    if (moduleCommands) {
+      moduleCommands.forEach(command => {
+        goat.addCommand(command);
+      });
+      goat.addCommand(setCommandWatch(packages));
+    } 
   }
-
-  goat = await setCommandWatch(goat);
-
+  
+  goat.addCommand(setCommandModule());
+  
+  if (global.DEBUG) {
+    console.timeEnd('goat');
+  }
   goat.parse(process.argv);
-  // No command specified
-  if (goat.args.length === 0) {
-    goat.help();
-  }
 }
 
 module.exports = base;
