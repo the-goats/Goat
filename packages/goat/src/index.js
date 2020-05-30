@@ -2,6 +2,7 @@ const updateNotifier = require('update-notifier');
 const CollectCommands = require('./methods/commands/CollectCommands');
 const setCommandWatch = require('./commands/watch');
 const setCommandModule = require('./commands/module');
+const setCommandProject = require('./commands/project');
 const pkg = require('../package.json');
 const { version } = require('../package.json');
 const commander = require('commander');
@@ -10,14 +11,14 @@ const getPackages = require('./packages/getPackages');
 let goat = new commander.Command();
 
 async function base() {
-  if (global.DEBUG) {
-    console.time('goat');
-  }
   updateNotifier({ pkg }).notify();;
   goat
     .version(version)
     .name('Goat')
     .description('Goat');
+
+  goat
+    .option('-D, --debug', 'Debug Goat and modules');
 
   let config;
   try {
@@ -41,12 +42,16 @@ async function base() {
     } 
   }
   
+  goat.addCommand(setCommandProject());
   goat.addCommand(setCommandModule());
-  
-  if (global.DEBUG) {
-    console.timeEnd('goat');
-  }
   goat.parse(process.argv);
 }
 
-module.exports = base;
+module.exports = () => {
+  global.DEBUG = process.argv.includes('--debug') || process.argv.includes('-D');
+  if (global.DEBUG) {
+    const timeFunction = require('./methods/debug/timeFunction');
+    return timeFunction(base, 'goat');
+  }
+  base();
+};

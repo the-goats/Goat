@@ -7,7 +7,7 @@ const Notifier = require('../methods/notifications/notifyHandler');
  * @param {String} version
  * @returns {Boolean} isValid
  */
-const checkVersion = (version) => {
+function checkVersion(version) {
   if (!validRange(version)) {
     Notifier.error(`the configured ${projectConfig.name} version: ${Notifier.script(version)} is not a valid semver version or semver range, please check the configured version`);
     return false;

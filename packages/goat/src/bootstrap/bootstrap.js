@@ -45,7 +45,8 @@ class Goat {
     const configuration = getConfig();
     // Validate used config
     if (this.schema && !checkSchema(configuration, this.schema)) {
-      throw new Error('The configuration is not correct');
+      this.Notifier.error('The configuration is not correct');
+      process.exit();
     }
     return configuration;
   }
@@ -100,7 +101,14 @@ class Goat {
       .command(this.command)
       .description(this.description)
       .option(this.watch ? '-w, --watch' : '', this.watch ? 'Watch for file changes' : '')
-      .action(({ watch }) => this.action({ watch }));
+      .action(({ watch }) => {
+        if (global.DEBUG) {
+          const timeFunction = require('../methods/debug/timeFunction');
+          timeFunction(() => this.action({ watch }), `Executing ${this.command}`);
+          return
+        }
+        this.action({ watch });
+      });
   }
 }
 
