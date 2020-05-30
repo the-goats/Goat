@@ -21,17 +21,17 @@ async function getConfig() {
   }
 
   let config = JSON.parse(await readFile(configFile));
+  const goatVersion = `${major(version)}.${minor(version)}.x`;
+  if (satisfies(config.goatVersion, goatVersion)) {
+    return config;
+  }
   if (gt(version, config.goatVersion)) {
     const updateConfig = require('./modules/updateConfig');
     return updateConfig(config);
   }
-  const goatVersion = `${major(version)}.${minor(version)}.x`;
   // If the version doesn't match on Minor, 
-  if (!satisfies(config.goatVersion, goatVersion)) {
-    console.log('This project requires a newer version of Goat, please update');
-    process.exit();
-  }
-  return config;
+  console.log('This project requires a newer version of Goat, please update');
+  process.exit();
 }
 
 module.exports = getConfig;
