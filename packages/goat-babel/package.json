@@ -14,7 +14,7 @@
     "lodash": "^4.17.15",
     "mkdirp": "^0.5.1"
   },
-  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889",
+  "gitHead": "0e640999133af4ae25e1dca11ea469cc1f517d67",
   "goat": {
     "name": "Goat Babel",
     "description": "Compile ES6 code"

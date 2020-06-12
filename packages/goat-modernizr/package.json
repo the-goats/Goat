@@ -13,7 +13,7 @@
     "customizr": "^1.3.0",
     "lodash": "^4.17.11"
   },
-  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889",
+  "gitHead": "0e640999133af4ae25e1dca11ea469cc1f517d67",
   "goat": {
     "name": "Goat Modernizr",
     "description": "Generate a custom modernizr file"

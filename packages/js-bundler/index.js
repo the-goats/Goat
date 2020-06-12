@@ -9,9 +9,9 @@ module.exports = (Goat) => {
       runAll(config);
     },
     watch(config) {
+      const { configuration, events } = config;
       const { normalize } = require('path');
       const { runAll, runSingle } = require('./scripts/runner')
-      const { configuration, events } = config;
       const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
       const paths = sources.map(item => normalize(`${item}/**/*.+(es6.js|ts)`));
       runAll(config);

@@ -15,7 +15,7 @@
     "fractal": "0.0.3",
     "lodash": "^4.17.15"
   },
-  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889",
+  "gitHead": "0e640999133af4ae25e1dca11ea469cc1f517d67",
   "goat": {
     "name": "Styleguide",
     "description": "Generate and manage a styleguide based on Fractal"
