@@ -1,0 +1,27 @@
+{
+  "name": "@geit/js-bundler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stef Spakman <goat@stefspakman.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-root-import": "^6.5.0",
+    "babel-preset-airbnb": "^5.0.0",
+    "filesize": "^6.1.0",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0"
+  },
+  "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889",
+  "goat": {
+    "name": "Js Bundler",
+    "description": ""
+  }
+}

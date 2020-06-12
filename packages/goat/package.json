@@ -28,6 +28,7 @@
     "@geit/fractal": "^1.5.0",
     "@geit/modernizr": "^1.5.0",
     "@geit/styles": "^1.5.0",
+    "@geit/js-bundler": "^0.0.1",
     "chokidar": "^3.0.2",
     "clipboardy": "^2.3.0",
     "commander": "^5.1.0",

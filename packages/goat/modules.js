@@ -24,9 +24,15 @@ module.exports = [
     default: true,
   },
   {
-    name: 'Goat Styleguide',
+    name: 'Styleguide',
     package: '@geit/fractal',
     description: 'Generate and manage a styleguide based on Fractal',
+    default: false,
+  },
+  {
+    name: 'JS Bundler',
+    package: '@geit/js-bundler',
+    description: '',
     default: false,
   },
 ];
