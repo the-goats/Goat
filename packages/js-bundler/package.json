@@ -1,6 +1,6 @@
 {
   "name": "@geit/js-bundler",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,6 @@
   "gitHead": "47cd33a022e865e784a26557d6791324e0b9b889",
   "goat": {
     "name": "Js Bundler",
-    "description": ""
+    "description": "Compile and bundle js and/or ts"
   }
 }
