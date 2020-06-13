@@ -14,17 +14,12 @@ function getWebpackSetup({ path, configuration, entryFiles, ts }) {
       filename: '[name].bundle.js',
       path: normalize(path),
     },
-    resolveLoader: {
-      modules: [resolve(__dirname, '../node_modules')],
-      extensions: ['.js', '.json'],
-      mainFields: ['loader', 'main']
-    },
     module: {
       rules: [ 
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: resolve(__dirname, '../node_modules/babel-loader/lib/index.js'),
+          loader: require.resolve('babel-loader'),
           query: {
             plugins: [
               require('babel-plugin-lodash'),
@@ -48,7 +43,7 @@ function getWebpackSetup({ path, configuration, entryFiles, ts }) {
         ts ? {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          loader: resolve(__dirname, '../node_modules/ts-loader/index.js'),
+          loader: require.resolve('ts-loader'),
           options: {
             configFile: resolve(__dirname, './tsconfig.json'),
           },
