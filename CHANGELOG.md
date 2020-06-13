@@ -1,3 +1,19 @@
+## 1.6.4
+- Added cache-loader to JS-bundler to improve speed (mainly for typescript)
+
+## 1.6.3
+- Bugfix JS-bundler
+
+## 1.6.2
+- Bugfix: JS-bundler
+
+## 1.6.1
+- Bugfix: JS-bundler
+
+## 1.6.0
+- Added new module: JS-bundler
+
+
 ## 1.5.1
 - Feature: added `project ls` command
 - Feature: added a debug flag

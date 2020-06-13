@@ -19,34 +19,48 @@ function getWebpackSetup({ path, configuration, entryFiles, ts }) {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: require.resolve('babel-loader'),
-          query: {
-            plugins: [
-              require('babel-plugin-lodash'),
-              [
-                require('babel-plugin-root-import'),
-                {
-                  rootPathPrefix: '@/',
-                },
-              ],
-            ],
-            presets: [
-              [
-                require('babel-preset-airbnb'),
-                {
-                  targets: configuration.browserSupport,
-                },
-              ],
-            ],
-          },
+          use: [
+            {
+              loader: require.resolve('cache-loader'),
+            },
+            {
+              loader: require.resolve('babel-loader'),
+              query: {
+                plugins: [
+                  require('babel-plugin-lodash'),
+                  [
+                    require('babel-plugin-root-import'),
+                    {
+                      rootPathPrefix: '@/',
+                    },
+                  ],
+                ],
+                presets: [
+                  [
+                    require('babel-preset-airbnb'),
+                    {
+                      targets: configuration.browserSupport,
+                    },
+                  ],
+                ],
+              },
+            }
+          ]
         },
         ts ? {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          loader: require.resolve('ts-loader'),
-          options: {
-            configFile: resolve(__dirname, './tsconfig.json'),
-          },
+          use: [
+            {
+              loader: require.resolve('cache-loader'),
+            },
+            {
+              loader: require.resolve('ts-loader'),
+              options: {
+                configFile: resolve(__dirname, './tsconfig.json'),
+              },
+            }
+          ],
         } : {},
       ]
     },
