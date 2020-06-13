@@ -24,7 +24,7 @@ function getWebpackSetup({ path, configuration, entryFiles, ts }) {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: resolve(__dirname, '../node_modules/babel-loader/lib/index.js'),
           query: {
             plugins: [
               require('babel-plugin-lodash'),
@@ -48,7 +48,7 @@ function getWebpackSetup({ path, configuration, entryFiles, ts }) {
         ts ? {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          loader: 'ts-loader',
+          loader: resolve(__dirname, '../node_modules/ts-loader/index.js'),
           options: {
             configFile: resolve(__dirname, './tsconfig.json'),
           },
