@@ -9,7 +9,7 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint packages/**/src",
     "fix": ".eslint --fix packages/**/src",
-    "postinstall": "lerna bootstrap && npm run build",
+    "postinstall": "lerna bootstrap",
     "release": "lerna publish"
   },
   "repository": {

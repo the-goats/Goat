@@ -18,7 +18,7 @@
     "filesize": "^6.1.0",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
-    "webpack": "^4.43.0"
+    "webpack": "^4.44.2"
   },
   "gitHead": "0e640999133af4ae25e1dca11ea469cc1f517d67",
   "goat": {

@@ -3,22 +3,28 @@
  * @param {Object} { path, configuration, entryFiles, ts }
  * @returns {Object}
  */
-function getWebpackSetup({ path, configuration, entryFiles, ts }) {
+function getWebpackSetup({
+  path, configuration, entryFiles, ts,
+}) {
   const { normalize, resolve } = require('path');
   const webpack = require('webpack');
+  const { get } = require('lodash');
+  console.log(resolve(`${__dirname}/.eslintrc.js`));
   return webpack({
-    mode: 'development',
+    mode: 'production',
     context: path,
+    devtool: false,
     entry: entryFiles,
     output: {
-      filename: '[name].bundle.js',
+      filename: get(configuration, 'bundler.js.output.filename') || '[name].bundle.js',
       path: normalize(path),
+      publicPath: get(configuration, 'bundler.js.output.publicPath'),
     },
     module: {
-      rules: [ 
+      rules: [
         {
           test: /\.js$/,
-          exclude: /node_modules/,
+          exclude: /(node_modules|bower_components)/,
           use: [
             {
               loader: require.resolve('cache-loader'),
@@ -44,8 +50,8 @@ function getWebpackSetup({ path, configuration, entryFiles, ts }) {
                   ],
                 ],
               },
-            }
-          ]
+            },
+          ],
         },
         ts ? {
           test: /\.tsx?$/,
@@ -59,13 +65,13 @@ function getWebpackSetup({ path, configuration, entryFiles, ts }) {
               options: {
                 configFile: resolve(__dirname, './tsconfig.json'),
               },
-            }
+            },
           ],
         } : {},
-      ]
+      ],
     },
     resolve: {
-      extensions: [ '.tsx', '.ts', '.js' ]
+      extensions: ['.tsx', '.ts', '.js'],
     },
   });
 }

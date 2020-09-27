@@ -1,5 +1,5 @@
 
-const fileExtensions = '.+(es6.js|ts)'
+const fileExtensions = '.+(es6.js|ts)';
 
 /**
  * Entry for all file mode
@@ -74,8 +74,8 @@ function formatEntryFiles(files, dest, path) {
     const name = el.replace(`${path}/`, '').replace(/(\.es6\.js|\.ts)$/g, '');
     const destination = dest === '<source>' ? name : name.replace(name.substring(0, name.lastIndexOf('/')), dest);
     obj[destination] = resolve(el);
-    return obj
-  },{});
+    return obj;
+  }, {});
 }
 
 module.exports = { runAll, runSingle };

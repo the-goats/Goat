@@ -1,3 +1,9 @@
+## 1.7.0
+- Fix: bundler not including dependencies in bundle
+- Improvement: minify the bundled content
+- Change: JS bundler is now a default module. babel, eslint and modernizr no longer are
+- Improvement: various code style improvements
+
 ## 1.6.4
 - Added cache-loader to JS-bundler to improve speed (mainly for typescript)
 

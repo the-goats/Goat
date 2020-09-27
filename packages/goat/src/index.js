@@ -39,9 +39,9 @@ async function base() {
         goat.addCommand(command);
       });
       goat.addCommand(setCommandWatch(packages));
-    } 
+    }
   }
-  
+
   goat.addCommand(setCommandProject());
   goat.addCommand(setCommandModule());
   goat.parse(process.argv);

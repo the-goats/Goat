@@ -5,5 +5,6 @@ module.exports = {
     'no-console': 'off',
     'no-debugger': 'off',
     'max-len': 'off',
+    'global-require': 'off',
   },
 };

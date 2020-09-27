@@ -3,7 +3,7 @@ module.exports = {
   type: 'object',
   properties: {
     browserSupport: {
-      type: 'array'
+      type: 'array',
     },
     locations: {
       type: 'object',
@@ -12,13 +12,37 @@ module.exports = {
           type: 'object',
           properties: {
             src: {
-              type: 'array'
-            }
+              type: 'array',
+            },
+            dist: {
+              type: 'string',
+            },
           },
-          required: ['src']
-        }
+          required: ['src', 'dist'],
+        },
       },
-      required: ['javascript']
+      required: ['javascript'],
+    },
+    bundler: {
+      type: 'object',
+      properties: {
+        js: {
+          type: 'object',
+          properties: {
+            output: {
+              type: 'object',
+              properties: {
+                filename: {
+                  type: 'string',
+                },
+                publicpath: {
+                  type: ['string', null],
+                },
+              },
+            },
+          },
+        },
+      },
     },
   },
-}
+};

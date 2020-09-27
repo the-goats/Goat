@@ -3,7 +3,16 @@
   "locations" : {
     "node_modules": "./node_modules",
     "javascript" : {
-      "src": ["components"]
+      "src": ["components"],
+      "dist": "dist"
+    }
+  },
+  "bundler" : {
+    "js": {
+      "output": {
+        "filename": "[name].bundle.js",
+        "publicpath": null
+      }
     }
   }
 }

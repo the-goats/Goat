@@ -5,15 +5,15 @@ module.exports = (Goat) => {
     description: 'Bundle Javascript',
     schema: require('./scripts/schema'),
     method(config) {
-      const { runAll } = require('./scripts/runner')
+      const { runAll } = require('./scripts/runner');
       runAll(config);
     },
     watch(config) {
       const { configuration, events } = config;
       const { normalize } = require('path');
-      const { runAll, runSingle } = require('./scripts/runner')
-      const sources = typeof configuration.locations.javascript.src === 'Array' ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
-      const paths = sources.map(item => normalize(`${item}/**/*.+(es6.js|ts)`));
+      const { runAll, runSingle } = require('./scripts/runner');
+      const sources = Array.isArray(configuration.locations.javascript.src) ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
+      const paths = sources.map((item) => normalize(`${item}/**/*.+(es6.js|ts)`));
       runAll(config);
       events.watch({
         name: 'Babel',
@@ -27,4 +27,3 @@ module.exports = (Goat) => {
     },
   });
 };
- 
