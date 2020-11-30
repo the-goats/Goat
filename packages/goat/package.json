@@ -29,6 +29,7 @@
     "@geit/js-bundler": "^1.7.0",
     "@geit/modernizr": "^1.6.1",
     "@geit/styles": "^1.6.1",
+    "@geit/storybook": "^1.0.0",
     "chokidar": "^3.0.2",
     "clipboardy": "^2.3.0",
     "commander": "^5.1.0",

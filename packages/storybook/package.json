@@ -1,0 +1,26 @@
+{
+  "name": "@geit/storybook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stef Spakman <goat@stefspakman.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-essentials": "^6.0.26",
+    "@storybook/addon-links": "^6.0.26",
+    "@storybook/core": "^6.0.26",
+    "@storybook/html": "^6.0.26",
+    "babel-loader": "^8.1.0",
+    "node-sass-glob-importer": "^5.3.2",
+    "react-is": "^16.13.1"
+  },
+  "goat": {
+    "name": "Storybook",
+    "description": "Manage a design system using storybook"
+  }
+}

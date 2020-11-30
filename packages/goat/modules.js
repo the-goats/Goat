@@ -8,7 +8,7 @@ module.exports = [
   {
     name: 'JS Bundler',
     package: '@geit/js-bundler',
-    description: '',
+    description: 'Compile and bundle js and/or ts',
     default: true,
   },
   {
@@ -33,6 +33,12 @@ module.exports = [
     name: 'Styleguide',
     package: '@geit/fractal',
     description: 'Generate and manage a styleguide based on Fractal',
+    default: false,
+  },
+  {
+    name: 'Storybook',
+    package: '@geit/storybook',
+    description: 'Manage a design system using storybook',
     default: false,
   },
 ];
