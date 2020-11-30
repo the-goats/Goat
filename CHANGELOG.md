@@ -1,3 +1,6 @@
+## 1.7.2
+- Fix: Polyfill JS classes using js bundler
+
 ## 1.7.1
 - Fix: Updated dependencies
 - Improvement: Added -v flag for version (in addition to -V and --version)

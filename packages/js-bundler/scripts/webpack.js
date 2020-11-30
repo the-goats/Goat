@@ -27,9 +27,6 @@ function getWebpackSetup({
           exclude: /(node_modules|bower_components)/,
           use: [
             {
-              loader: require.resolve('cache-loader'),
-            },
-            {
               loader: require.resolve('babel-loader'),
               query: {
                 plugins: [
@@ -43,7 +40,7 @@ function getWebpackSetup({
                 ],
                 presets: [
                   [
-                    require('babel-preset-airbnb'),
+                    require('@babel/preset-env'),
                     {
                       targets: configuration.browserSupport,
                     },
