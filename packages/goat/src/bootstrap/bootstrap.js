@@ -97,18 +97,21 @@ class Goat {
    */
   getCommand() {
     const commander = require('commander');
-    return new commander.Command(this.command)
+    const command = new commander.Command(this.command)
       .command(this.command)
       .description(this.description)
-      .option(this.watch ? '-w, --watch' : '', this.watch ? 'Watch for file changes' : '')
       .action(({ watch }) => {
         if (global.DEBUG) {
           const timeFunction = require('../methods/debug/timeFunction');
           timeFunction(() => this.action({ watch }), `Executing ${this.command}`);
-          return
+          return;
         }
         this.action({ watch });
       });
+    if (this.watch) {
+      command.option('-w, --watch', 'Watch for file changes');
+    }
+    return command;
   }
 }
 

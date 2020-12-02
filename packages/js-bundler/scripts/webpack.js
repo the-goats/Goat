@@ -9,7 +9,6 @@ function getWebpackSetup({
   const { normalize, resolve } = require('path');
   const webpack = require('webpack');
   const { get } = require('lodash');
-  console.log(resolve(`${__dirname}/.eslintrc.js`));
   return webpack({
     mode: 'production',
     context: path,
