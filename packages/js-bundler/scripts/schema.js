@@ -36,7 +36,6 @@ module.exports = {
                   type: 'string',
                 },
                 publicpath: {
-                  type: ['string', null],
                 },
               },
             },

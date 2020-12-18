@@ -9,7 +9,6 @@ function getWebpackSetup({
   const { normalize, resolve } = require('path');
   const webpack = require('webpack');
   const { get } = require('lodash');
-  console.log(resolve(`${__dirname}/.eslintrc.js`));
   return webpack({
     mode: 'production',
     context: path,
@@ -27,9 +26,6 @@ function getWebpackSetup({
           exclude: /(node_modules|bower_components)/,
           use: [
             {
-              loader: require.resolve('cache-loader'),
-            },
-            {
               loader: require.resolve('babel-loader'),
               query: {
                 plugins: [
@@ -43,7 +39,7 @@ function getWebpackSetup({
                 ],
                 presets: [
                   [
-                    require('babel-preset-airbnb'),
+                    require('@babel/preset-env'),
                     {
                       targets: configuration.browserSupport,
                     },
