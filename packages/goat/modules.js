@@ -1,7 +1,7 @@
 module.exports = [
   {
     name: 'Compile',
-    package: '@geit/compile',
+    package: '@the-goat/compile',
     description: 'Webpack based compiler for Javascript and scss',
     default: true,
   },
@@ -36,14 +36,8 @@ module.exports = [
     default: false,
   },
   {
-    name: 'Styleguide',
-    package: '@geit/fractal',
-    description: 'Generate and manage a styleguide based on Fractal',
-    default: false,
-  },
-  {
     name: 'Storybook',
-    package: '@geit/storybook',
+    package: '@the-goat/storybook',
     description: 'Manage a design system using storybook',
     default: false,
   },
