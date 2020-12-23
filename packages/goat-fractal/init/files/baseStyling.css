@@ -1,0 +1,30 @@
+.goat-swatches__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.goat-swatches__list-item {
+  flex-basis: 20%;
+  min-width: 80px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  height: 220px;
+  padding: 20px;
+}
+
+.goat-swatches__item-content {
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.goat-swatches__info {
+  background-color: white;
+  padding: 15px;
+  width: 100%;
+}

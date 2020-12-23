@@ -1,6 +1,6 @@
 {
   "name": "@geit/goat",
-  "version": "1.7.3",
+  "version": "1.8.1",
   "description": "",
   "main": "src/index.js",
   "repository": {
@@ -23,12 +23,14 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@geit/babel": "^1.7.1",
-    "@geit/eslint": "^1.7.1",
-    "@geit/fractal": "^1.7.1",
-    "@geit/js-bundler": "^1.7.3",
-    "@geit/modernizr": "^1.7.1",
-    "@geit/styles": "^1.7.1",
+    "@geit/babel": "^1.8.1",
+    "@geit/eslint": "^1.8.1",
+    "@geit/fractal": "^1.8.1",
+    "@geit/js-bundler": "^1.8.1",
+    "@geit/modernizr": "^1.8.1",
+    "@geit/styles": "^1.8.1",
+    "@the-goat/compile": "^1.8.1",
+    "@the-goat/storybook": "^1.8.1",
     "chokidar": "^3.4.3",
     "clipboardy": "^2.3.0",
     "commander": "^6.2.0",
@@ -50,5 +52,5 @@
   "engines": {
     "node": ">=11.00"
   },
-  "gitHead": "0e640999133af4ae25e1dca11ea469cc1f517d67"
+  "gitHead": "9479d406b83e5b7e01b337e016bf4b4958e397ba"
 }

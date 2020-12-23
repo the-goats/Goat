@@ -8,12 +8,12 @@ const Notifier = require('../methods/notifications/notifyHandler');
  * @param {Array} packages
  */
 async function loadWatchCommands(packages) {
-  const watchPackages = packages.filter(module => module.watch !== undefined);
+  const watchPackages = packages.filter((module) => module.watch !== undefined);
   const events = new GoatEvents();
   watch(events);
   Notifier.log(Notifier.style.green('Watching Tasks:'));
-  watchPackages.forEach(module => Notifier.log(Notifier.style.green(`\t- ${module.name}`)));
-  watchPackages.map(module => module.watchBase(events));
+  watchPackages.forEach((module) => Notifier.log(Notifier.style.green(`\t- ${module.name}`)));
+  watchPackages.map((module) => module.watchBase({}, events));
 }
 
 /**

@@ -16,16 +16,19 @@ function cleanFileName(file) {
  */
 function eventMessage(event, file) {
   const eventParts = event.split(':');
+  const fileName = cleanFileName(file);
   const eventMapping = {
     change: 'changed',
     add: 'added',
     unlink: 'removed',
-    addDir: 'addDir',
+    addDir: 'added',
     unlinkDir: 'unlinkDir',
     lint: 'linted',
     compile: 'compiled',
   };
-  Notifier.log(Notifier.style.cyan(Notifier.style.bold(`\nFile ${cleanFileName(file)} has been ${eventMapping[eventParts[1]]}`)));
+  const eventType = eventParts[1];
+  const type = eventType.includes('Dir') ? 'Directory' : 'File';
+  Notifier.log(Notifier.style.cyan(Notifier.style.bold(`\n${type} ${fileName} has been ${eventMapping[eventType]}`)));
 }
 
 module.exports = eventMessage;
