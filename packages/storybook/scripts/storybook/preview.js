@@ -5,9 +5,7 @@ import { setupTwig } from './setupTwig';
 
 // If in a Drupal project, it's recommended to import a symlinked version of drupal.js.
 import './_drupal';
-// import '../components/styles.scss';
-// console.log(process.cwd());
-// const test = import();
+import 'Goat/preview.js'; // import preview.js from .goat project folder;
 
 // addDecorator deprecated, but not sure how to use this otherwise.
 addDecorator((storyFn) => {

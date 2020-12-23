@@ -3,7 +3,7 @@ module.exports = async ({ config }) => {
   const globImporter = require('node-sass-glob-importer');
   const goatGonfig = require('../config.js').config;
 
-  const rootDir = process.cwd();
+  const rootDir = goatGonfig.path;
 
   const namespaces = require('./getNamespaces.js')(goatGonfig);
   // Twig
@@ -73,6 +73,8 @@ module.exports = async ({ config }) => {
   // Tell Storybook where your components live
   // eslint-disable-next-line no-param-reassign
   config.resolve.alias.components = path.resolve(rootDir, '/');
+  // eslint-disable-next-line no-param-reassign
+  config.resolve.alias.Goat = path.resolve(path.join(rootDir, '/.goat'));
 
   // eslint-disable-next-line no-param-reassign
   config.resolve.modules = [
