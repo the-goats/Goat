@@ -40,5 +40,6 @@
   "goat": {
     "name": "Compile",
     "description": "Webpack based compiler for Javascript and scss"
-  }
+  },
+  "gitHead": "9479d406b83e5b7e01b337e016bf4b4958e397ba"
 }
