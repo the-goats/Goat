@@ -9,6 +9,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-design-assets',
     '@storybook/addon-essentials',
+    '@storybook/addon-knobs',
   ],
   webpackFinal(config) {
     return config;
