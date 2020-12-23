@@ -1,48 +1,48 @@
 module.exports = {
-  id: '/JsBundler',
+  id: '/Stories',
   type: 'object',
   properties: {
-    browserSupport: {
-      type: 'array',
-    },
     locations: {
       type: 'object',
       properties: {
-        javascript: {
-          type: 'object',
-          properties: {
-            src: {
-              type: 'array',
-            },
-            dist: {
-              type: 'string',
-            },
-          },
-          required: ['src', 'dist'],
-        },
-      },
-      required: ['javascript'],
-    },
-    bundler: {
-      type: 'object',
-      properties: {
-        js: {
-          type: 'object',
-          properties: {
-            output: {
-              type: 'object',
-              properties: {
-                filename: {
-                  type: 'string',
-                },
-                publicpath: {
-                  type: ['string', null],
-                },
+        stories: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              directory: {
+                type: 'string',
+              },
+              pattern: {
+                type: 'string',
               },
             },
+            required: ['directory', 'pattern'],
+          },
+        },
+      },
+      required: ['stories'],
+    },
+    styles: {
+      type: 'object',
+      properties: {
+        resources: {
+          type: 'array',
+          items: {
+            type: 'string',
           },
         },
       },
     },
+    stories: {
+      type: 'object',
+      properties: {
+        namespaces: {
+          type: 'object',
+        },
+      },
+      required: ['namespaces'],
+    },
   },
+  required: ['locations', 'styles', 'stories'],
 };

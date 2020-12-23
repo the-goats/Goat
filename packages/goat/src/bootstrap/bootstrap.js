@@ -8,7 +8,7 @@ const GoatEvents = require('../events/goatEvents');
 class Goat {
   constructor(build) {
     this.name = build.name;
-    this.command = build.command;
+    this.key = build.command;
     this.description = build.description;
     this.schema = build.schema;
     this.method = build.method;
@@ -18,20 +18,53 @@ class Goat {
     this.Notifier = new Notifier();
     this.configuration = null;
     this.events = new GoatEvents();
+    this.options = build.options;
+    // eslint-disable-next-line no-underscore-dangle
+    this.command = this._buildCommand();
+  }
+
+  /**
+   * Build the commander command object
+   * @returns {Function} Command
+   * @memberof Goat
+   */
+  // eslint-disable-next-line no-underscore-dangle
+  _buildCommand() {
+    const commander = require('commander');
+    const command = new commander.Command(this.key)
+      .command(this.key)
+      .description(this.description)
+      .action((config) => {
+        if (global.DEBUG) {
+          const timeFunction = require('../methods/debug/timeFunction');
+          timeFunction(() => this.action({ watch: config.watch }), `Executing ${this.key}`);
+          return;
+        }
+        this.action(config);
+      });
+    if (this.watch) {
+      command.option('-w, --watch', 'Watch for file changes');
+    }
+    if (this.options) {
+      Object.entries(this.options).forEach(({ 0: key, 1: description }) => {
+        command.option(key, description);
+      });
+    }
+    return command;
   }
 
   /**
    * Method to be executed by running Goat command.
-   * @param {Object} options
+   * @param {Object} config
    * @memberof Goat
    */
-  action(options) {
-    if (options.watch) {
+  action(config) {
+    if (config.watch) {
       const watchFiles = require('../events/watch');
       watchFiles(this.events);
-      return this.watchBase(this.events);
+      return this.watchBase(config, this.events);
     }
-    return this.actionBase(options);
+    return this.actionBase(config);
   }
 
   /**
@@ -53,17 +86,17 @@ class Goat {
 
   /**
    * Forms the base of all Goat actions,
-   * @param {Object} options
+   * @param {Object} config
    * @returns
    * @memberof Goat
    */
-  actionBase(options) {
+  actionBase(config) {
     this.configuration = this.getConfiguration();
     this.Notifier.log(`${this.Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
     const result = this.method({
       ...this,
-      options,
+      options: config,
     });
     if (result instanceof Promise) {
       result.then((callback) => {
@@ -76,9 +109,11 @@ class Goat {
 
   /**
    * Base function for watch tasks
+   * @param {Object} config
+   * @param {Object} events
    * @memberof Goat
    */
-  watchBase(events) {
+  watchBase(config, events) {
     this.events = events;
     this.configuration = this.getConfiguration();
     if (!this.watch) {
@@ -87,6 +122,8 @@ class Goat {
     }
     this.watch({
       ...this,
+      options: config,
+      events,
     });
   }
 
@@ -96,22 +133,7 @@ class Goat {
    * @memberof Goat
    */
   getCommand() {
-    const commander = require('commander');
-    const command = new commander.Command(this.command)
-      .command(this.command)
-      .description(this.description)
-      .action(({ watch }) => {
-        if (global.DEBUG) {
-          const timeFunction = require('../methods/debug/timeFunction');
-          timeFunction(() => this.action({ watch }), `Executing ${this.command}`);
-          return;
-        }
-        this.action({ watch });
-      });
-    if (this.watch) {
-      command.option('-w, --watch', 'Watch for file changes');
-    }
-    return command;
+    return this.command;
   }
 }
 

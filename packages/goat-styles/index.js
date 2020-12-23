@@ -26,7 +26,6 @@ module.exports = (Goat) => {
         pattern: '**/*.s+(a|c)ss',
         events: /file:/,
         method: () => {
-          const { compileStyles } = require('./scripts/compileStyles');
           compileStyles({ ...config, settings }).pipe(sizeReport());
         },
       });

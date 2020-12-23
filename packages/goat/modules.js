@@ -1,15 +1,21 @@
 module.exports = [
   {
+    name: 'Compile',
+    package: '@geit/compile',
+    description: 'Webpack based compiler for Javascript and scss',
+    default: true,
+  },
+  {
     name: 'Goat Styles',
     package: '@geit/styles',
     description: 'A comprehensive task to compile SCSS to CSS',
-    default: true,
+    default: false,
   },
   {
     name: 'JS Bundler',
     package: '@geit/js-bundler',
     description: 'Compile and bundle js and/or ts',
-    default: true,
+    default: false,
   },
   {
     name: 'Goat Babel',

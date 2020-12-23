@@ -1,18 +1,25 @@
 {
-  "browserSupport": ["> 1%", "last 2 versions"],
   "locations" : {
-    "node_modules": "./node_modules",
-    "javascript" : {
-      "src": ["components"],
-      "dist": "dist"
-    }
-  },
-  "bundler" : {
-    "js": {
-      "output": {
-        "filename": "[name].bundle.js",
-        "publicpath": null
+    "stories": [
+      {
+        "directory": "components",
+        "pattern": "**/*.stories.js"
       }
+    ]
+  },
+  "styles": {
+    "resources": [
+      "components/01-base/global.scss"
+    ]
+  },
+  "stories": {
+    "namespaces": {
+      "base": "components/01-base",
+      "atoms": "components/02-atoms",
+      "molecules": "components/03-molecules",
+      "organisms": "components/04-organisms",
+      "templates": "components/05-templates",
+      "pages": "components/06-pages"
     }
   }
 }

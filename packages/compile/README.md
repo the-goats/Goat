@@ -8,8 +8,8 @@
 ![David dependencies](https://badgen.net//david/dep/stefspakman/Goat/packages/js-bundler?icon=libraries)
 ![David devdependencies](https://badgen.net//david/dev/stefspakman/Goat/packages/js-bundler?icon=libraries)
 
-# Storybook
-Intergrating storybook within the Goat workflow
+# Compile
+Webpack based compiler for Javascript and scss
 
 ## Goat
 Goat is a simple to use taskrunner for frontend development. Build for quick intergration, rich features and easy updating even when working with a team. 
