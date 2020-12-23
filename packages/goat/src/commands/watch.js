@@ -5,15 +5,16 @@ const Notifier = require('../methods/notifications/notifyHandler');
 
 /**
  * Load watch capable tasks
+ * @param {Object} config
  * @param {Array} packages
  */
-async function loadWatchCommands(packages) {
+async function loadWatchCommands(config, packages) {
   const watchPackages = packages.filter((module) => module.watch !== undefined);
   const events = new GoatEvents();
   watch(events);
   Notifier.log(Notifier.style.green('Watching Tasks:'));
   watchPackages.forEach((module) => Notifier.log(Notifier.style.green(`\t- ${module.name}`)));
-  watchPackages.map((module) => module.watchBase({}, events));
+  watchPackages.map((module) => module.watchBase(config, events));
 }
 
 /**
@@ -22,11 +23,18 @@ async function loadWatchCommands(packages) {
  * @returns {function}
  */
 function setCommandWatch(packages) {
-  return new commander.Command('watch')
+  const command = new commander.Command('watch')
     .command('watch')
     .alias('w')
     .description('Watch Tasks')
-    .action(() => loadWatchCommands(packages));
-}
+    .action((config) => loadWatchCommands(config, packages));
 
+  Object.values(packages).forEach((pckg) => {
+    if (pckg.options) {
+      const { 0: key, 1: description } = Object.entries(pckg.options)[0];
+      command.option(key, description);
+    }
+  });
+  return command;
+}
 module.exports = setCommandWatch;

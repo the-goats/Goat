@@ -17,7 +17,12 @@ module.exports = (Goat) => new Goat({
   },
   watch(config) {
     const { runWatch } = require('./scripts/webpack/runner');
-    runWatch(config);
+    runWatch({
+      ...config,
+      settings: {
+        production: config.options.production,
+      },
+    });
   },
   init: {
     configuration: require('./init/configuration.json'),
