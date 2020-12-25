@@ -4,6 +4,7 @@ module.exports = {
   properties: {
     browserSupport: {
       type: 'array',
+      default: ['> 1%', 'last 2 versions'],
     },
     locations: {
       type: 'object',
@@ -13,9 +14,14 @@ module.exports = {
           properties: {
             src: {
               type: 'array',
+              default: ['components'],
+            },
+            dist: {
+              type: 'string',
+              default: '<source>',
             },
           },
-          required: ['src'],
+          required: ['src', 'dist'],
         },
       },
       required: ['javascript'],
@@ -29,6 +35,7 @@ module.exports = {
         properties: {
           keep_path: {
             type: 'boolean',
+            default: true,
           },
         },
       },

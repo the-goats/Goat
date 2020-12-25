@@ -10,8 +10,5 @@ module.exports = (Goat) => {
         resolve(buildModernizr(config));
       });
     },
-    init: {
-      configuration: require('./init/configuration.json'),
-    }
   });
 };

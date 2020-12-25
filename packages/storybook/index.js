@@ -10,7 +10,6 @@ module.exports = (Goat) => new Goat({
     require('./scripts/storybook/runStory')(config);
   },
   init: {
-    configuration: require('./init/configuration.json'),
     files: () => require('./init/files.js'),
   },
 });

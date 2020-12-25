@@ -4,6 +4,7 @@ module.exports = {
   properties: {
     browserSupport: {
       type: 'array',
+      default: ['> 1%', 'last 2 versions'],
     },
     locations: {
       type: 'object',
@@ -13,9 +14,16 @@ module.exports = {
           properties: {
             src: {
               type: 'array',
+              items: {
+                type: 'string',
+              },
+              default: [
+                'components',
+              ],
             },
             dist: {
               type: 'string',
+              default: 'dist',
             },
           },
           required: ['src', 'dist'],
@@ -34,8 +42,10 @@ module.exports = {
               properties: {
                 filename: {
                   type: 'string',
+                  default: '[name].bundle.js',
                 },
                 publicpath: {
+                  default: false,
                 },
               },
             },

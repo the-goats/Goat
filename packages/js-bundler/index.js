@@ -21,7 +21,4 @@ module.exports = (Goat) => new Goat({
       method: (data) => runSingle(config, data.path),
     });
   },
-  init: {
-    configuration: require('./init/configuration.json'),
-  },
 });

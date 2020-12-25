@@ -1,20 +1,35 @@
-module.exports = function getPlugins(config) {
+/**
+ *
+ * @param {object} config
+ * @returns {[FriendlyErrorsWebpackPlugin, webpack.ProgressPlugin, WebpackFixStyleOnlyEntriesPlugin, MiniCssExtractPlugin]}
+ */
+function getPlugins(config) {
   const { ProgressPlugin } = require('webpack');
   const { CleanWebpackPlugin } = require('clean-webpack-plugin');
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
-  const { dist } = config.configuration.locations;
-  return {
-    ProgressPlugin: new ProgressPlugin(),
-    FixStyleOnlyEntriesPlugin: new FixStyleOnlyEntriesPlugin({
+  const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+
+  const plugins = [
+    new FriendlyErrorsWebpackPlugin(),
+    new ProgressPlugin(),
+    new FixStyleOnlyEntriesPlugin({
       silent: true,
     }),
-    MiniCssExtractPlugin: new MiniCssExtractPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    CleanWebpackPlugin: new CleanWebpackPlugin({
+  ];
+
+  if (config.configuration.bundler.clean) {
+    const { dist } = config.configuration.locations;
+    plugins.push(new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [`${dist}/**/*`],
-    }),
-  };
-};
+    }));
+  }
+
+  return plugins;
+}
+
+module.exports = getPlugins;

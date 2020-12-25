@@ -17,7 +17,7 @@ module.exports = function getStyleLoader(config) {
         loader: require.resolve('css-loader'),
         options: {
           sourceMap: true,
-          url: true,
+          url: false,
         },
       },
       {

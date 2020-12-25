@@ -3,6 +3,7 @@ const schemaBase = require('../schemas/schema');
 const checkSchema = require('../validators/schema');
 const checkVersion = require('../validators/version');
 const Notifier = require('../methods/notifications/notifyHandler');
+
 const configPath = './goat.config.json';
 
 /**

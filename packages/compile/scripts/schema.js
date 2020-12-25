@@ -5,6 +5,10 @@ module.exports = {
     locations: {
       type: 'object',
       properties: {
+        dist: {
+          type: 'string',
+          default: 'dist',
+        },
         patterns: {
           type: 'array',
           items: {
@@ -19,9 +23,16 @@ module.exports = {
             },
             required: ['directory', 'pattern'],
           },
-        },
-        dist: {
-          type: 'string',
+          default: [
+            {
+              directory: 'components',
+              pattern: '**/!(*.stories|*.component|*.min|*.test).es6.js',
+            },
+            {
+              directory: 'components',
+              pattern: '**/!(*.stories|*.component|*.min|*.test|_*).scss',
+            },
+          ],
         },
       },
       required: ['patterns', 'dist'],
@@ -34,6 +45,9 @@ module.exports = {
           items: {
             type: 'string',
           },
+          default: [
+            'components/01-base/global.scss',
+          ],
         },
       },
     },
@@ -42,23 +56,31 @@ module.exports = {
       properties: {
         javascript: {
           type: 'boolean',
+          default: true,
         },
         styles: {
           type: 'boolean',
+          default: true,
         },
         assets: {
           type: 'boolean',
+          default: true,
         },
       },
     },
     bundler: {
       type: 'object',
       properties: {
+        clean: {
+          type: 'boolean',
+          default: true,
+        },
         destination: {
           type: 'object',
           properties: {
             flat: {
               type: 'boolean',
+              default: false,
             },
           },
         },
@@ -70,14 +92,18 @@ module.exports = {
               properties: {
                 filename: {
                   type: 'string',
+                  default: '[name].bundle.js',
                 },
                 publicpath: {
+                  type: ['string', 'boolean'],
+                  default: false,
                 },
               },
             },
           },
         },
       },
+      required: ['clean', 'destination', 'js'],
     },
   },
   required: ['locations', 'bundler', 'styles', 'handlers'],

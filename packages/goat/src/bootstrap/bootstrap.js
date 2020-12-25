@@ -79,6 +79,8 @@ class Goat {
     // Validate used config
     if (this.schema && !checkSchema(configuration, this.schema)) {
       this.Notifier.error('The configuration is not correct');
+      const { updateConfig } = require('../schemas/writeConfig');
+      updateConfig(this.schema);
       process.exit();
     }
     return configuration;

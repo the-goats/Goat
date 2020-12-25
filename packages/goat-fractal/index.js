@@ -13,7 +13,6 @@ module.exports = function styleguide(Goat) {
       scriptFractal(config);
     },
     init: {
-      configuration: require('./init/configuration.json'),
       files: () => require('./init/files.js'),
     },
   });

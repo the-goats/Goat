@@ -27,7 +27,7 @@ module.exports = (Goat) => {
       processEslint({
         ...config,
         sources,
-      })
+      });
       const paths = sources.map(item => normalize(`${item}/**/*.es6.js`));
       events.watch({
         name: 'Eslint',
@@ -41,8 +41,5 @@ module.exports = (Goat) => {
         },
       });
     },
-    init: {
-      configuration: require('./init/configuration.json'),
-    }
   });
 };

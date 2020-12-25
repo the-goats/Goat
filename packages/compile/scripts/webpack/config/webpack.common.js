@@ -20,7 +20,7 @@ module.exports = function getCommon(config) {
     module: {
       rules: Object.values(loaders),
     },
-    plugins: Object.values(plugins),
+    plugins,
     resolve: {
       extensions: ['.js', '.json', '.twig'],
     },

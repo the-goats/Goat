@@ -29,7 +29,7 @@ module.exports = (Goat) => {
       processBabel({
         ...config,
         sources,
-      })
+      });
       const paths = sources.map(item => normalize(`${item}/**/*.es6.js`));
       events.watch({
         name: 'Babel',
@@ -42,9 +42,6 @@ module.exports = (Goat) => {
           });
         },
       });
-    },
-    init: {
-      configuration: require('./init/configuration.json'),
     },
   });
 };

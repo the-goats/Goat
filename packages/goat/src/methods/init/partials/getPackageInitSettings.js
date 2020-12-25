@@ -13,7 +13,7 @@ function getPackageInitialisation(packages) {
       module,
       package: packageConfig,
       init: getPackageInitSettings(packageConfig, Goat),
-    }
+    };
   });
 }
 
@@ -25,9 +25,19 @@ function getPackageInitialisation(packages) {
  */
 function getPackageInitSettings(packageConfig, Goat) {
   if (!Array.isArray(packageConfig)) {
-    return packageConfig(Goat).init;
+    const config = packageConfig(Goat);
+    return {
+      ...config.init,
+      schema: config.schema,
+    };
   }
-  return packageConfig.map((item) => item(Goat).init);
+  return packageConfig.map((item) => {
+    const config = item(Goat);
+    return {
+      ...config.init,
+      schema: config.schema,
+    };
+  });
 }
 
 module.exports = getPackageInitialisation;

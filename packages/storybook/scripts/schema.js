@@ -19,6 +19,12 @@ module.exports = {
             },
             required: ['directory', 'pattern'],
           },
+          default: [
+            {
+              directory: 'components',
+              pattern: '**/*.stories.js',
+            },
+          ],
         },
       },
       required: ['stories'],
@@ -31,6 +37,9 @@ module.exports = {
           items: {
             type: 'string',
           },
+          default: [
+            'components/01-base/global.scss',
+          ],
         },
       },
     },
@@ -39,6 +48,14 @@ module.exports = {
       properties: {
         namespaces: {
           type: 'object',
+        },
+        default: {
+          base: 'components/01-base',
+          atoms: 'components/02-atoms',
+          molecules: 'components/03-molecules',
+          organisms: 'components/04-organisms',
+          templates: 'components/05-templates',
+          pages: 'components/06-pages',
         },
       },
       required: ['namespaces'],

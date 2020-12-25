@@ -30,8 +30,5 @@ module.exports = (Goat) => {
         },
       });
     },
-    init: {
-      configuration: require('./init/configuration.json'),
-    },
   });
 };

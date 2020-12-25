@@ -12,8 +12,8 @@ function initializeProjectConfig(answers, packages) {
     name: answers.project_name,
     version: '1.x',
   };
-  packages.forEach((package) => {
-    projectConfiguration = merge(projectConfiguration, getPackageConfig(package.init));
+  packages.forEach((pckg) => {
+    projectConfiguration = merge(projectConfiguration, getPackageConfig(pckg));
   });
   writeFile(configFileName, JSON.stringify(projectConfiguration, null, 2));
 }

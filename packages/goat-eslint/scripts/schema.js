@@ -3,7 +3,8 @@ module.exports = {
   type: 'object',
   properties: {
     browserSupport: {
-      type: 'array'
+      type: 'array',
+      default: ['> 1%', 'last 2 versions'],
     },
     locations: {
       type: 'object',
@@ -12,13 +13,14 @@ module.exports = {
           type: 'object',
           properties: {
             src: {
-              type: 'array'
-            }
+              type: 'array',
+              default: ['components'],
+            },
           },
-          required: ['src']
-        }
+          required: ['src'],
+        },
       },
-      required: ['javascript']
+      required: ['javascript'],
     },
   },
   js: {
@@ -28,13 +30,20 @@ module.exports = {
         type: 'object',
         properties: {
           es6: {
-            type: 'boolean'
+            type: 'boolean',
+            default: true,
           },
           config: {
-            type: 'object'
-          }
-        }
-      }
-    }
-  }
-}
+            type: 'object',
+            default: {
+              rules: {
+                'no-console': 'error',
+                'no-debugger': 'error',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+};

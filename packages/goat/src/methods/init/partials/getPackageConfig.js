@@ -1,18 +1,19 @@
-const { merge } = require('lodash');
-
 /**
  * Get config of packages
- * @param {array} packageConfig
- * @param {object} Goat
+ * @param {array} pckg
  * @returns {object}
  */
-function getPackageConfig(packageInit) {
-  if (!Array.isArray(packageInit)) {
-    return packageInit.configuration;
+function getPackageConfig(pckg) {
+  const { merge } = require('lodash');
+  const generateConfig = require('../../../schemas/generateConfig');
+
+  if (!Array.isArray(pckg)) {
+    return generateConfig(pckg.init.schema);
   }
-  // eslint-disable-next-line
-  return packageConfig.reduce((result = {}, currentValue) => {
-    return merge(result, currentValue.configuration);
+
+  return pckg.reduce((result = {}, currentValue) => {
+    const config = generateConfig(currentValue.init.schema);
+    return merge(result, config);
   });
 }
 

@@ -9,48 +9,55 @@ module.exports = {
           type: 'object',
           properties: {
             src: {
-              type: 'string'
+              type: 'string',
+              default: 'components/',
             },
             dist: {
-              type: 'string'
+              type: 'string',
+              default: 'css/',
             },
           },
-          required: ['src']
+          required: ['src'],
         },
         javascript: {
           type: 'object',
           properties: {
             src: {
-              type: 'array'
+              type: 'array',
+              default: ['components'],
             },
             libraries: {
-              type: 'string'
+              type: 'string',
+              default: 'js/libraries/',
             },
           },
-          required: ['src', 'libraries']
-        }
+          required: ['src', 'libraries'],
+        },
       },
-      required: ['javascript', 'styles']
+      required: ['javascript', 'styles'],
     },
   },
   js: {
     type: 'object',
     properties: {
       minify: {
-        type: 'boolean'
+        type: 'boolean',
+        default: false,
       },
       modernizr: {
         type: 'object',
         properties: {
           include: {
-            type: 'array' 
+            type: 'array',
+            default: ['inputtypes'],
           },
           exclude: {
-            type: 'array'
+            type: 'array',
+            default: ['hidden'],
           },
         },
       },
     },
-    required: ['modernizr']
-  }
-}
+    required: ['modernizr'],
+  },
+};

@@ -6,7 +6,7 @@ const Notifier = require('../methods/notifications/notifyHandler');
  * @param {Object} schema
  * @returns {Boolean} isValid
  */
-function checkSchema (config, schema) {
+function checkSchema(config, schema) {
   const { validate } = require('jsonschema');
   const result = validate(config, schema);
   if (result.errors.length === 0) {
@@ -16,6 +16,6 @@ function checkSchema (config, schema) {
     Notifier.error(`${error.property.replace('instance.', '')} ${error.message}`);
   });
   return false;
-};
+}
 
 module.exports = checkSchema;

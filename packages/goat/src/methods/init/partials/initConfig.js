@@ -17,8 +17,8 @@ async function initializeGoatConfig(answers) {
   const writeConfig = () => {
     const goatConfig = {
       goatVersion: version,
-      functions: answers.project_packages.map(module => module.package),
-      modules: answers.project_packages.map(module => omit(module, ['default'])),
+      functions: answers.project_packages.map((module) => module.package),
+      modules: answers.project_packages.map((module) => omit(module, ['default'])),
     };
     writeFile(normalize(`${directory}/config`), JSON.stringify(goatConfig, null, 2));
   };
