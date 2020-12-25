@@ -1,7 +1,7 @@
 /**
- *
+ * Collect Webpack plugins
  * @param {object} config
- * @returns {[FriendlyErrorsWebpackPlugin, webpack.ProgressPlugin, WebpackFixStyleOnlyEntriesPlugin, MiniCssExtractPlugin]}
+ * @returns {Array} an array of plugins
  */
 function getPlugins(config) {
   const { ProgressPlugin } = require('webpack');

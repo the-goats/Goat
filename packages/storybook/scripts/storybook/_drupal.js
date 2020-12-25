@@ -1,18 +1,20 @@
-// Simple Drupal.behaviors usage for Storybook
+/**
+ * Simple Drupal.behaviors usage for Storybook
+ */
 
 // eslint-disable-next-line no-undef
 window.Drupal = { behaviors: {} };
 
 (function (Drupal, drupalSettings) {
   // eslint-disable-next-line no-param-reassign
-  Drupal.throwError = function (error) {
+  Drupal.throwError = function throwError(error) {
     setTimeout(() => {
       throw error;
     }, 0);
   };
 
   // eslint-disable-next-line no-param-reassign
-  Drupal.attachBehaviors = function (context, settings) {
+  Drupal.attachBehaviors = function attachBehaviors(context, settings) {
     // eslint-disable-next-line no-undef,no-param-reassign
     context = context || document;
     // eslint-disable-next-line no-param-reassign
@@ -30,4 +32,4 @@ window.Drupal = { behaviors: {} };
     });
   };
 // eslint-disable-next-line no-undef
-})(Drupal, window.drupalSettings);
+}(Drupal, window.drupalSettings));

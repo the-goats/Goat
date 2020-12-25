@@ -108,7 +108,9 @@ function getFiles({ path, configuration }) {
  * @param {Object} config
  */
 function runAll(config) {
+  // eslint-disable-next-line no-param-reassign
   config.files = getFiles(config);
+  // eslint-disable-next-line no-param-reassign
   config.entryFiles = formatEntryFiles(config);
   run(config);
 }
@@ -118,7 +120,9 @@ function runAll(config) {
  * @param {Object} config
  */
 function runWatch(config) {
+  // eslint-disable-next-line no-param-reassign
   config.files = getFiles(config);
+  // eslint-disable-next-line no-param-reassign
   config.entryFiles = formatEntryFiles(config);
   watch(config);
 }

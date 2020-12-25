@@ -1,4 +1,9 @@
-module.exports = function getStyleLoader(config) {
+/**
+ * Get Configured Style loader
+ * @param config
+ * @returns {Object} loader object
+ */
+function getStyleLoader(config) {
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   const globImporter = require('node-sass-glob-importer');
   const { resolve } = require('path');
@@ -41,4 +46,6 @@ module.exports = function getStyleLoader(config) {
       },
     ],
   };
-};
+}
+
+module.exports = getStyleLoader;

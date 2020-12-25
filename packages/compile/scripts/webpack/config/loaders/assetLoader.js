@@ -1,4 +1,9 @@
-module.exports = function getAssetLoader(config) {
+/**
+ * Get Configured Asset loader
+ * @param config
+ * @returns {Object} loader object
+ */
+function getAssetLoader(config) {
   const { resolve } = require('path');
   return {
     test: /.(woff|woff2|ttf|eot|otf|png|svg|jpg|gif)$/,
@@ -10,4 +15,6 @@ module.exports = function getAssetLoader(config) {
       name: '../../[path][name].[ext]',
     },
   };
-};
+}
+
+module.exports = getAssetLoader;

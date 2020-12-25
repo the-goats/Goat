@@ -1,4 +1,8 @@
-module.exports = function runStory(config) {
+/**
+ * Execute webpack config
+ * @param {Object} config
+ */
+function runStory(config) {
   const goatGonfig = require('../config.js');
   goatGonfig.config = config;
   const server = require('@storybook/core/server');
@@ -14,4 +18,6 @@ module.exports = function runStory(config) {
     port: 6006,
     ci: true,
   });
-};
+}
+
+module.exports = runStory;

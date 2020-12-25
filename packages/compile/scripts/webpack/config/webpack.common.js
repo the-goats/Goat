@@ -1,7 +1,7 @@
 /**
  * Get webpack config
  * @param {Object} config
- * @returns {Object}
+ * @returns {Object} webpack configuration object
  */
 module.exports = function getCommon(config) {
   const { path, configuration, entryFiles } = config;
@@ -18,7 +18,7 @@ module.exports = function getCommon(config) {
       publicPath: get(configuration, 'bundler.js.output.publicPath'),
     },
     module: {
-      rules: Object.values(loaders),
+      rules: loaders,
     },
     plugins,
     resolve: {
