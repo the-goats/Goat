@@ -7,7 +7,7 @@ module.exports = function getCommon(config) {
   const { path, configuration, entryFiles } = config;
   const loaders = require('./loaders')(config);
   const plugins = require('./plugins')(config);
-  const { normalize } = require('path');
+  const { normalize, resolve, join } = require('path');
   const { get } = require('lodash');
   return {
     context: path,
@@ -23,6 +23,13 @@ module.exports = function getCommon(config) {
     plugins,
     resolve: {
       extensions: ['.js', '.json', '.twig'],
+      alias: {
+        Goat: resolve(join(path, '/.goat')),
+      },
+      modules: [
+        resolve(__dirname, '../../node_modules'), // Add this node_modules folder so we don't need twig and other storybook dependencies inside the project
+        'node_modules',
+      ],
     },
   };
 };

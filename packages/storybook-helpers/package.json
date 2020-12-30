@@ -1,0 +1,16 @@
+{
+  "name": "@the-goat/storybook-helpers",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stef Spakman <goat@stefspakman.com>",
+  "license": "MIT",
+  "dependencies": {
+    "drupal-attribute": "^1.0.2",
+    "faker": "^5.1.0"
+  },
+  "gitHead": "9479d406b83e5b7e01b337e016bf4b4958e397ba"
+}

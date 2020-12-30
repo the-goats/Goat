@@ -28,11 +28,14 @@ function setCommandWatch(packages) {
     .alias('w')
     .description('Watch Tasks')
     .action((config) => loadWatchCommands(config, packages));
-
   Object.values(packages).forEach((pckg) => {
     if (pckg.options) {
-      const { 0: key, 1: description } = Object.entries(pckg.options)[0];
-      command.option(key, description);
+      pckg.options.forEach((option) => {
+        if (!option.allowOnWatch) {
+          return;
+        }
+        command.option(option.flags, option.label);
+      });
     }
   });
   return command;

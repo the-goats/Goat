@@ -14,7 +14,6 @@ function getLoaders(config) {
   if (config.configuration.handlers.assets) {
     loaders.push(require('./loaders/assetLoader')(config));
   }
-
   return loaders;
 }
 

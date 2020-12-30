@@ -48,14 +48,32 @@ module.exports = {
       properties: {
         namespaces: {
           type: 'object',
-        },
-        default: {
-          base: 'components/01-base',
-          atoms: 'components/02-atoms',
-          molecules: 'components/03-molecules',
-          organisms: 'components/04-organisms',
-          templates: 'components/05-templates',
-          pages: 'components/06-pages',
+          properties: {
+            base: {
+              type: 'string',
+              default: 'components/01-base',
+            },
+            atoms: {
+              type: 'string',
+              default: 'components/02-atoms',
+            },
+            molecules: {
+              type: 'string',
+              default: 'components/03-molecules',
+            },
+            organisms: {
+              type: 'string',
+              default: 'components/04-organisms',
+            },
+            templates: {
+              type: 'string',
+              default: 'components/05-templates',
+            },
+            pages: {
+              type: 'string',
+              default: 'components/06-pages',
+            },
+          },
         },
       },
       required: ['namespaces'],

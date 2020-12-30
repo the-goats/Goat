@@ -101,6 +101,7 @@ module.exports = {
               },
             },
           },
+          required: ['output'],
         },
       },
       required: ['clean', 'destination', 'js'],

@@ -76,6 +76,11 @@ module.exports = async ({ config }) => {
   // eslint-disable-next-line no-param-reassign
   config.resolve.alias.Goat = path.resolve(path.join(rootDir, '/.goat'));
 
+  Object.entries(namespaces).forEach(({ 0: key, 1: folderPath }) => {
+    // eslint-disable-next-line no-param-reassign
+    config.resolve.alias[`@${key}`] = path.resolve(folderPath);
+  });
+
   // eslint-disable-next-line no-param-reassign
   config.resolve.modules = [
     path.resolve(__dirname, '../../node_modules'), // Add this node_modules folder so we don't need twig and other storybook dependencies inside the project

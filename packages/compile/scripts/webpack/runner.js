@@ -8,7 +8,7 @@ function getDest(config, el) {
   const { get } = require('lodash');
   const { dist, patterns } = config.configuration.locations;
   const { path } = config;
-  const name = el.substring(0, el.lastIndexOf('.')).replace(`${path}/`, '');
+  const name = el.substring(0, el.lastIndexOf('.')).replace(`${path}/`, '').replace('.es6', '');
   if (dist === '<source>') {
     return name;
   }
@@ -88,7 +88,7 @@ function watch(config) {
   const compiler = getWebpackSetup(config);
   compiler.watch({
     aggregateTimeout: 300,
-    poll: undefined
+    poll: undefined,
   }, logWebpack);
 }
 

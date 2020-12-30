@@ -46,8 +46,11 @@ class Goat {
       command.option('-w, --watch', 'Watch for file changes');
     }
     if (this.options) {
-      Object.entries(this.options).forEach(({ 0: key, 1: description }) => {
-        command.option(key, description);
+      this.options.forEach((option) => {
+        if (!option.allowOnOnce) {
+          return;
+        }
+        command.option(option.flags, option.label);
       });
     }
     return command;
