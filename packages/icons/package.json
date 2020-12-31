@@ -1,0 +1,19 @@
+{
+  "name": "@the-goat/icons",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stef Spakman <goat@stefspakman.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fantasticon": "^1.0.27",
+    "icomoon-cli": "^1.3.2"
+  },
+  "goat": {
+    "name": "Icons",
+    "description": "Generate icon font files based on svg files"
+  }
+}

@@ -41,4 +41,10 @@ module.exports = [
     description: 'Manage a design system using storybook',
     default: false,
   },
+  {
+    name: 'Icons',
+    package: '@the-goat/icons',
+    description: 'Generate icon font files based on svg files',
+    default: false,
+  },
 ];
