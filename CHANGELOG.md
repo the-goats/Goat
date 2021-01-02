@@ -1,9 +1,13 @@
+## 1.9.
+- Fix: Updated dependencies
+
 ## 1.9.0
 ### Compile
 - Feat: Added BabelEsmPlugin to generate modern javascript files - this feature needs to be enabled manually due to possible bugs regarding css, set bundler.js.esm to true in goat.config.js
 - Feat: Added babel-plugin-transform-imports to improve treeshaking. You can configure this per project via webpack.js inside the .goat folder. The lodash definition is pre loaded.
 - Feat: Allow modifing the webpack setup per project from .goat/webpack.js
 - Fix: fixes filenames of compile module, remove .es6 from compiled file
+###Icons
 - Module: Goat Icons - Auto generate icon font / svg sprites from svg files 
 
 ## 1.8.4

@@ -6,15 +6,13 @@
 function getPlugins(config) {
   const { ProgressPlugin } = require('webpack');
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-  const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+  const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
   const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
   const plugins = [
     new FriendlyErrorsWebpackPlugin(),
     new ProgressPlugin(),
-    new FixStyleOnlyEntriesPlugin({
-      silent: true,
-    }),
+    new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',

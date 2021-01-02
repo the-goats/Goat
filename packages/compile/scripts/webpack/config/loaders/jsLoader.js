@@ -23,6 +23,12 @@ function getJsLoader(config) {
       }]],
       plugins: [
         [require.resolve('babel-plugin-transform-imports'), transformImports],
+        [
+          require('babel-plugin-root-import'),
+          {
+            rootPathPrefix: '@/',
+          },
+        ],
       ],
     },
   };
