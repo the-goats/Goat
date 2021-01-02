@@ -22,5 +22,6 @@
   "goat": {
     "name": "Icons",
     "description": "Generate icon font files based on svg files"
-  }
+  },
+  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3"
 }

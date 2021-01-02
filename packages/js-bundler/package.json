@@ -22,7 +22,7 @@
     "typescript": "^3.9.5",
     "webpack": "^4.44.2"
   },
-  "gitHead": "9479d406b83e5b7e01b337e016bf4b4958e397ba",
+  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
   "goat": {
     "name": "Js Bundler",
     "description": "Compile and bundle js and/or ts"
