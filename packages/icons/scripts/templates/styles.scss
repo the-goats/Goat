@@ -1,0 +1,23 @@
+@font-face {font-family: "<%=fontName%>";<% if (generate.eot) { %>
+src: url('<%=path%>/<%=fontName%>.eot?t=<%=timestamp%>');<% } %>
+  src: <% if (generate.eot) { %>url('<%=path%>/<%=fontName%>.eot?t=<%=timestamp%>#iefix') format('embedded-opentype'),<% } %>
+<% if (generate.woff2) { %>url("<%=path%>/<%=fontName%>.woff2?t=<%=timestamp%>") format("woff2"),<% } %>
+<% if (generate.woff) { %>url("<%=path%>/<%=fontName%>.woff?t=<%=timestamp%>") format("woff"),<% } %>
+<% if (generate.ttf) { %>url('<%=path%>/<%=fontName%>.ttf?t=<%=timestamp%>') format('truetype'),<% } %>
+<% if (generate.svg) { %>url('<%=path%>/<%=fontName%>.svg?t=<%=timestamp%>#<%=fontName%>') format('svg')<% } %>;
+}
+
+[class^="<%=classNamePrefix%>-"]::before,
+[class*=" <%=classNamePrefix%>-"]::before {
+  font-family: '<%=fontName%>' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+<%-styles%>

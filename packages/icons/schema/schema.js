@@ -10,7 +10,7 @@ module.exports = {
           properties: {
             src: {
               type: 'string',
-              default: 'icons/src/',
+              default: 'svg/',
             },
             dist: {
               type: 'string',
@@ -25,9 +25,70 @@ module.exports = {
     icons: {
       type: 'object',
       properties: {
-        tag: {
+        fontName: {
           type: 'string',
-          default: 'span',
+          default: 'icons',
+        },
+        prefix: {
+          type: 'string',
+          default: 'icon',
+        },
+        fontDirectory: {
+          type: 'string',
+          default: 'fonts',
+        },
+        generate: {
+          type: 'object',
+          properties: {
+            woff: {
+              type: 'boolean',
+              default: true,
+            },
+            eot: {
+              type: 'boolean',
+              default: false,
+            },
+            ttf: {
+              type: 'boolean',
+              default: false,
+            },
+            woff2: {
+              type: 'boolean',
+              default: true,
+            },
+            preview: {
+              type: 'boolean',
+              default: true,
+            },
+            json: {
+              type: 'boolean',
+              default: true,
+            },
+            variables: {
+              type: 'boolean',
+              default: true,
+            },
+            css: {
+              type: 'boolean',
+              default: false,
+            },
+            styles: {
+              type: 'boolean',
+              default: true,
+            },
+            selection: {
+              type: 'boolean',
+              default: true,
+            },
+            svg: {
+              type: 'boolean',
+              default: true,
+            },
+            symbol: {
+              type: 'boolean',
+              default: true,
+            },
+          },
         },
       },
     },

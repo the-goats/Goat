@@ -1,0 +1,48 @@
+{
+  "IcoMoonType": "selection",
+  "icons": <%-icons%>,
+  "height": 24,
+  "metadata": {
+    "name": "demo"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showCodes": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "<%-prefix%>-",
+      "metadata": {
+        "fontFamily": "<%-fontName%>",
+        "majorVersion": 1,
+        "minorVersion": 0
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false,
+      "noie8": true,
+      "ie7": false,
+      "cssVars": true,
+      "cssVarsFormat": "scss",
+      "showSelector": true,
+      "selector": "",
+      "classSelector": ".<%-prefix%>",
+      "showMetrics": true,
+      "showVersion": true,
+      "showMetadata": true
+    },
+    "imagePref": {
+      "prefix": "<%-prefix%>-",
+      "png": false,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215
+    },
+    "historySize": 50,
+    "gridSize": 16
+  }
+}

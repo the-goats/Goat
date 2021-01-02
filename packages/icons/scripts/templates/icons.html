@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%=title%></title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <% if (generate.css) { %>
+  <link rel="stylesheet" href="<%=fontName%>.css">
+  <% } %>
+  <% if (!generate.css) { %>
+  <style>
+    <%-css%>
+
+   [class^="<%=classNamePrefix%>-"]::before,
+   [class*=" <%=classNamePrefix%>-"]::before {
+     font-family: '<%=fontName%>' !important;
+     speak: never;
+     font-style: normal;
+     font-weight: normal;
+     font-variant: normal;
+     text-transform: none;
+     line-height: 1;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+   }
+  </style>
+  <% } %>
+  <style>
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      color: #232323;
+      font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 5rem 0;
+    }
+
+    a {
+      color: #333;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: rgb(9, 73, 209);
+    }
+
+    .header {
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 5rem;
+      text-transform: capitalize;
+    }
+
+    .icons {
+      max-width: 120rem;
+      margin: 0 auto 6rem;
+    }
+
+    .icons li {
+      vertical-align: top;
+      width: 120px;
+      display: inline-block;
+      background-color: rgba(0, 0, 0, .02);
+      border-radius: 3px;
+      padding: 29px 0 10px 0;
+      margin-right: 10px;
+      margin-top: 10px;
+      transition: all 0.6s ease;
+    }
+
+    .icons li:hover {
+      background-color: rgba(0, 0, 0, .06);
+      color: #3c75e4;
+    }
+
+    .icons li:hover span {
+      color: #3c75e4;
+      opacity: 1;
+    }
+
+    .footer {
+      padding: 10px 0 90px 0;
+    }
+
+    .footer a {
+      padding: 10px 0 90px 0;
+      color: #696969;
+    }
+
+    .footer a:hover {
+      color: #0949d1;
+    }
+
+    .icons .class-icon {
+      font-size: 21px;
+      line-height: 21px;
+      padding-bottom: 20px;
+    }
+
+    .icons .class-icon p {
+      font-size: 12px;
+    }
+
+    .icons .class-icon [class^="<%=classNamePrefix%>-"] {
+      font-size: 4rem;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+    <h1><%=title%></h1>
+  </div>
+  <div class="icons">
+    <ul>
+      <%-html%>
+    </ul>
+  </div>
+  <div class="footer">
+    <div>Generated using <a target="_blank" href="https://github.com/the-goats/Goat">Goat Icons</a></div>
+  </div>
+</div>
+</body>
+
+</html>
