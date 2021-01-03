@@ -14,7 +14,7 @@ module.exports = (Goat) => {
         processBabel({
           ...config,
           sources,
-        })
+        });
         resolve(true);
       });
     },

@@ -1,5 +1,4 @@
 const babel = require('@babel/core');
-const getFiles = require('./helpers/readdir');
 const {
   readFile,
   writeFile,
@@ -11,18 +10,56 @@ const {
 const {
   get,
 } = require('lodash');
-const mkdirp = require('mkdirp');
+const getFiles = require('./helpers/readdir');
+
+async function fileRollup({ code }) {
+  const { rollup } = require('rollup');
+  const virtual = require('@rollup/plugin-virtual');
+  const { nodeResolve } = require('@rollup/plugin-node-resolve');
+
+  const input = await rollup({
+    input: 'entry',
+    // ...
+    plugins: [
+      virtual({
+        entry: code,
+      }),
+      nodeResolve(),
+    ],
+  });
+  const { output } = await input.generate({
+    plugins: [
+      {
+        name: 'extract',
+        generateBundle(outputOptions, bundle) {
+          const entry = Object.values(bundle).find((chunk) => chunk.isEntry);
+          this.emitFile({
+            type: 'asset',
+            fileName: 'entry.js',
+            source: entry.code,
+          });
+        },
+      },
+    ],
+  });
+  return output.filter(({ source }) => source)[0].source;
+}
+
 
 /**
  * Process single .es6.js file. This function generates the new es5 ready file.
  * @param {Object} config
  */
 const processBabelFile = (config) => {
-  const { file, configuration, Notifier, events } = config;
+  const {
+    file, configuration, Notifier, events,
+  } = config;
 
   readFile(file, async (err, data) => {
     if (err) throw err;
-    const { code } = (await bablyfy(data.toString(), configuration.browserSupport));
+    const code = await fileRollup((await bablyfy(data.toString(), configuration.browserSupport)));
+
+
     let dist = file.replace('.es6', '');
     if (configuration.locations.javascript.dist !== '<source>' && configuration.locations.javascript.dist) {
       if (get(configuration, 'js.babel.keep_path')) {
@@ -62,8 +99,16 @@ const bablyfy = (data, browserSupport) => babel.transformAsync(data, {
       {
         modules: false,
         targets: {
-          browsers: browserSupport || ["> 1%", "last 2 versions"],
+          browsers: browserSupport || ['> 1%', 'last 2 versions'],
         },
+      },
+    ],
+  ],
+  plugins: [
+    [
+      require.resolve('@babel/plugin-transform-runtime'),
+      {
+        helpers: true,
       },
     ],
   ],
@@ -85,6 +130,6 @@ const processBabel = (config) => {
       }
     })(normalize(`${path}/${source}`));
   });
-}
+};
 
 module.exports = { processBabel, processBabelFile };
