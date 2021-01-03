@@ -6,10 +6,10 @@ const flatten = require('gulp-flatten');
 const multiDest = require('gulp-multi-dest');
 const postcss = require('gulp-postcss');
 const pxToRem = require('postcss-pxtorem');
-const sass = require('gulp-sass');
+const sass = require('gulp-dart-sass');
 const sassGlob = require('gulp-sass-glob');
 const sourcemaps = require('gulp-sourcemaps');
-const aliasImporter = require("node-sass-alias-importer");
+const aliasImporter = require('node-sass-alias-importer');
 
 /**
  * Process scss files using gulp-sass
@@ -24,19 +24,18 @@ const compileStyles = ({
   configuration,
   Notifier,
   settings,
-  events
 }) => {
   settings.dest = typeof settings.dest === 'string' ? [settings.dest] : settings.dest;
   let stream = gulp.src(settings.source);
   stream = stream
     .pipe(filter(["**/*", "!**/+*.scss", "!**/~*.scss"], {
-      restore: false
+      restore: false,
     }))
     .pipe(filter(() => configuration.styles.exclude.unshift('**/*'), {
-      restore: false
+      restore: false,
     }))
     .pipe(sassGlob({
-      ignorePaths: settings.ignore
+      ignorePaths: settings.ignore,
     }));
 
   if (configuration.styles.sourceMaps.generate) {
@@ -50,13 +49,13 @@ const compileStyles = ({
 
   stream = stream
     .pipe(sass({
-      outputStyle: configuration.styles.minify ? 'compressed' : 'nested',
+      outputStyle: configuration.styles.minify ? 'compressed' : 'expanded',
       importer: [
         configuration.locations.node_modules ? aliasImporter({
           '~': configuration.locations.node_modules,
         }) : null,
         configuration.styles.compass ? compass : null,
-      ]
+      ],
     }).on('error', Notifier.error))
     .pipe(autoprefixer({
       overrideBrowserslist: configuration.browserSupport,
@@ -87,18 +86,10 @@ const compileStyles = ({
     .pipe(flatten())
     .pipe(multiDest(settings.dest))
     .pipe(filter(['**/*', '!**/*.map'], {
-      restore: false
-    }))
-
-  // if (events) {
-  //   events.emit({ 
-  //     event: 'sass:compile',
-  //     path,
-  //     properties: {}, 
-  //   })
-  // }
+      restore: false,
+    }));
 
   return stream;
-}
+};
 
 module.exports = { compileStyles };

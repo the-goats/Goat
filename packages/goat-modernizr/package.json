@@ -9,9 +9,8 @@
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
-    "chokidar": "^3.0.2",
-    "customizr": "^1.3.0",
-    "lodash": "^4.17.11"
+    "customizr": "^2.0.1",
+    "lodash": "^4.17.20"
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
   "goat": {

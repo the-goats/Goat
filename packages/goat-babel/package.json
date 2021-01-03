@@ -9,10 +9,9 @@
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.5.4",
-    "babel-preset-airbnb": "^4.0.1",
-    "lodash": "^4.17.15",
-    "mkdirp": "^0.5.1"
+    "@babel/core": "^7.12.10",
+    "babel-preset-airbnb": "^5.0.0",
+    "lodash": "^4.17.20"
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
   "goat": {

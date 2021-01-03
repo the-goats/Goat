@@ -5,7 +5,6 @@ const setCommandWatch = require('./commands/watch');
 const setCommandModule = require('./commands/module');
 const setCommandProject = require('./commands/project');
 const pkg = require('../package.json');
-const { version } = require('../package.json');
 const Notifier = require('./methods/notifications/notifyHandler');
 const getPackages = require('./packages/getPackages');
 
@@ -14,7 +13,7 @@ const goat = new commander.Command();
 async function base() {
   updateNotifier({ pkg }).notify();
   goat
-    .version(version, '-v, -V, --version', 'output the current version')
+    .version(pkg.version, '-v, -V, --version', 'output the current version')
     .name('Goat')
     .description('Goat');
 

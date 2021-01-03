@@ -36,28 +36,30 @@ module.exports = {
       },
       required: ['javascript', 'styles'],
     },
-  },
-  js: {
-    type: 'object',
-    properties: {
-      minify: {
-        type: 'boolean',
-        default: false,
-      },
-      modernizr: {
-        type: 'object',
-        properties: {
-          include: {
-            type: 'array',
-            default: ['inputtypes'],
+    js: {
+      type: 'object',
+      properties: {
+        minify: {
+          type: 'boolean',
+          default: false,
+        },
+        modernizr: {
+          type: 'object',
+          properties: {
+            include: {
+              type: 'array',
+              default: ['inputtypes'],
+            },
+            exclude: {
+              type: 'array',
+              default: ['hidden'],
+            },
           },
-          exclude: {
-            type: 'array',
-            default: ['hidden'],
-          },
+          required: ['include', 'exclude'],
         },
       },
+      required: ['modernizr'],
     },
-    required: ['modernizr'],
   },
+  required: ['locations', 'js'],
 };

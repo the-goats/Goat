@@ -18,7 +18,6 @@
   "dependencies": {
     "@geit/babel": "^1.9.1",
     "@geit/eslint": "^1.9.1",
-    "@geit/fractal": "^1.9.1",
     "@geit/js-bundler": "^1.9.1",
     "@geit/modernizr": "^1.9.1",
     "@geit/styles": "^1.9.1",

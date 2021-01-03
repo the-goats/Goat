@@ -1,11 +1,12 @@
-const babel = require("@babel/core");
+const babel = require('@babel/core');
 const getFiles = require('./helpers/readdir');
 const {
   readFile,
-  writeFile
+  writeFile,
+  mkdir,
 } = require('fs');
 const {
-  normalize
+  normalize,
 } = require('path');
 const {
   get,
@@ -18,6 +19,7 @@ const mkdirp = require('mkdirp');
  */
 const processBabelFile = (config) => {
   const { file, configuration, Notifier, events } = config;
+
   readFile(file, async (err, data) => {
     if (err) throw err;
     const { code } = (await bablyfy(data.toString(), configuration.browserSupport));
@@ -30,7 +32,7 @@ const processBabelFile = (config) => {
         dist = `${configuration.locations.javascript.dist}${dist.substr(dist.lastIndexOf('/'))}`;
       }
     }
-    mkdirp(dist.substr(0, dist.lastIndexOf('/')), (error) => {
+    mkdir(dist.substr(0, dist.lastIndexOf('/')), { recursive: true }, (error) => {
       if (error) {
         console.error(error);
         return;
@@ -75,14 +77,14 @@ const processBabel = (config) => {
   const { sources, path } = config;
   sources.forEach((source) => {
     (async (path) => {
-      for await (const file of getFiles(path,  /\.es6\.js$/gm)) {
+      for await (const file of getFiles(path, /\.es6\.js$/gm)) {
         processBabelFile({
           ...config,
           file,
         });
-      };
+      }
     })(normalize(`${path}/${source}`));
   });
 }
 
-module.exports = { processBabel, processBabelFile } 
+module.exports = { processBabel, processBabelFile };
