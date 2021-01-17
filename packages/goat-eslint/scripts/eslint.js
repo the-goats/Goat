@@ -1,24 +1,29 @@
-const Linter = require("eslint").Linter;
-const getFiles = require('./helpers/readdir');
+const Notifier = require('@the-goat/notifier');
+const { Linter } = require('eslint');
 const eslintConfig = require('eslint-config-airbnb-base');
 const {
-  readFile
+  readFile,
 } = require('fs');
 const {
-  normalize
+  normalize,
 } = require('path');
-
+const getFiles = require('./helpers/readdir');
 
 /**
  * Process single js / es6.js file
  * @param {Object} config
  */
 const processEslintFile = (config) => {
-  const { file, configuration, Notifier, path, events } = config;
+  const {
+    file,
+    configuration,
+    path,
+    events,
+  } = config;
   const { eslint } = configuration;
   readFile(file, async (err, data) => {
     if (err) throw err;
-    const result = lint(data.toString(), { ...eslint, es6: file.includes('.es6.')});
+    const result = lint(data.toString(), { ...eslint, es6: file.includes('.es6.') });
     if (result.length > 0) {
       Notifier.error(`Error(s) on ${file.replace(path, '')}`);
       result.forEach((item) => {
@@ -30,20 +35,20 @@ const processEslintFile = (config) => {
         } else {
           Notifier.log(Notifier.style.green(message));
         }
-      })
+      });
       Notifier.log('\n');
     }
     if (events) {
-      events.emit({ 
+      events.emit({
         event: 'js:lint',
         path: file,
         properties: {
           result,
-        }, 
+        },
       });
     }
   });
-}
+};
 
 /**
  * Lint the JS data based on the AirBnb linting rules
@@ -56,7 +61,7 @@ const lint = (data, config) => {
   return linter.verify(data, {
     env: {
       browser: true,
-      es6: config.es6
+      es6: config.es6,
     },
     extends: eslintConfig,
     parserOptions: {
@@ -73,8 +78,8 @@ const lint = (data, config) => {
 const processEslint = (config) => {
   const { sources, path } = config;
   sources.forEach((source) => {
-    (async (path) => {
-      for await (const file of getFiles(path, /\.js$/gm)) {
+    (async (filePath) => {
+      for await (const file of getFiles(filePath, /\.js$/gm)) {
         if ((/\.config\.js$/gm).test(file)) {
           continue;
         }
@@ -82,9 +87,9 @@ const processEslint = (config) => {
           ...config,
           file,
         });
-      };
+      }
     })(normalize(`${path}/${source}`));
   });
-}
+};
 
 module.exports = { processEslint, processEslintFile };

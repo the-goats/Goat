@@ -5,7 +5,7 @@ const {
   F_OK,
 } = require('fs').promises;
 const settingsRef = require('../../references/settings');
-const Notifier = require('../notifications/notifyHandler');
+const Notifier = require('@the-goat/notifier');
 
 /**
  * Check if Global config exists and retrieve it.

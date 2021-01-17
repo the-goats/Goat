@@ -37,7 +37,7 @@ function run(config) {
   const getWebpackSetup = require('./webpack');
   const logResults = require('./log');
   const compiler = getWebpackSetup(config);
-  compiler.run((err, stats) => logResults(config.Notifier, stats));
+  compiler.run((err, stats) => logResults(stats));
 }
 
 

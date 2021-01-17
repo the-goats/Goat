@@ -9,6 +9,7 @@
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
+    "@the-goat/notifier": "^1.9.1",
     "compass-importer": "^0.4.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",

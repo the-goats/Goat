@@ -4,7 +4,7 @@ const updateGlobalSettings = require('../settings/updateGlobalSettings');
 const confirm = require('../helpers/confirm');
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
-const Notifier = require('../notifications/notifyHandler');
+const Notifier = require('@the-goat/notifier');
 
 /**
  * Action to add a module to Goat

@@ -1,5 +1,7 @@
 ## 1.11.0
 - Fix: **Issue #8** - ES6 Babel imports break build if it generates a Babel import
+- Feat: Build static storybook instance
+- Chore: Moved Notifier to separate package
 
 ## 1.10.0
 - Chore: Updated dependencies

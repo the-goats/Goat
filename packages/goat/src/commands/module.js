@@ -7,11 +7,11 @@ const { listModules } = require('../methods/modules/listModules');
  * @returns {function} command
  */
 function commandModule() {
-  const program =  new commander.Command('module')
-  .description('Manage Goat modules')
-  program.addCommand(commandListModules());   
-  program.addCommand(commandAddModule());   
-  program.addCommand(commandRemoveModule());   
+  const program = new commander.Command('module')
+  .description('Manage Goat modules');
+  program.addCommand(commandListModules());
+  program.addCommand(commandAddModule());
+  program.addCommand(commandRemoveModule());
   return program;
 }
 

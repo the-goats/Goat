@@ -6,17 +6,17 @@ const { projectModules } = require('../methods/modules/listModules');
  * @returns {function} command
  */
 function commandProject() {
-  const program =  new commander.Command('project')
-  .description('Manage project')
-  .action(async () => {
-    try {
-      await require('../config/goatConfig')();
-    } catch (error) {
-      const Notifier = require('../methods/notifications/notifyHandler');
-      Notifier.error(error.message);
-    }
-    program.help();
-  });
+  const program = new commander.Command('project')
+    .description('Manage project')
+    .action(async () => {
+      try {
+        await require('../config/goatConfig')();
+      } catch (error) {
+        const Notifier = require('@the-goat/notifier');
+        Notifier.error(error.message);
+      }
+      program.help();
+    });
   program.addCommand(commandListModules());
   return program;
 }

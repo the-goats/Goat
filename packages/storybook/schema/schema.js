@@ -46,6 +46,10 @@ module.exports = {
     stories: {
       type: 'object',
       properties: {
+        static: {
+          type: 'string',
+          default: '.goat/storybook',
+        },
         namespaces: {
           type: 'object',
           properties: {

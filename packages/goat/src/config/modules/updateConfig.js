@@ -8,7 +8,7 @@ async function updateConfig(config) {
   const { lte } = require('semver');
   const { normalize } = require('path');
   const { version } = require('../../../package.json');
-  const Notifier = require('../../methods/notifications/notifyHandler');
+  const Notifier = require('@the-goat/notifier');
   const configFile = './.goat/config';
 
   let newConfig = config;

@@ -1,6 +1,6 @@
+const Notifier = require('@the-goat/notifier');
 const { validRange, satisfies } = require('semver');
 const projectConfig = require('../../package.json');
-const Notifier = require('../methods/notifications/notifyHandler');
 
 /**
  * Check if the current Goat version matches the local project settings

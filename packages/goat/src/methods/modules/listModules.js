@@ -1,14 +1,14 @@
-const Notifier = require('../notifications/notifyHandler');
+const Notifier = require('@the-goat/notifier');
 
 /**
  * Display a table listing all available modules
  */
 async function listModules() {
   const collectModules = require('./collectModules');
-  const modules = await collectModules
-  const internalModules = modules.filter(module => !module.global);
-  const installedModules = modules.filter(module => module.global);
-  
+  const modules = await collectModules;
+  const internalModules = modules.filter((module) => !module.global);
+  const installedModules = modules.filter((module) => module.global);
+
   Notifier.log('Modules bundled with your version of Goat:');
   console.table(formatModules(internalModules));
   Notifier.log('\n');
@@ -39,7 +39,7 @@ async function projectModules() {
 function formatModules(items) {
   const modules = {};
   items.forEach((module) => {
-    const content = (({ name, description = '' }) => ({ 'Name': name, 'Description': description }))(module);
+    const content = (({ name, description = '' }) => ({ Name: name, Description: description }))(module);
     modules[module.package] = content;
   });
   return modules;

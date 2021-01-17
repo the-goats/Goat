@@ -1,7 +1,9 @@
+const Notifier = require('@the-goat/notifier');
 const commander = require('commander');
 const watch = require('../events/watch');
 const GoatEvents = require('../events/goatEvents');
-const Notifier = require('../methods/notifications/notifyHandler');
+
+commander.allowUnknownOption(true);
 
 /**
  * Load watch capable tasks

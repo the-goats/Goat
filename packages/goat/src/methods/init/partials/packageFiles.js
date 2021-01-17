@@ -1,6 +1,6 @@
 const { writeFile } = require('fs').promises;
 const mkdirp = require('mkdirp');
-const Notifier = require('../../notifications/notifyHandler');
+const Notifier = require('@the-goat/notifier');
 
 /**
  * Check if a package has any project files

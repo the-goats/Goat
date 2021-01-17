@@ -2,7 +2,7 @@
  * Execute webpack config
  * @param {Object} config
  */
-function runStory(config) {
+function buildStory(config) {
   const goatGonfig = require('../config.js');
   goatGonfig.config = config;
   const server = require('@storybook/core/server');
@@ -12,12 +12,12 @@ function runStory(config) {
   }
 
   const options = interopRequireDefault(require('@storybook/html/dist/server/options'));
-  server.buildDevStandalone({
+
+  server.buildStaticStandalone({
     ...options.default,
     configDir: __dirname,
-    port: 6006,
-    ci: true,
+    outputDir: config.configuration.stories.static || './.goat/storybook',
   });
 }
 
-module.exports = runStory;
+module.exports = buildStory;

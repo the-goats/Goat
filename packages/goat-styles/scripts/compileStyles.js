@@ -1,3 +1,4 @@
+const Notifier = require('@the-goat/notifier');
 const gulp = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const compass = require('compass-importer');
@@ -15,14 +16,12 @@ const aliasImporter = require('node-sass-alias-importer');
  * Process scss files using gulp-sass
  * @param {Object} {
  *   configuration,
- *   Notifier,
  *   settings,
  * }
  * @returns {Object} stream - Returns a gulp stream
  */
 const compileStyles = ({
   configuration,
-  Notifier,
   settings,
 }) => {
   settings.dest = typeof settings.dest === 'string' ? [settings.dest] : settings.dest;

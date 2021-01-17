@@ -52,7 +52,7 @@ async function fileRollup({ code }) {
  */
 const processBabelFile = (config) => {
   const {
-    file, configuration, Notifier, events,
+    file, configuration, events,
   } = config;
 
   readFile(file, async (err, data) => {

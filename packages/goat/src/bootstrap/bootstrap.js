@@ -1,4 +1,4 @@
-const Notifier = require('../methods/notifications/notifier');
+const Notifier = require('@the-goat/notifier');
 const GoatEvents = require('../events/goatEvents');
 
 /**
@@ -15,7 +15,6 @@ class Goat {
     this.watch = build.watch;
     this.path = process.cwd();
     this.init = build.init;
-    this.Notifier = new Notifier();
     this.configuration = null;
     this.events = new GoatEvents();
     this.options = build.options;
@@ -32,6 +31,7 @@ class Goat {
   _buildCommand() {
     const commander = require('commander');
     const command = new commander.Command(this.key)
+      .allowUnknownOption(true)
       .command(this.key)
       .description(this.description)
       .action((config) => {
@@ -81,7 +81,7 @@ class Goat {
     const configuration = getConfig();
     // Validate used config
     if (this.schema && !checkSchema(configuration, this.schema)) {
-      this.Notifier.error('The configuration is not correct');
+      Notifier.error('The configuration is not correct');
       const { updateConfig } = require('../schemas/writeConfig');
       updateConfig(this.schema);
       process.exit();
@@ -97,7 +97,7 @@ class Goat {
    */
   actionBase(config) {
     this.configuration = this.getConfiguration();
-    this.Notifier.log(`${this.Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
+    Notifier.log(`${Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
     const result = this.method({
       ...this,
@@ -122,7 +122,7 @@ class Goat {
     this.events = events;
     this.configuration = this.getConfiguration();
     if (!this.watch) {
-      this.Notifier.log('This command has no watch option');
+      Notifier.log('This command has no watch option');
       return;
     }
     this.watch({

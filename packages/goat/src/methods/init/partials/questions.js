@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
-const Notifier = require('../../notifications/notifyHandler');
-
+const Notifier = require('@the-goat/notifier');
 
 /**
  * Inquire the user preferences.
@@ -21,7 +20,7 @@ async function initQuestions() {
     type: 'checkbox',
     message: `Select modules\n${Notifier.style.reset(`${Notifier.emoji('goat')} are build-in Goat commands`)}\n`,
     name: 'project_packages',
-    choices: modules.map(item => {
+    choices: modules.map((item) => {
       const name = !item.global ? `${item.name} ${Notifier.emoji('goat')}` : item.name;
       const line = item.description ? `${name} | ${item.description}` : name;
       return ({
@@ -35,7 +34,7 @@ async function initQuestions() {
         return null;
       }
       return item;
-    })).filter(item => item !== null)),
+    })).filter((item) => item !== null)),
   },
   ];
 

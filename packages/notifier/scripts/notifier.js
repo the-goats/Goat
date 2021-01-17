@@ -8,6 +8,7 @@ class Notifier {
   constructor() {
     this.style = style;
   }
+
   /**
    * Basic logging functionality
    * @param {String} text - Value to log

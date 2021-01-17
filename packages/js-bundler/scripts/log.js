@@ -1,10 +1,10 @@
+const Notifier = require('@the-goat/notifier');
 /**
  * Format logdata to show a table like structure
- * @param {Object} Notifier
  * @param {Object} { assets, modules }
  * @returns {String}
  */
-function formatLog(Notifier, { assets, modules }) {
+function formatLog({ assets, modules }) {
   const set = modules
     .filter((module) => module.depth === 0)
     .map((module) => ({
@@ -26,13 +26,12 @@ function formatLog(Notifier, { assets, modules }) {
 
 /**
  * Log the results of a webpack build
- * @param {Object} Notifier
  * @param {Object} stats
  */
-function logResults(Notifier, stats) {
+function logResults(stats) {
   const info = stats.toJson();
-  console.info(formatLog(Notifier, info));
-  console.info(stats.toString({
+  Notifier.info(formatLog(info));
+  Notifier.info(stats.toString({
     builtAt: false,
     assets: false,
     moduleAssets: true,

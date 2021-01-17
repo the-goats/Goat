@@ -1,11 +1,11 @@
 const updateNotifier = require('update-notifier');
 const commander = require('commander');
+const Notifier = require('@the-goat/notifier');
 const CollectCommands = require('./methods/commands/CollectCommands');
 const setCommandWatch = require('./commands/watch');
 const setCommandModule = require('./commands/module');
 const setCommandProject = require('./commands/project');
 const pkg = require('../package.json');
-const Notifier = require('./methods/notifications/notifyHandler');
 const getPackages = require('./packages/getPackages');
 
 const goat = new commander.Command();
@@ -44,6 +44,7 @@ async function base() {
 
   goat.addCommand(setCommandProject());
   goat.addCommand(setCommandModule());
+  goat.allowUnknownOption(true);
   goat.parse(process.argv);
 }
 

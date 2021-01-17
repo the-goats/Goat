@@ -6,7 +6,7 @@ const initializeGoatConfig = require('./partials/initConfig');
 const initializeProjectConfig = require('./partials/projectConfig');
 const getPackageInit = require('./partials/getPackageInitSettings');
 const packageFiles = require('./partials/packageFiles');
-const Notifier = require('../notifications/notifyHandler');
+const Notifier = require('@the-goat/notifier');
 
 /**
  * Initialize Goat inside the current folder, this is the entry point of this command.

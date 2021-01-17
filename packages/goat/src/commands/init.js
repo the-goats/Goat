@@ -1,5 +1,5 @@
-const init = require('../methods/init/init');
 const commander = require('commander');
+const init = require('../methods/init/init');
 
 /**
  * Create Init command

@@ -1,4 +1,4 @@
-const Notifier = require('../methods/notifications/notifyHandler');
+const Notifier = require('@the-goat/notifier');
 
 /**
  * Validate the config object against the provided schema

@@ -4,7 +4,7 @@ const {
 } = require('fs').promises;
 const { lt, gt, satisfies, major, minor } = require('semver');
 const { version } = require('../../package.json');
-const Notifier = require('../methods/notifications/notifyHandler');
+const Notifier = require('@the-goat/notifier');
 const configFile = './.goat/config';
 
 /**
@@ -29,7 +29,7 @@ async function getConfig() {
     const updateConfig = require('./modules/updateConfig');
     return updateConfig(config);
   }
-  // If the version doesn't match on Minor, 
+  // If the version doesn't match on Minor,
   console.log('This project requires a newer version of Goat, please update');
   process.exit();
 }

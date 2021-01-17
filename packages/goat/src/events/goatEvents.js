@@ -1,9 +1,9 @@
 const { EventEmitter } = require('events');
 const { parse } = require('path');
+const Notifier = require('@the-goat/notifier');
 const matchPattern = require('./modules/matchPattern');
 const matchEvent = require('./modules/matchEvent');
 const eventMessage = require('./modules/eventMessage');
-const Notifier = require('../methods/notifications/notifyHandler');
 
 /**
  * Execute callback event based on event data
