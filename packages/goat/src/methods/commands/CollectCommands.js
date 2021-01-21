@@ -4,7 +4,7 @@
  * @returns {Array} commands
  */
 async function CollectCommands(packages) {
-  return packages.map(module => module.getCommand());
+  return packages.map((module) => module.getCommand());
 }
 
 module.exports = CollectCommands;

@@ -1,6 +1,20 @@
 const Notifier = require('@the-goat/notifier');
 
 /**
+ * Format module data to a printable array
+ * @param {array} items
+ * @returns {array}
+ */
+function formatModules(items) {
+  const modules = {};
+  items.forEach((module) => {
+    const content = (({ name, description = '' }) => ({ Name: name, Description: description }))(module);
+    modules[module.package] = content;
+  });
+  return modules;
+}
+
+/**
  * Display a table listing all available modules
  */
 async function listModules() {
@@ -29,20 +43,6 @@ async function projectModules() {
   } catch (error) {
     Notifier.error(error.message);
   }
-}
-
-/**
- * Format module data to a printable array
- * @param {array} items
- * @returns {array}
- */
-function formatModules(items) {
-  const modules = {};
-  items.forEach((module) => {
-    const content = (({ name, description = '' }) => ({ Name: name, Description: description }))(module);
-    modules[module.package] = content;
-  });
-  return modules;
 }
 
 module.exports = { listModules, projectModules };

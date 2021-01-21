@@ -1,9 +1,35 @@
 const commander = require('commander');
 const { projectModules } = require('../methods/modules/listModules');
+const addModule = require('../methods/modules/addModule');
 
 /**
- * Create Project command
- * @returns {function} command
+ * Display all project modules
+ * @returns {commander.Command}
+ */
+function commandListModules() {
+  return new commander.Command('list')
+    .alias('ls')
+    .description('List modules')
+    .action(projectModules);
+}
+
+function commandAddModules() {
+  return new commander.Command('add')
+    .description('Add modules')
+    .action(addModule);
+}
+
+/**
+ * Define module command
+ * @returns {commander.Command}
+ */
+function commandProjectModules() {
+  return new commander.Command('module');
+}
+
+/**
+ * Define project command, includes project management commands
+ * @returns {commander.Command}
  */
 function commandProject() {
   const program = new commander.Command('project')
@@ -17,20 +43,20 @@ function commandProject() {
       }
       program.help();
     });
-  program.addCommand(commandListModules());
   return program;
 }
 
 /**
- * Display all project modules
- * @returns {function}
+ * Create Project command
+ * @returns {commander.Command}
  */
-function commandListModules() {
-  return new commander.Command('module')
-    .command('list')
-    .alias('ls')
-    .description('List modules')
-    .action(projectModules);
+function buildCommand() {
+  const programModule = commandProjectModules();
+  programModule.addCommand(commandListModules());
+  // programModule.addCommand(commandAddModules());
+  const program = commandProject();
+  program.addCommand(programModule);
+  return program;
 }
 
-module.exports = commandProject;
+module.exports = buildCommand;
