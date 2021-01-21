@@ -1,3 +1,6 @@
+## 1.11.1
+- Feat: updated js-bundler to use webpack 5 (because webpack 4 caused issues for compile)
+
 ## 1.11.0
 - Fix: **Issue #8** - ES6 Babel imports break build if it generates a Babel import
 - Feat: Build static storybook instance

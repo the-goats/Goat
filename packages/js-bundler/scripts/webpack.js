@@ -27,7 +27,7 @@ function getWebpackSetup({
           use: [
             {
               loader: require.resolve('babel-loader'),
-              query: {
+              options: {
                 plugins: [
                   require('babel-plugin-lodash'),
                   [
