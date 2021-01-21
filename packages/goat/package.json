@@ -21,6 +21,7 @@
     "@geit/js-bundler": "^1.11.2",
     "@geit/modernizr": "^1.10.0",
     "@geit/styles": "^1.11.0",
+    "@the-goat/compile": "^1.11.0",
     "@the-goat/icons": "^1.9.1",
     "@the-goat/notifier": "^1.11.0",
     "@the-goat/storybook": "^1.11.0",
