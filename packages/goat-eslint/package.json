@@ -1,6 +1,6 @@
 {
   "name": "@geit/eslint",
-  "version": "1.9.1",
+  "version": "1.11.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,10 @@
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "ISC",
   "dependencies": {
+    "@the-goat/notifier": "^1.11.0",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "@the-goat/notifier": "^1.9.1"
+    "eslint-plugin-import": "^2.20.2"
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
   "goat": {
