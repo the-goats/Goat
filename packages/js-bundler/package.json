@@ -18,6 +18,7 @@
     "babel-preset-airbnb": "^5.0.0",
     "cache-loader": "^4.1.0",
     "filesize": "^6.1.0",
+    "glob": "^7.1.6",
     "lodash": "^4.17.20",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
