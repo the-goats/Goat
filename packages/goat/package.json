@@ -1,6 +1,6 @@
 {
   "name": "@geit/goat",
-  "version": "1.11.1",
+  "version": "1.11.2",
   "description": "",
   "main": "src/index.js",
   "repository": {
@@ -18,7 +18,7 @@
   "dependencies": {
     "@geit/babel": "^1.11.0",
     "@geit/eslint": "^1.11.0",
-    "@geit/js-bundler": "^1.11.1",
+    "@geit/js-bundler": "^1.11.2",
     "@geit/modernizr": "^1.10.0",
     "@geit/styles": "^1.11.0",
     "@the-goat/icons": "^1.9.1",
