@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/storybook",
-  "version": "1.11.0",
+  "version": "1.11.4",
   "description": "",
   "main": "index.js",
   "scripts": {
