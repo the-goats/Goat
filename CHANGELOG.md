@@ -1,3 +1,6 @@
+## 1.11.4
+- Fix: Downgrade webpack 5 to 4 till storybook supports webpack 5.
+
 ## 1.11.1
 - Feat: updated js-bundler to use webpack 5 (because webpack 4 caused issues for compile)
 

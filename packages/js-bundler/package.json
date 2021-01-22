@@ -22,7 +22,7 @@
     "lodash": "^4.17.20",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
-    "webpack": "^5.11.1"
+    "webpack": "^4.46.0"
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
   "goat": {

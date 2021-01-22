@@ -4,20 +4,31 @@
  * @returns {Array} an array of plugins
  */
 function getPlugins(config) {
-  const { ProgressPlugin } = require('webpack');
+  const { ProgressPlugin, version } = require('webpack');
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+  const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
   const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+  const isWebpack4 = /^4\./.test(version);
+  const isWebpack5 = /^5\./.test(version);
+  console.log(isWebpack4);
 
   const plugins = [
     new FriendlyErrorsWebpackPlugin(),
     new ProgressPlugin(),
-    new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
   ];
+
+  if (isWebpack4) {
+    plugins.push(new FixStyleOnlyEntriesPlugin());
+  }
+
+  if (isWebpack5) {
+    plugins.push(new RemoveEmptyScriptsPlugin());
+  }
 
   if (config.configuration.bundler.js.esm) {
     const BabelEsmPlugin = require('babel-esm-plugin');
