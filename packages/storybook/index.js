@@ -25,6 +25,9 @@ module.exports = (Goat) => new Goat({
     require('./scripts/storybook/runStory')(config);
   },
   watch(config) {
+    if (!config.options.story) {
+      return;
+    }
     require('./scripts/storybook/runStory')(config);
   },
   init: {
