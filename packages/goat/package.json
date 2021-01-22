@@ -1,6 +1,6 @@
 {
   "name": "@geit/goat",
-  "version": "1.11.4",
+  "version": "1.11.5",
   "description": "",
   "main": "src/index.js",
   "repository": {
@@ -21,10 +21,10 @@
     "@geit/js-bundler": "^1.11.4",
     "@geit/modernizr": "^1.10.0",
     "@geit/styles": "^1.11.0",
-    "@the-goat/compile": "^1.11.4",
+    "@the-goat/compile": "^1.11.5",
     "@the-goat/icons": "^1.9.1",
     "@the-goat/notifier": "^1.11.0",
-    "@the-goat/storybook": "^1.11.4",
+    "@the-goat/storybook": "^1.11.5",
     "chokidar": "^3.4.3",
     "commander": "^6.2.1",
     "import-global": "^0.1.0",
