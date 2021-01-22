@@ -1,6 +1,7 @@
 module.exports = async ({ config }) => {
   const path = require('path');
   const globImporter = require('node-sass-glob-importer');
+  const appRoot = require('app-root-path');
   const goatGonfig = require('../config.js').config;
 
   const rootDir = goatGonfig.path;
@@ -84,6 +85,7 @@ module.exports = async ({ config }) => {
   // eslint-disable-next-line no-param-reassign
   config.resolve.modules = [
     path.resolve(__dirname, '../../node_modules'), // Add this node_modules folder so we don't need twig and other storybook dependencies inside the project
+    path.resolve(appRoot.toString(), 'node_modules'), // Add this node_modules folder so we don't need twig and other storybook dependencies inside the project
     'node_modules',
   ];
 

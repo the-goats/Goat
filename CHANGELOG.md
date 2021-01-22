@@ -1,3 +1,6 @@
+## 1.11.5
+- Fix: resolve Twig and other storybook plugins correctly
+
 ## 1.11.4
 - Fix: Downgrade webpack 5 to 4 till storybook supports webpack 5.
 

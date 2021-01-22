@@ -23,6 +23,7 @@
     "@storybook/theming": "^6.1.11",
     "@the-goat/storybook-helpers": "^1.9.1",
     "add-attributes-twig-extension": "^0.1.0",
+    "app-root-path": "^3.0.0",
     "babel-loader": "^8.2.2",
     "bem-twig-extension": "^0.1.1",
     "css-loader": "^5.0.1",

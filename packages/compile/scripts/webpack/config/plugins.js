@@ -11,7 +11,6 @@ function getPlugins(config) {
   const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
   const isWebpack4 = /^4\./.test(version);
   const isWebpack5 = /^5\./.test(version);
-  console.log(isWebpack4);
 
   const plugins = [
     new FriendlyErrorsWebpackPlugin(),
