@@ -1,3 +1,6 @@
+## 1.12.0
+- Feat: Make icon style filenames configurable. Defaults now to style.scss and style.css.
+
 ## 1.11.5
 - Fix: resolve Twig and other storybook plugins correctly
 

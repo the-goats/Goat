@@ -357,8 +357,8 @@ function writeFiles(options, files) {
     preview: () => writeFile(normalize(`${options.dist}/${options.fontName}.html`), files.preview),
     json: () => writeFile(normalize(`${options.dist}/${options.fontName}.json`), JSON.stringify(files.json, null, 2)),
     variables: () => writeFile(normalize(`${options.dist}/variables.scss`), files.variables),
-    css: () => writeFile(normalize(`${options.dist}/${options.fontName}.css`), files.css),
-    styles: () => writeFile(normalize(`${options.dist}/${options.fontName}.scss`), files.styles),
+    css: () => writeFile(normalize(`${options.dist}/${options.styles.filename}.css`), files.css),
+    styles: () => writeFile(normalize(`${options.dist}/${options.styles.filename}.scss`), files.styles),
     selection: () => writeFile(normalize(`${options.dist}/selection.json`), JSON.stringify(files.selection, null, 2)),
     svg: () => writeFile(normalize(`${fontDirectory}/${options.fontName}.svg`), files.svg),
     symbol: () => writeFile(normalize(`${fontDirectory}/${options.fontName}.symbol.svg`), files.symbol),
@@ -403,6 +403,9 @@ async function generateIconfont(config) {
       selection: get(config, 'configuration.icons.generate.selection'),
       svg: get(config, 'configuration.icons.generate.svg'),
       symbol: get(config, 'configuration.icons.generate.symbol'),
+    },
+    styles: {
+      filename: get(config, 'configuration.icons.styles.filename'),
     },
   };
 

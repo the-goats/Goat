@@ -37,6 +37,16 @@ module.exports = {
           type: 'string',
           default: 'fonts',
         },
+        styles: {
+          type: 'object',
+          properties: {
+            filename: {
+              type: 'string',
+              default: 'style',
+            },
+          },
+          required: 'filename',
+        },
         generate: {
           type: 'object',
           properties: {
@@ -70,7 +80,7 @@ module.exports = {
             },
             css: {
               type: 'boolean',
-              default: false,
+              default: true,
             },
             styles: {
               type: 'boolean',
@@ -89,8 +99,29 @@ module.exports = {
               default: true,
             },
           },
+          required: [
+            'woff',
+            'eot',
+            'ttf',
+            'woff2',
+            'preview',
+            'json',
+            'variables',
+            'css',
+            'styles',
+            'selection',
+            'svg',
+            'symbol',
+          ],
         },
       },
+      required: [
+        'fontName',
+        'prefix',
+        'fontDirectory',
+        'generate',
+        'styles',
+      ],
     },
   },
   required: ['locations'],
