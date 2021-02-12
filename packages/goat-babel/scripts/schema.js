@@ -26,19 +26,30 @@ module.exports = {
       },
       required: ['javascript'],
     },
-  },
-  js: {
-    type: 'object',
-    properties: {
-      babel: {
-        type: 'object',
-        properties: {
-          keep_path: {
-            type: 'boolean',
-            default: true,
+    js: {
+      type: 'object',
+      properties: {
+        babel: {
+          type: 'object',
+          properties: {
+            keep_path: {
+              type: 'boolean',
+              default: true,
+            },
           },
+          required: [
+            'keep_path',
+          ],
         },
       },
+      required: [
+        'babel',
+      ],
     },
   },
+  required: [
+    'browserSupport',
+    'locations',
+    'js',
+  ],
 };

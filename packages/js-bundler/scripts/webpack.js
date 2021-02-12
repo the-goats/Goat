@@ -10,9 +10,9 @@ function getWebpackSetup({
   const webpack = require('webpack');
   const { get } = require('lodash');
   return webpack({
-    mode: 'production',
+    mode: get(configuration, 'mode') || 'production',
     context: path,
-    devtool: false,
+    devtool: get(configuration, 'bundler.js.devtool') || false,
     entry: entryFiles,
     output: {
       filename: get(configuration, 'bundler.js.output.filename') || '[name].bundle.js',

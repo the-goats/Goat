@@ -1,3 +1,5 @@
+
+
 module.exports = (Goat) => new Goat({
   name: 'Storybook',
   command: 'story',
@@ -25,7 +27,9 @@ module.exports = (Goat) => new Goat({
     require('./scripts/storybook/runStory')(config);
   },
   watch(config) {
+    const notifier = require('@the-goat/notifier');
     if (!config.options.story) {
+      notifier.info('Skipping Storybook while watching, to include storybook run watch with the --story flag');
       return;
     }
     require('./scripts/storybook/runStory')(config);

@@ -24,7 +24,19 @@ class Notifier {
    * @memberof Notifier
    */
   info(text) {
-    console.info(text);
+    const boxen = require('boxen');
+    this.log('');
+    this.log(boxen(text, {
+      padding: {
+        top: 0,
+        bottom: 0,
+        left: 1,
+        right: 1,
+      },
+      dimBorder: true,
+      float: 'left',
+    }));
+    this.log('');
   }
 
   /**

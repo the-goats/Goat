@@ -7,6 +7,20 @@ const checkVersion = require('../validators/version');
 const configPath = './goat.config.json';
 
 /**
+ * Parse configuration object
+ * @returns
+ */
+function parseConfig(config) {
+  try {
+    return JSON.parse(config);
+  } catch (error) {
+    Notifier.error('Your config file is not valid JSON, please check your config file');
+    process.exit();
+    return null;
+  }
+}
+
+/**
  * Get configuration object
  * @returns
  */
@@ -16,25 +30,31 @@ function getConfig() {
     return null;
   }
   // Read config
-  const file = fs.readFileSync(configPath);
-  let config;
-  try {
-    config = JSON.parse(file);
-  } catch (error) {
-    Notifier.error('Your config file is not valid JSON, please check your config file');
-    return null;
-  }
+  const buffer = fs.readFileSync(configPath);
+  return parseConfig(buffer);
+}
+
+/**
+ * Validate configuration object
+ * @returns
+ */
+function validateConfig(config) {
+  let isValid = true;
 
   // Validate used config
   if (!checkSchema(config, schemaBase)) {
-    return null;
+    isValid = false;
   }
 
   // Validate config version
   if (!checkVersion(config.version)) {
-    return null;
+    isValid = false;
   }
-  return config;
+  return isValid;
 }
 
-module.exports = getConfig;
+module.exports = {
+  getConfig,
+  parseConfig,
+  validateConfig,
+};

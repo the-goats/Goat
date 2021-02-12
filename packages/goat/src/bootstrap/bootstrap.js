@@ -76,15 +76,15 @@ class Goat {
    * @memberof Goat
    */
   getConfiguration() {
-    const getConfig = require('../config/config');
+    const { getConfig, validateConfig } = require('../config/config');
     const checkSchema = require('../validators/schema');
     const configuration = getConfig();
+    const isValid = validateConfig(configuration);
     // Validate used config
-    if (this.schema && !checkSchema(configuration, this.schema)) {
+    if (!isValid || (this.schema && !checkSchema(configuration, this.schema))) {
       Notifier.error('The configuration is not correct');
       const { updateConfig } = require('../schemas/writeConfig');
       updateConfig(this.schema);
-      process.exit();
     }
     return configuration;
   }

@@ -22,23 +22,23 @@ module.exports = {
       },
       required: ['javascript'],
     },
-  },
-  js: {
-    type: 'object',
-    properties: {
-      eslint: {
-        type: 'object',
-        properties: {
-          es6: {
-            type: 'boolean',
-            default: true,
-          },
-          config: {
-            type: 'object',
-            default: {
-              rules: {
-                'no-console': 'error',
-                'no-debugger': 'error',
+    js: {
+      type: 'object',
+      properties: {
+        eslint: {
+          type: 'object',
+          properties: {
+            es6: {
+              type: 'boolean',
+              default: true,
+            },
+            config: {
+              type: 'object',
+              default: {
+                rules: {
+                  'no-console': 'error',
+                  'no-debugger': 'error',
+                },
               },
             },
           },
@@ -46,4 +46,9 @@ module.exports = {
       },
     },
   },
+  required: [
+    'browserSupport',
+    'locations',
+    'js',
+  ],
 };

@@ -2,6 +2,15 @@ module.exports = {
   id: '/JsBundler',
   type: 'object',
   properties: {
+    mode: {
+      type: 'string',
+      default: 'production',
+      enum: [
+        'production',
+        'development',
+        'none',
+      ],
+    },
     browserSupport: {
       type: 'array',
       default: ['> 1%', 'last 2 versions'],
@@ -37,6 +46,10 @@ module.exports = {
         js: {
           type: 'object',
           properties: {
+            devtool: {
+              type: ['boolean', 'string'],
+              default: 'source-map',
+            },
             output: {
               type: 'object',
               properties: {
@@ -48,10 +61,27 @@ module.exports = {
                   default: false,
                 },
               },
+              required: [
+                'filename',
+                'publicpath',
+              ],
             },
           },
+          required: [
+            'devtool',
+            'output',
+          ],
         },
       },
+      required: [
+        'js',
+      ],
     },
   },
+  required: [
+    'mode',
+    'browserSupport',
+    'locations',
+    'bundler',
+  ],
 };

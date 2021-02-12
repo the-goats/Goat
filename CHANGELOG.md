@@ -1,3 +1,10 @@
+## 1.12.1
+- Fix: fixed schemas for babel, eslint and styles.
+- Feat: added configuration option to js bundler to change the development mode and devtool
+- Fix: fixed bug when updating / rebuilding configuration based on updated module schemas
+- Change: wrap info messages in a box
+- Feat: add message when watching without --story flag
+
 ## 1.12.0
 - Feat: Make icon style filenames configurable. Defaults now to style.scss and style.css.
 
