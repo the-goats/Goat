@@ -5,6 +5,9 @@ src: url('<%=path%>/<%=fontName%>.eot?t=<%=timestamp%>');<% } %>
 <% if (generate.woff) { %>url("<%=path%>/<%=fontName%>.woff?t=<%=timestamp%>") format("woff"),<% } %>
 <% if (generate.ttf) { %>url('<%=path%>/<%=fontName%>.ttf?t=<%=timestamp%>') format('truetype'),<% } %>
 <% if (generate.svg) { %>url('<%=path%>/<%=fontName%>.svg?t=<%=timestamp%>#<%=fontName%>') format('svg')<% } %>;
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
 
 [class^="<%=classNamePrefix%>-"]::before,
