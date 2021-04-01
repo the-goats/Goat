@@ -472,13 +472,15 @@ function runAll(config) {
         directory,
       );
       generateIconfont(options)
-        .then(() => console.info(`Set ${directory} generated`));
+        .then(() => console.info(`Set ${directory} generated`))
+        .catch((error) => console.error(error));
     });
     return;
   }
   const options = getOptions(config);
   generateIconfont(options)
-    .then(() => console.info('Set generated'));
+    .then(() => console.info('Set generated'))
+    .catch((error) => console.error(error));
 }
 
 /**
@@ -497,7 +499,8 @@ function runSingle(config, icon) {
     set,
   );
   generateIconfont(options)
-    .then(() => console.info(`Set ${set} generated`));
+    .then(() => console.info(`Set ${set} generated`))
+    .catch((error) => console.error(error));
 }
 
 module.exports = {
