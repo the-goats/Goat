@@ -129,6 +129,7 @@ async function createPreview(options, files) {
     fontName: options.fontName,
     classNamePrefix: options.classNamePrefix,
     html: lines,
+    cssFileName: options.styles.filename,
   };
   const file = await ejs.renderFile(template, settings);
   return prettier.format(file, {
