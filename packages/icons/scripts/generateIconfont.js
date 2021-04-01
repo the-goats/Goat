@@ -463,6 +463,7 @@ function runAll(config) {
     .map((dirent) => dirent.name);
 
   const directories = getDirectories(config.configuration.locations.icons.src);
+  console.log(directories);
   if (directories.length) {
     directories.forEach((directory) => {
       const options = getOptions(
@@ -471,6 +472,7 @@ function runAll(config) {
         join(config.configuration.locations.icons.dist, directory),
         directory,
       );
+      console.log(options);
       generateIconfont(options)
         .then(() => console.info(`Set ${directory} generated`))
         .catch((error) => console.error(error));
