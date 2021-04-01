@@ -1,3 +1,6 @@
+## 1.13.4
+- Fix: bugfix icon preview html not including the right css file
+
 ## 1.13.1
 - Fix: bugfix
 

@@ -41,7 +41,7 @@
     "goat": "./bin/goat.js"
   },
   "engines": {
-    "node": ">=11.00"
+    "node": ">=11.0.0 <15.0.0"
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3"
 }
