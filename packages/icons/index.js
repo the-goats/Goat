@@ -4,18 +4,18 @@ module.exports = (Goat) => new Goat({
   description: 'Generate icon font files based on svg files',
   schema: require('./schema/schema.js'),
   async method(config) {
-    const generateIconfont = require('./scripts/generateIconfont');
-    generateIconfont(config);
+    const { runAll } = require('./scripts/generateIconfont');
+    runAll(config);
   },
   watch(config) {
-    const generateIconfont = require('./scripts/generateIconfont');
-    generateIconfont(config);
+    const { runAll, runSingle } = require('./scripts/generateIconfont');
+    runAll(config);
     config.events.watch({
       name: 'Icons',
-      pattern: `${config.configuration.locations.icons.src}/*.svg`,
+      pattern: `${config.configuration.locations.icons.src}/**/*.svg`,
       events: /file:/,
-      method: () => {
-        generateIconfont(config);
+      method: (item) => {
+        runSingle(config, item.path);
       },
     });
   },

@@ -9,7 +9,9 @@
 ![David devdependencies](https://badgen.net//david/dev/stefspakman/Goat/packages/icons?icon=libraries)
 
 # Icons
-Generate Icon fonts based on svg files
+Generate Icon fonts based on svg files.
+
+when the source folder contains one or multiple subfolders, Icons will generate a icon set for each of those folders. Each set will get it's own folder in the destination directory. The sets will automatically be prefixed with the foldername, the fontName and prefix options will be ignored.
 
 ## Goat
 Goat is a simple to use taskrunner for frontend development. Build for quick intergration, rich features and easy updating even when working with a team. 

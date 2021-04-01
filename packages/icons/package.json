@@ -13,6 +13,7 @@
     "get-stream": "^6.0.0",
     "lodash": "^4.17.20",
     "prettier": "^2.2.1",
+    "short-hash": "^1.0.0",
     "svg2ttf": "^5.0.0",
     "svgicons2svgfont": "^9.1.1",
     "ttf2eot": "^2.0.0",

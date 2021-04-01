@@ -24,6 +24,16 @@ function writeFile(file, content) {
 }
 
 /**
+ * generate hash from iconlist
+ * @param {object} files
+ * @returns {string}
+ */
+function generateHash(files) {
+  const shortHash = require('short-hash');
+  return shortHash(JSON.stringify(files.src));
+}
+
+/**
  * Format CSS based of unicode characters
  * @param {Object} options
  * @param {Object} files
@@ -36,11 +46,12 @@ async function createCSS(options, files) {
   }).join('');
 
   const template = require.resolve('./templates/styles.scss');
+
   const file = await ejs.renderFile(template, {
     styles: css,
     classNamePrefix: options.classNamePrefix,
     fontName: options.fontName,
-    timestamp: new Date().getTime(),
+    hash: generateHash(files),
     path: options.fontDirectory || '.',
     generate: options.generate,
   });
@@ -67,7 +78,7 @@ async function createStyles(options, files) {
     styles: scss,
     classNamePrefix: options.classNamePrefix,
     fontName: options.fontName,
-    timestamp: new Date().getTime(),
+    hash: generateHash(files),
     path: '#{$icon-font-path}',
     generate: options.generate,
   });
@@ -94,6 +105,7 @@ async function createVariablesScss(options, files) {
   const file = await ejs.renderFile(template, {
     variables,
     path: options.fontDirectory,
+    classNamePrefix: options.classNamePrefix,
   });
   return prettier.format(file, {
     ...prettierSettings,
@@ -373,18 +385,46 @@ function writeFiles(options, files) {
 }
 
 /**
- *
- * @param config
+ * Generate the icon font
+ * @param options
  * @returns {Promise<void>}
  */
-async function generateIconfont(config) {
+async function generateIconfont(options) {
+  const files = {};
+  files.src = getSourceFiles(options);
+  files.unicode = getUnicode(options, files); // Source => Unicode
+  files.svg = await createSVG(options, files); // Source => SVG
+  files.symbol = await createSvgSymbol(options, files); // Source => Symbol SVG
+  files.ttf = await createTTF(options, files); // SVG Font => TTF
+  files.woff = await createWOFF(options, files); // TTF => WOFF
+  files.eot = await createEOT(options, files); // TTF => EOT
+  files.woff2 = await createWOFF2(options, files); // TTF => WOFF2
+  files.json = createJson(options, files); // Symbol SVG => JSON
+  files.selection = await createSelectionJson(options, files); // JSON => Selection
+  files.variables = await createVariablesScss(options, files); // Unicode => Variables
+  files.css = await createCSS(options, files); // Unicode => CSS
+  files.styles = await createStyles(options, files); // Unicode => Styles
+  files.preview = await createPreview(options, files); // Unicode => Preview
+
+  writeFiles(options, files);
+}
+
+/**
+ * Generate the option object
+ * @param {object} config
+ * @param {string} [source]
+ * @param {string} [dist]
+ * @param {string} [name]
+ * @returns {{fontName: (*|string), classNamePrefix: (*|string), src: *, fontDirectory: string, dist: *, styles: {filename}, startUnicode: number, svgicons2svgfont: {fontHeight: number, normalize: boolean}, generate: {preview, symbol, variables, css, selection, svg, ttf, json, woff2, styles, eot, woff}}}
+ */
+function getOptions(config, source, dist, name) {
   const get = require('lodash/get');
-  const options = {
-    src: config.configuration.locations.icons.src,
-    dist: config.configuration.locations.icons.dist,
-    fontName: get(config, 'configuration.icons.fontName') || 'icons',
+  return {
+    src: source || config.configuration.locations.icons.src,
+    dist: dist || config.configuration.locations.icons.dist,
+    fontName: name || get(config, 'configuration.icons.fontName') || 'icons',
     startUnicode: 0xea01,
-    classNamePrefix: get(config, 'configuration.icons.prefix') || 'icon',
+    classNamePrefix: name || get(config, 'configuration.icons.prefix') || 'icon',
     svgicons2svgfont: {
       fontHeight: 1000,
       normalize: true,
@@ -408,24 +448,59 @@ async function generateIconfont(config) {
       filename: get(config, 'configuration.icons.styles.filename'),
     },
   };
-
-  const files = {};
-  files.src = getSourceFiles(options);
-  files.unicode = getUnicode(options, files); // Source => Unicode
-  files.svg = await createSVG(options, files); // Source => SVG
-  files.symbol = await createSvgSymbol(options, files); // Source => Symbol SVG
-  files.ttf = await createTTF(options, files); // SVG Font => TTF
-  files.woff = await createWOFF(options, files); // TTF => WOFF
-  files.eot = await createEOT(options, files); // TTF => EOT
-  files.woff2 = await createWOFF2(options, files); // TTF => WOFF2
-  files.json = createJson(options, files); // Symbol SVG => JSON
-  files.selection = await createSelectionJson(options, files); // JSON => Selection
-  files.variables = await createVariablesScss(options, files); // Unicode => Variables
-  files.css = await createCSS(options, files); // Unicode => CSS
-  files.styles = await createStyles(options, files); // Unicode => Styles
-  files.preview = await createPreview(options, files); // Unicode => Preview
-
-  writeFiles(options, files);
 }
 
-module.exports = generateIconfont;
+/**
+ * Generate all defined icon fonts
+ * @param {object} config
+ */
+function runAll(config) {
+  const { readdirSync } = require('fs');
+  const { join } = require('path');
+
+  const getDirectories = (source) => readdirSync(source, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name);
+
+  const directories = getDirectories(config.configuration.locations.icons.src);
+  if (directories.length) {
+    directories.forEach((directory) => {
+      const options = getOptions(
+        config,
+        join(config.configuration.locations.icons.src, directory),
+        join(config.configuration.locations.icons.dist, directory),
+        directory,
+      );
+      generateIconfont(options)
+        .then(() => console.info(`Set ${directory} generated`));
+    });
+    return;
+  }
+  const options = getOptions(config);
+  generateIconfont(options)
+    .then(() => console.info('Set generated'));
+}
+
+/**
+ * Generate single icon set based of single filePath
+ * @param {object} config
+ * @param {string} icon
+ */
+function runSingle(config, icon) {
+  const { dirname, basename, join } = require('path');
+  const source = dirname(icon);
+  const set = basename(source);
+  const options = getOptions(
+    config,
+    source,
+    join(config.configuration.locations.icons.dist, set),
+    set,
+  );
+  generateIconfont(options)
+    .then(() => console.info(`Set ${set} generated`));
+}
+
+module.exports = {
+  runAll,
+  runSingle,
+};

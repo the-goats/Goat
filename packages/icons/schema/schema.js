@@ -10,11 +10,11 @@ module.exports = {
           properties: {
             src: {
               type: 'string',
-              default: 'svg/',
+              default: 'icons/src/',
             },
             dist: {
               type: 'string',
-              default: 'icons/',
+              default: 'icons/dist/',
             },
           },
           required: ['src', 'dist'],
