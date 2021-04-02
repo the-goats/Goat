@@ -78,6 +78,10 @@ module.exports = {
               type: 'boolean',
               default: true,
             },
+            mixins: {
+              type: 'boolean',
+              default: true,
+            },
             css: {
               type: 'boolean',
               default: true,
@@ -107,6 +111,7 @@ module.exports = {
             'preview',
             'json',
             'variables',
+            'mixins',
             'css',
             'styles',
             'selection',

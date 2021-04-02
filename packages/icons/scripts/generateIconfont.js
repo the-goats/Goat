@@ -79,7 +79,7 @@ async function createStyles(options, files) {
     classNamePrefix: options.classNamePrefix,
     fontName: options.fontName,
     hash: generateHash(files),
-    path: '#{$icon-font-path}',
+    path: `#{$${options.classNamePrefix}-font-path}`,
     generate: options.generate,
   });
   return prettier.format(file, {
@@ -105,6 +105,24 @@ async function createVariablesScss(options, files) {
   const file = await ejs.renderFile(template, {
     variables,
     path: options.fontDirectory,
+    classNamePrefix: options.classNamePrefix,
+  });
+  return prettier.format(file, {
+    ...prettierSettings,
+    parser: 'scss',
+  });
+}
+
+/**
+ * Format SCSS Mixins file
+ * @param {Object} options
+ * @param {Object} files
+ * @returns {String}
+ */
+async function createMixinsScss(options) {
+  const template = require.resolve('./templates/mixins.scss');
+  const file = await ejs.renderFile(template, {
+    fontName: options.fontName,
     classNamePrefix: options.classNamePrefix,
   });
   return prettier.format(file, {
@@ -370,6 +388,7 @@ function writeFiles(options, files) {
     preview: () => writeFile(normalize(`${options.dist}/${options.fontName}.html`), files.preview),
     json: () => writeFile(normalize(`${options.dist}/${options.fontName}.json`), JSON.stringify(files.json, null, 2)),
     variables: () => writeFile(normalize(`${options.dist}/variables.scss`), files.variables),
+    mixins: () => writeFile(normalize(`${options.dist}/mixins.scss`), files.mixins),
     css: () => writeFile(normalize(`${options.dist}/${options.styles.filename}.css`), files.css),
     styles: () => writeFile(normalize(`${options.dist}/${options.styles.filename}.scss`), files.styles),
     selection: () => writeFile(normalize(`${options.dist}/selection.json`), JSON.stringify(files.selection, null, 2)),
@@ -403,6 +422,7 @@ async function generateIconfont(options) {
   files.json = createJson(options, files); // Symbol SVG => JSON
   files.selection = await createSelectionJson(options, files); // JSON => Selection
   files.variables = await createVariablesScss(options, files); // Unicode => Variables
+  files.mixins = await createMixinsScss(options); // Options => Mixins
   files.css = await createCSS(options, files); // Unicode => CSS
   files.styles = await createStyles(options, files); // Unicode => Styles
   files.preview = await createPreview(options, files); // Unicode => Preview
@@ -439,6 +459,7 @@ function getOptions(config, source, dist, name) {
       preview: get(config, 'configuration.icons.generate.preview'),
       json: get(config, 'configuration.icons.generate.json'),
       variables: get(config, 'configuration.icons.generate.variables'),
+      mixins: get(config, 'configuration.icons.generate.mixins'),
       css: get(config, 'configuration.icons.generate.css'),
       styles: get(config, 'configuration.icons.generate.styles'),
       selection: get(config, 'configuration.icons.generate.selection'),

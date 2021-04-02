@@ -1,3 +1,7 @@
+## 1.13.5
+- Fix: icon font path variable not rendering properly
+- Feat: add ability to generate mixin scss file
+
 ## 1.13.4
 - Fix: bugfix icon preview html not including the right css file
 
