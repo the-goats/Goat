@@ -76,7 +76,20 @@ function run(config) {
   // eslint-disable-next-line no-param-reassign
   const getWebpackSetup = require('./webpack.js');
   const compiler = getWebpackSetup(config);
-  compiler.run(logWebpack);
+  return new Promise((resolve, reject) => {
+    compiler.run((error, stats) => {
+      logWebpack(error, stats);
+      if (error) {
+        reject(error);
+        return;
+      }
+      if (stats.compilation.errors.length) {
+        reject(stats.compilation.errors[0]);
+        return;
+      }
+      resolve();
+    });
+  });
 }
 
 /**
@@ -112,7 +125,7 @@ function runAll(config) {
   config.files = getFiles(config);
   // eslint-disable-next-line no-param-reassign
   config.entryFiles = formatEntryFiles(config);
-  run(config);
+  return run(config);
 }
 
 /**

@@ -5,7 +5,7 @@ module.exports = (Goat) => new Goat({
   schema: require('./schema/schema.js'),
   async method(config) {
     const { runAll } = require('./scripts/generateIconfont');
-    runAll(config);
+    return runAll(config);
   },
   watch(config) {
     const { runAll, runSingle } = require('./scripts/generateIconfont');

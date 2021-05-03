@@ -110,6 +110,7 @@ class Goat {
         }
       });
     }
+    return result;
   }
 
   /**

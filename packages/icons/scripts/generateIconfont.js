@@ -475,6 +475,7 @@ function getOptions(config, source, dist, name) {
 /**
  * Generate all defined icon fonts
  * @param {object} config
+ * @return Promise
  */
 function runAll(config) {
   const { readdirSync } = require('fs');
@@ -486,7 +487,7 @@ function runAll(config) {
 
   const directories = getDirectories(config.configuration.locations.icons.src);
   if (directories.length) {
-    directories.forEach((directory) => {
+    return Promise.all(directories, (directory) => {
       const options = getOptions(
         config,
         join(config.configuration.locations.icons.src, directory),
@@ -497,10 +498,9 @@ function runAll(config) {
         .then(() => console.info(`Set ${directory} generated`))
         .catch((error) => console.error(error));
     });
-    return;
   }
   const options = getOptions(config);
-  generateIconfont(options)
+  return generateIconfont(options)
     .then(() => console.info('Set generated'))
     .catch((error) => console.error(error));
 }

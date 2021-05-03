@@ -3,6 +3,7 @@ const commander = require('commander');
 const Notifier = require('@the-goat/notifier');
 const CollectCommands = require('./methods/commands/CollectCommands');
 const setCommandWatch = require('./commands/watch');
+const setCommandBuild = require('./commands/build');
 const setCommandModule = require('./commands/module');
 const setCommandProject = require('./commands/project');
 const pkg = require('../package.json');
@@ -39,6 +40,7 @@ async function base() {
         goat.addCommand(command);
       });
       goat.addCommand(setCommandWatch(packages));
+      goat.addCommand(setCommandBuild(packages));
     }
   }
 

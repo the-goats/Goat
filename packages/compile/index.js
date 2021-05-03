@@ -19,7 +19,7 @@ module.exports = (Goat) => new Goat({
   ],
   async method(config) {
     const { runAll } = require('./scripts/webpack/runner');
-    runAll({
+    return runAll({
       ...config,
       settings: {
         production: config.options.production,

@@ -18,11 +18,11 @@ module.exports = (Goat) => new Goat({
     },
   ],
   async method(config) {
-    if (config.options.build) {
-      require('./scripts/storybook/buildStory')(config);
+    if (config.options.story) {
+      require('./scripts/storybook/runStory')(config);
       return;
     }
-    require('./scripts/storybook/runStory')(config);
+    require('./scripts/storybook/buildStory')(config);
   },
   watch(config) {
     const notifier = require('@the-goat/notifier');

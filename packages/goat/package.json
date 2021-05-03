@@ -25,6 +25,7 @@
     "@the-goat/icons": "^1.13.5",
     "@the-goat/notifier": "^1.12.1",
     "@the-goat/storybook": "^1.12.1",
+    "bluebird": "^3.7.2",
     "chokidar": "^3.4.3",
     "commander": "^6.2.1",
     "import-global": "^0.1.0",
