@@ -1,5 +1,5 @@
-const getPackages = require('./getPackages');
-const Goat = require('../bootstrap/bootstrap');
+import Goat from '../bootstrap/index.ts';
+import getPackages from './getPackages';
 
 const config = {
   goatVersion: '1.5.0',

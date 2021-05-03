@@ -1,5 +1,5 @@
-const Goat = require('../../../bootstrap/bootstrap');
-const loadModule = require('../../modules/loadModule');
+import Goat from '../../../bootstrap/index.ts';
+import loadModule from '../../modules/loadModule';
 
 /**
  * Get init settings of a package

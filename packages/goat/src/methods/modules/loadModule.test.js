@@ -1,5 +1,5 @@
-const loadModule = require('./loadModule');
-const Goat = require('../../bootstrap/bootstrap');
+import loadModule from './loadModule';
+import Goat from '../../bootstrap/index.ts';
 
 test('Load a module', () => {
   const modules = [

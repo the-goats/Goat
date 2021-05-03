@@ -1,5 +1,5 @@
-const Goat = require('../bootstrap/bootstrap');
-const loadModule = require('../methods/modules/loadModule');
+import Goat from '../bootstrap/index.ts';
+import loadModule from '../methods/modules/loadModule';
 
 /**
  * Collect modules
@@ -7,20 +7,22 @@ const loadModule = require('../methods/modules/loadModule');
  * @returns {array} modules
  */
 async function getModules({ modules }) {
-  return modules.flatMap((item) => {
-    if (global.DEBUG) {
-      console.time(item.name);
-    }
-    // eslint-disable-next-line
-    const module = loadModule(item);
-    if (global.DEBUG) {
-      console.timeEnd(item.name);
-    }
-    if (Array.isArray(module)) {
-      return module.map((task) => task(Goat));
-    }
-    return module(Goat);
-  }).filter((item) => !!item);
+  return modules
+    .flatMap((item) => {
+      if (global.DEBUG) {
+        console.time(item.name);
+      }
+      // eslint-disable-next-line
+      const module = loadModule(item);
+      if (global.DEBUG) {
+        console.timeEnd(item.name);
+      }
+      if (Array.isArray(module)) {
+        return module.map((task) => task(Goat));
+      }
+      return module(Goat);
+    })
+    .filter((item) => !!item);
 }
 
 module.exports = getModules;
