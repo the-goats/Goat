@@ -9,7 +9,7 @@ interface IGoatOption {
   label: string;
 }
 
-interface IGoatConfig {
+export interface IGoatConfig {
   name: string;
   description: string;
   schema: string;
