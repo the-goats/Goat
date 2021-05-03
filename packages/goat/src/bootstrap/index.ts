@@ -5,7 +5,8 @@ const GoatEvents = require("../events/goatEvents");
 
 interface IGoatOption {
   allowOnOnce: boolean;
-  flags: string[];
+  allowOnWatch: boolean,
+  flags: string;
   label: string;
 }
 
@@ -166,4 +167,4 @@ class Goat {
   }
 }
 
-module.exports = Goat;
+export default Goat;
