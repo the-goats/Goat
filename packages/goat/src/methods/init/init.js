@@ -1,12 +1,12 @@
 const { stat } = require('fs').promises;
 const { normalize } = require('path');
+const Notifier = require('@the-goat/notifier');
 const configFileName = require('./partials/configFileName');
 const initQuestions = require('./partials/questions');
 const initializeGoatConfig = require('./partials/initConfig');
 const initializeProjectConfig = require('./partials/projectConfig');
 const getPackageInit = require('./partials/getPackageInitSettings');
 const packageFiles = require('./partials/packageFiles');
-const Notifier = require('@the-goat/notifier');
 
 /**
  * Initialize Goat inside the current folder, this is the entry point of this command.

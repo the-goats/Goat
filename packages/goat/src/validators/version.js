@@ -18,6 +18,6 @@ function checkVersion(version) {
     return false;
   }
   return isValid;
-};
+}
 
 module.exports = checkVersion;

@@ -7,14 +7,14 @@ const inquirer = require('inquirer');
  */
 async function confirm(prompt) {
   try {
-   const result = await inquirer
-    .prompt([{
-      ...prompt,
-      type: 'confirm',
-      name: 'confirm',
-    }]);
+    const result = await inquirer
+      .prompt([{
+        ...prompt,
+        type: 'confirm',
+        name: 'confirm',
+      }]);
     return result.confirm;
-  } catch(error) {
+  } catch (error) {
     return false;
   }
 }

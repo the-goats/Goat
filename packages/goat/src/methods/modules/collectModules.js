@@ -16,7 +16,7 @@ async function collectModules() {
     ...module,
     global: true,
   }));
-  return modules.concat( userModules )
+  return modules.concat(userModules);
 }
 
 module.exports = collectModules();

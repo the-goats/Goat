@@ -7,26 +7,26 @@ const config = {
     '@geit/styles',
     '@geit/babel',
     '@geit/eslint',
-    '@geit/modernizr'
+    '@geit/modernizr',
   ],
   modules: [
     {
       name: 'Goat Styles',
-      package: '@geit/styles'
+      package: '@geit/styles',
     },
     {
       name: 'Goat Babel',
-      package: '@geit/babel'
+      package: '@geit/babel',
     },
     {
       name: 'Goat ESlint',
-      package: '@geit/eslint'
+      package: '@geit/eslint',
     },
     {
       name: 'Goat Modernizr',
-      package: '@geit/modernizr'
-    }
-  ]
+      package: '@geit/modernizr',
+    },
+  ],
 };
 
 test('Get array of packages', async () => {

@@ -2,6 +2,29 @@ const Goat = require('../../../bootstrap/bootstrap');
 const loadModule = require('../../modules/loadModule');
 
 /**
+ * Get init settings of a package
+ * @param {array} packageConfig
+ * @param {object} myGoat
+ * @returns {object}
+ */
+function getPackageInitSettings(packageConfig, myGoat) {
+  if (!Array.isArray(packageConfig)) {
+    const config = packageConfig(myGoat);
+    return {
+      ...config.init,
+      schema: config.schema,
+    };
+  }
+  return packageConfig.map((item) => {
+    const config = item(myGoat);
+    return {
+      ...config.init,
+      schema: config.schema,
+    };
+  });
+}
+
+/**
  * Collect initialisation settings for packages
  * @param {object} answers
  */
@@ -13,29 +36,6 @@ function getPackageInitialisation(packages) {
       module,
       package: packageConfig,
       init: getPackageInitSettings(packageConfig, Goat),
-    };
-  });
-}
-
-/**
- * Get init settings of a package
- * @param {array} packageConfig
- * @param {object} Goat
- * @returns {object}
- */
-function getPackageInitSettings(packageConfig, Goat) {
-  if (!Array.isArray(packageConfig)) {
-    const config = packageConfig(Goat);
-    return {
-      ...config.init,
-      schema: config.schema,
-    };
-  }
-  return packageConfig.map((item) => {
-    const config = item(Goat);
-    return {
-      ...config.init,
-      schema: config.schema,
     };
   });
 }

@@ -1,5 +1,3 @@
-
-
 module.exports = (Goat) => new Goat({
   name: 'Storybook',
   command: 'story',

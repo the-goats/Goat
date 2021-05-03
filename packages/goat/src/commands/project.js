@@ -1,6 +1,6 @@
 const commander = require('commander');
 const { projectModules } = require('../methods/modules/listModules');
-const addModule = require('../methods/modules/addModule');
+// const addModule = require('../methods/modules/addModule');
 
 /**
  * Display all project modules
@@ -13,11 +13,11 @@ function commandListModules() {
     .action(projectModules);
 }
 
-function commandAddModules() {
-  return new commander.Command('add')
-    .description('Add modules')
-    .action(addModule);
-}
+// function commandAddModules() {
+//   return new commander.Command('add')
+//     .description('Add modules')
+//     .action(addModule);
+// }
 
 /**
  * Define module command

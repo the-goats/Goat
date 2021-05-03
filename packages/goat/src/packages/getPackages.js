@@ -17,10 +17,10 @@ async function getModules({ modules }) {
       console.timeEnd(item.name);
     }
     if (Array.isArray(module)) {
-      return module.map(task => task(Goat));
+      return module.map((task) => task(Goat));
     }
     return module(Goat);
-  }).filter(item => !!item);
+  }).filter((item) => !!item);
 }
 
 module.exports = getModules;

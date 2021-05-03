@@ -10,7 +10,7 @@ function matchPattern(file, pattern) {
   if (!Array.isArray(pattern)) {
     return miniMatch(file, pattern);
   }
-  return pattern.filter(item => miniMatch(file, item)).length > 0;
+  return pattern.filter((item) => miniMatch(file, item)).length > 0;
 }
 
 module.exports = matchPattern;
