@@ -44,5 +44,12 @@
   "engines": {
     "node": ">=11.0.0 <15.0.0"
   },
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rimraf -rf ./dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build"
+  },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3"
 }

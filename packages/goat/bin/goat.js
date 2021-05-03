@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const Goat = require('../src/index');
+const Goat = require('../dist/index');
 
 Goat();
