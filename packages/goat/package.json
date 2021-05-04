@@ -2,9 +2,7 @@
   "name": "@the-goat/goat",
   "version": "1.13.5",
   "description": "",
-  "exports": {
-    "./": "./dist/"
-  },
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stefspakman/Goat.git"
@@ -18,33 +16,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@the-goat/babel": "^1.12.1",
-    "@the-goat/eslint": "^1.12.1",
-    "@the-goat/js-bundler": "^1.12.1",
-    "@the-goat/modernizr": "^1.10.0",
-    "@the-goat/styles": "^1.12.1",
-    "@the-goat/compile": "^1.11.5",
-    "@the-goat/icons": "^1.13.5",
     "@the-goat/notifier": "^1.12.1",
-    "@the-goat/storybook": "^1.12.1",
-    "bluebird": "^3.7.2",
-    "chokidar": "^3.4.3",
-    "commander": "^6.2.1",
-    "import-global": "^0.1.0",
-    "inquirer": "^7.3.3",
-    "json-schema-defaults": "^0.4.0",
-    "jsonschema": "^1.4.0",
-    "lodash": "^4.17.20",
-    "minimatch": "^3.0.4",
-    "mkdirp": "^1.0.4",
-    "semver": "^7.3.4",
-    "update-notifier": "^5.0.1"
-  },
-  "bin": {
-    "goat": "./bin/goat.js"
-  },
-  "engines": {
-    "node": ">=11.0.0 <15.0.0"
+    "commander": "^6.2.1"
   },
   "scripts": {
     "build": "npm run clean && npm run compile",

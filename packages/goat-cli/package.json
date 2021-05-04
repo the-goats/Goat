@@ -1,0 +1,58 @@
+{
+  "name": "@the-goat/goat-cli",
+  "version": "1.13.5",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefspakman/Goat.git"
+  },
+  "author": "Stef Spakman <goat@stefspakman.com>",
+  "keywords": [
+    "frontend",
+    "tooling",
+    "goat",
+    "compile"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@the-goat/goat": "*",
+    "@the-goat/notifier": "^1.12.1",
+    "@the-goat/babel": "^1.12.1",
+    "@the-goat/eslint": "^1.12.1",
+    "@the-goat/js-bundler": "^1.12.1",
+    "@the-goat/modernizr": "^1.10.0",
+    "@the-goat/styles": "^1.12.1",
+    "@the-goat/compile": "^1.11.5",
+    "@the-goat/icons": "^1.13.5",
+    "@the-goat/storybook": "^1.12.1",
+    "bluebird": "^3.7.2",
+    "chokidar": "^3.4.3",
+    "commander": "^6.2.1",
+    "import-global": "^0.1.0",
+    "inquirer": "^7.3.3",
+    "json-schema-defaults": "^0.4.0",
+    "jsonschema": "^1.4.0",
+    "lodash": "^4.17.20",
+    "minimatch": "^3.0.4",
+    "mkdirp": "^1.0.4",
+    "semver": "^7.3.4",
+    "update-notifier": "^5.0.1"
+  },
+  "bin": {
+    "goat": "./bin/goat.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rimraf -rf ./dist",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json"
+  },
+  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}

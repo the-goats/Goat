@@ -1,7 +1,6 @@
 const Notifier = require('@the-goat/notifier');
 const commander = require('commander');
-const watch = require('../events/watch');
-const GoatEvents = require('../events/goatEvents');
+const { watch, GoatEvents } = require('@the-goat/goat');
 
 commander.allowUnknownOption(true);
 

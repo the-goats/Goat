@@ -1,4 +1,4 @@
-import Goat from '@the-goat/goat/bootstrap';
+import { Goat } from '@the-goat/goat';
 
 export default () => new Goat({
   name: 'Compile',
@@ -25,6 +25,7 @@ export default () => new Goat({
       ...config,
       settings: {
         production: config.options.production,
+        // @ts-ignore
         analyse: config.options.analyse,
       },
     });
@@ -34,10 +35,12 @@ export default () => new Goat({
     runWatch({
       ...config,
       settings: {
+        // @ts-ignore
         production: config.options.production,
       },
     });
   },
+  // @ts-ignore
   init: {
     files: () => require('./init/files.js'),
   },

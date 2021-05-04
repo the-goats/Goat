@@ -1,9 +1,10 @@
 // @ts-ignore
 import Notifier from '@the-goat/notifier';
-import GoatEvents from '../events/goatEvents';
+import GoatEvents from './events/GoatEvents';
 
 interface IGoatOption {
   allowOnOnce?: boolean;
+  allowOnWatch?: boolean;
   flags: string;
   label: string;
 }
@@ -97,7 +98,7 @@ export default class Goat {
    */
   action(config: IGoatProjectConfig) {
     if (config.watch) {
-      const watchFiles = require('../events/watch');
+      const watchFiles = require('./events/watch');
       watchFiles(this.events);
       return this.watchBase(config, this.events);
     }
@@ -108,14 +109,14 @@ export default class Goat {
    * Goat configuration object of the current project
    */
   getConfiguration() {
-    const { getConfig, validateConfig } = require('../config/config');
-    const checkSchema = require('../validators/schema');
+    const { getConfig, validateConfig } = require('./config/config');
+    const checkSchema = require('./validators/schema');
     const configuration = getConfig();
     const isValid = validateConfig(configuration);
     // Validate used config
     if (!isValid || (this.schema && !checkSchema(configuration, this.schema))) {
       Notifier.error('The configuration is not correct');
-      const { updateConfig } = require('../schemas/writeConfig');
+      const { updateConfig } = require('./schemas/writeConfig');
       updateConfig(this.schema);
     }
     return configuration;

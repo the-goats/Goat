@@ -1,4 +1,4 @@
-import Goat from '../../../bootstrap';
+import { Goat } from '@the-goat/goat';
 import loadModule from '../../modules/loadModule';
 
 /**

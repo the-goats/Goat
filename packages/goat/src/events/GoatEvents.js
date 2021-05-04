@@ -21,10 +21,8 @@ function handleEvent(callback, data) {
 
 /**
  * Custom event handler for goat packages
- * @class goatEvents
- * @extends {EventEmitter}
  */
-class goatEvents extends EventEmitter {
+class GoatEvents extends EventEmitter {
   emit(args) {
     const parameters = {
       ...args,
@@ -54,4 +52,4 @@ class goatEvents extends EventEmitter {
   get on() { return undefined; }
 }
 
-module.exports = goatEvents;
+module.exports = GoatEvents;

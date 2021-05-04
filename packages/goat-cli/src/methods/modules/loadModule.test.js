@@ -1,5 +1,5 @@
+import { Goat } from '@the-goat/goat';
 import loadModule from './loadModule';
-import Goat from '../../bootstrap';
 
 test('Load a module', () => {
   const modules = [
