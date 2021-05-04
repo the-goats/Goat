@@ -1,4 +1,5 @@
 import Notifier from '@the-goat/notifier';
+import { goatConfig } from '@the-goat/goat';
 import CollectCommands from './methods/commands/CollectCommands';
 import getPackages from './packages/getPackages';
 
@@ -21,7 +22,7 @@ async function base() {
 
   let config;
   try {
-    config = await require('./config/goatConfig')();
+    config = await goatConfig();
   } catch (error) {
     const setCommandInit = require('./commands/init');
     goat.addCommand(setCommandInit());

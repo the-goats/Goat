@@ -1,4 +1,4 @@
-import Notifier from '@the-goat/notifier';
+import Notifier from '@the-goat/notifier';;
 
 /**
  * If current goat config does not match the current goat version, check if the config can be updated, otherwise prompt the user to reinitialize

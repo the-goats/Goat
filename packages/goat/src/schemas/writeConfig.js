@@ -1,18 +1,18 @@
 import Notifier from '@the-goat/notifier';
+import { merge } from 'lodash';
+import goatConfig from '../config/goatConfig';
 
 /**
  * Update the config with a given schema
  * @param {Object} schema
  */
 function writeConfig(schema) {
-  const { merge } = require('lodash');
   const { writeFileSync } = require('fs');
 
-  const { getConfig } = require('../config/config');
-  const configuration = getConfig();
+  const configuration = goatConfig();
 
   const schemaConfig = require('./generateConfig')(schema);
-  const configFileName = require('../methods/init/partials/configFileName');
+  const configFileName = 'goat.config.json';
 
   const projectConfiguration = merge({}, configuration, schemaConfig, configuration);
   if (JSON.stringify(configuration) === JSON.stringify(projectConfiguration)) {

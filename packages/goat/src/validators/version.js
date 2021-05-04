@@ -1,4 +1,5 @@
 import Notifier from '@the-goat/notifier';
+
 const { validRange, satisfies } = require('semver');
 const projectConfig = require('../../package.json');
 

@@ -1,4 +1,5 @@
 import Notifier from '@the-goat/notifier';
+import { goatConfig } from '@the-goat/goat';
 
 /**
  * Format module data to a printable array
@@ -37,7 +38,7 @@ async function listModules() {
  */
 async function projectModules() {
   try {
-    const config = await require('../../config/goatConfig')();
+    const config = await goatConfig();
     const formatted = formatModules(config.modules);
     console.table(formatted);
   } catch (error) {

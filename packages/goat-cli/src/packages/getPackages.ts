@@ -1,5 +1,4 @@
-import { Goat } from '@the-goat/goat';
-import { IGoatProjectConfig } from '@the-goat/goat/src/Goat';
+import { Goat, IGoatProjectConfig } from '@the-goat/goat';
 import loadModule from '../methods/modules/loadModule';
 
 /**

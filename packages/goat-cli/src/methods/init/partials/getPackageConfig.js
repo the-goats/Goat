@@ -1,3 +1,5 @@
+import { generateConfig } from '@the-goat/goat';
+
 /**
  * Get config of packages
  * @param {array} pckg
@@ -5,7 +7,6 @@
  */
 function getPackageConfig(pckg) {
   const { merge } = require('lodash');
-  const generateConfig = require('../../../schemas/generateConfig');
 
   if (!Array.isArray(pckg)) {
     return generateConfig(pckg.init.schema);

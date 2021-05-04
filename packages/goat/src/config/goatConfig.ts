@@ -1,4 +1,5 @@
 import Notifier from '@the-goat/notifier';
+import { IGoatProjectConfig } from '../Goat';
 
 const {
   readFile,
@@ -15,7 +16,7 @@ const configFile = './.goat/config';
  * Check if goat is initialized and get the config
  * @returns {Object} config = Goat configuration containing used packages
  */
-async function getConfig() {
+export default async function goatConfig():Promise<IGoatProjectConfig> {
   try {
     await stat('./.goat');
   } catch (e) {
@@ -36,5 +37,3 @@ async function getConfig() {
   // If the version doesn't match on Minor,
   throw new Error('This project requires a newer version of Goat, please update');
 }
-
-module.exports = getConfig;
