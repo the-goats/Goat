@@ -1,40 +1,41 @@
+// @ts-ignore
+import Notifier from '@the-goat/notifier';
 import GoatEvents from '../events/goatEvents';
 
-const Notifier = require('@the-goat/notifier');
-
 interface IGoatOption {
-  allowOnOnce: boolean;
-  allowOnWatch: boolean,
+  allowOnOnce?: boolean;
   flags: string;
   label: string;
 }
 
-export interface IGoatConfig {
+interface IGoatConfig {
   name: string;
   description: string;
   schema: string;
-  method: (config: IGoatConfig) => Promise<void | (() => void)>;
-  watch?: () => void;
   init: string;
-  options: IGoatOption[];
   command: string;
+  method: (goat: Goat) => Promise<void>;
+  watch?: (goat: Goat) => void;
+  options: IGoatOption[];
+}
+
+interface IGoatProjectConfig {
+  name: string;
+  watch: boolean;
 }
 
 /**
  * Class defining all Goat tasks
+ * @class Goat
  */
 class Goat {
-  private readonly name: string;
+  private name: string;
 
-  private readonly key: string;
+  private key: string;
 
   private description: string;
 
-  private readonly schema: string;
-
-  private readonly method: (config: IGoatConfig) => Promise<void | (() => void)>;
-
-  private readonly watch?: (goat: Goat) => void;
+  private schema: string;
 
   private path: string;
 
@@ -42,11 +43,15 @@ class Goat {
 
   private configuration = null;
 
+  private readonly command: string;
+
+  private readonly method: (goat: Goat) => Promise<void>;
+
+  private readonly watch?: (goat: Goat) => void;
+
   private events: GoatEvents;
 
-  private readonly options: IGoatOption[];
-
-  private readonly command: string;
+  private options: IGoatOption[];
 
   constructor(build: IGoatConfig) {
     this.name = build.name;
@@ -60,7 +65,6 @@ class Goat {
     this.configuration = null;
     this.events = new GoatEvents();
     this.options = build.options;
-    // eslint-disable-next-line no-underscore-dangle
     this.command = this.buildCommand();
   }
 
@@ -73,18 +77,7 @@ class Goat {
       .allowUnknownOption(true)
       .command(this.key)
       .description(this.description)
-      .action((config: IGoatConfig) => {
-        if (process.env.GOAT_DEBUG) {
-          const timeFunction = require('../methods/debug/timeFunction');
-          timeFunction(
-          // @ts-ignore
-            () => this.action({ watch: config.watch }),
-            `Executing ${this.key}`,
-          );
-          return;
-        }
-        this.action(config);
-      });
+      .action(this.action);
     if (this.watch) {
       command.option('-w, --watch', 'Watch for file changes');
     }
@@ -102,7 +95,7 @@ class Goat {
   /**
    * Method to be executed by running Goat command.
    */
-  action(config: IGoatConfig) {
+  action(config: IGoatProjectConfig) {
     if (config.watch) {
       const watchFiles = require('../events/watch');
       watchFiles(this.events);
@@ -112,13 +105,10 @@ class Goat {
   }
 
   /**
-   * @description get Goat configuration object of the current project
+   * Goat configuration object of the current project
    */
   getConfiguration() {
-    const {
-      getConfig,
-      validateConfig,
-    } = require('../config/config');
+    const { getConfig, validateConfig } = require('../config/config');
     const checkSchema = require('../validators/schema');
     const configuration = getConfig();
     const isValid = validateConfig(configuration);
@@ -134,31 +124,26 @@ class Goat {
   /**
    * Forms the base of all Goat actions,
    */
-  actionBase(config: IGoatConfig) {
+  actionBase(config: IGoatProjectConfig) {
     this.configuration = this.getConfiguration();
-    Notifier.log(
-      `${Notifier.emoji('goat')} Running ${this.name
-      || 'task'} in ${process.cwd()}\n`,
-    );
+    Notifier.log(`${Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
-    const result = this.method({
+    // const result = ;
+    // result.then((callback) => {
+    //   if (typeof callback === 'function') {
+    //     callback();
+    //   }
+    // });
+    return this.method({
       ...this,
       options: config,
     });
-    if (result instanceof Promise) {
-      result.then((callback) => {
-        if (typeof callback === 'function') {
-          callback();
-        }
-      });
-    }
-    return result;
   }
 
   /**
    * Base function for watch tasks
    */
-  watchBase(config: IGoatConfig, events: GoatEvents) {
+  watchBase(config: IGoatProjectConfig, events: GoatEvents) {
     this.events = events;
     this.configuration = this.getConfiguration();
     if (!this.watch) {
@@ -174,10 +159,12 @@ class Goat {
 
   /**
    * Build command
+   * @returns {function} command
+   * @memberof Goat
    */
   getCommand() {
     return this.command;
   }
 }
 
-export default Goat;
+module.exports = Goat;
