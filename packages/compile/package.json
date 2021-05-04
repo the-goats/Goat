@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rimraf -rf ./dist",
-    "compile": "tsc -p tsconfig.build.json",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run build",
     "test": "npm run build"
   },

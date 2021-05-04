@@ -20,7 +20,7 @@ interface IGoatConfig {
   command: string;
   method: (command: Command) => Promise<void>;
   watch?: (command: Command) => void;
-  options: IGoatOption[];
+  options?: IGoatOption[];
 }
 
 interface IGoatProjectConfig {
@@ -57,7 +57,7 @@ export default class Goat {
 
   private events: GoatEvents;
 
-  private options: IGoatOption[];
+  private options?: IGoatOption[];
 
   constructor(build: IGoatConfig) {
     this.name = build.name;

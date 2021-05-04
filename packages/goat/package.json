@@ -22,9 +22,9 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rimraf -rf ./dist",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run build",
-    "test": "npm run build",
-    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json"
+    "test": "npm run build"
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3"
 }
