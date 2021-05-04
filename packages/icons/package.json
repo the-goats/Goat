@@ -14,7 +14,6 @@
   "license": "MIT",
   "dependencies": {
     "@the-goat/goat": "*",
-    "bluebird": "^3.7.2",
     "ejs": "^3.1.5",
     "get-stream": "^6.0.0",
     "lodash": "^4.17.20",

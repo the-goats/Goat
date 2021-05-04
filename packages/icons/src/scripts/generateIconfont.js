@@ -501,7 +501,7 @@ function runAll(config) {
   }
   const options = getOptions(config);
   return generateIconfont(options)
-    .then(() => console.info('Set generated'))
+    .then(() => console.info('Set generated'));
 }
 
 /**
