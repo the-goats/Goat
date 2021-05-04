@@ -3,17 +3,39 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
-      "@the-goat/compile": ["compile"],
-      "@geit/goat": ["goat/src"],
-      "@geit/goat-babel": ["goat-babel/src"],
-      "@geit/goat-eslint": ["goat-eslint/src"],
-      "@geit/goat-modernizr": ["goat-modernizr/src"],
-      "@geit/goat-styles": ["goat-styles/src"],
-      "@geit/icons": ["icons/src"],
-      "@geit/js-bundler": ["js-bundler/src"],
-      "@geit/notifier": ["notifier/src"],
-      "@geit/storybook": ["storybook/src"],
-      "@geit/storybook-helpers": ["storybook-helpers/src"]
+      "@the-goat/compile": [
+        "compile"
+      ],
+      "@geit/goat": [
+        "goat/src"
+      ],
+      "@geit/goat-babel": [
+        "goat-babel/src"
+      ],
+      "@geit/goat-eslint": [
+        "goat-eslint/src"
+      ],
+      "@geit/goat-modernizr": [
+        "goat-modernizr/src"
+      ],
+      "@geit/goat-styles": [
+        "goat-styles/src"
+      ],
+      "@geit/icons": [
+        "icons/src"
+      ],
+      "@geit/js-bundler": [
+        "js-bundler/src"
+      ],
+      "@geit/notifier": [
+        "notifier/src"
+      ],
+      "@geit/storybook": [
+        "storybook/src"
+      ],
+      "@geit/storybook-helpers": [
+        "storybook-helpers/src"
+      ]
     }
   }
 }
