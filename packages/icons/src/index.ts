@@ -1,4 +1,6 @@
-module.exports = (Goat) => new Goat({
+import { Goat } from '@the-goat/goat';
+
+export default () => new Goat({
   name: 'Icons',
   command: 'icons',
   description: 'Generate icon font files based on svg files',
@@ -14,7 +16,7 @@ module.exports = (Goat) => new Goat({
       name: 'Icons',
       pattern: `${config.configuration.locations.icons.src}/**/*.svg`,
       events: /file:/,
-      method: (item) => {
+      method: (item: { path: string }) => {
         runSingle(config, item.path);
       },
     });

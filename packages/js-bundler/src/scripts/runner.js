@@ -49,13 +49,25 @@ function run(config) {
   // eslint-disable-next-line no-param-reassign
   config.entryFiles = formatEntryFiles(config.files, dist, config.path);
   if (isEmpty(config.entryFiles)) {
-    Notifier.error('No entry files found, please check your configuration');
-    return;
+    throw new Error('No entry files found, please check your configuration');
   }
   const getWebpackSetup = require('./webpack');
   const logResults = require('./log');
   const compiler = getWebpackSetup(config);
-  compiler.run((err, stats) => logResults(stats));
+  return new Promise((resolve, reject) => {
+    compiler.run((error, stats) => {
+      logResults(error, stats);
+      if (error) {
+        reject(error);
+        return;
+      }
+      if (stats.compilation.errors.length) {
+        reject(stats.compilation.errors[0]);
+        return;
+      }
+      resolve();
+    });
+  });
 }
 
 /**
@@ -64,7 +76,7 @@ function run(config) {
  */
 function runAll(config) {
   const files = getFiles(config);
-  run({
+  return run({
     ...config,
     files,
     ts: hasTS(files),

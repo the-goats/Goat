@@ -1,4 +1,6 @@
-module.exports = (Goat) => new Goat({
+import { Goat } from '@the-goat/goat';
+
+export default () => new Goat({
   name: 'Styles',
   command: 'styles',
   description: 'Compile Styles',
@@ -8,9 +10,10 @@ module.exports = (Goat) => new Goat({
     const getSettings = require('./scripts/getSettings');
     const { compileStyles } = require('./scripts/compileStyles');
     const settings = getSettings(config);
-    return new Promise((resolve) => {
-      compileStyles({ ...config, settings }).pipe(sizeReport());
-      resolve(true);
+    return new Promise((resolve, reject) => {
+      const gulpStream = compileStyles({ ...config, settings }).pipe(sizeReport());
+      gulpStream.on('end', resolve);
+      gulpStream.on('error', reject);
     });
   },
   watch: (config) => {
