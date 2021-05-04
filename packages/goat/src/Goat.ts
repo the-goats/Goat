@@ -1,5 +1,6 @@
 // @ts-ignore
 import Notifier from '@the-goat/notifier';
+import { Command } from 'commander';
 import GoatEvents from './events/GoatEvents';
 
 interface IGoatOption {
@@ -13,10 +14,12 @@ interface IGoatConfig {
   name: string;
   description: string;
   schema: string;
-  init: string;
+  init?: {
+    files?: () => void;
+  };
   command: string;
-  method: (goat: Goat) => Promise<void>;
-  watch?: (goat: Goat) => void;
+  method: (command: Command) => Promise<void>;
+  watch?: (command: Command) => void;
   options: IGoatOption[];
 }
 
@@ -40,15 +43,17 @@ export default class Goat {
 
   private path: string;
 
-  private init: string;
+  private init?: {
+    files?: () => void;
+  };
 
   private configuration = null;
 
   private readonly command: string;
 
-  private readonly method: (goat: Goat) => Promise<void>;
+  private readonly method: (command: Command) => Promise<void>;
 
-  private readonly watch?: (goat: Goat) => void;
+  private readonly watch?: (command: Command) => void;
 
   private events: GoatEvents;
 
