@@ -2,7 +2,6 @@ import Notifier from '@the-goat/notifier';
 
 const { stat } = require('fs').promises;
 const { normalize } = require('path');
-const configFileName = require('./partials/configFileName');
 const initQuestions = require('./partials/questions');
 const initializeGoatConfig = require('./partials/initConfig');
 const initializeProjectConfig = require('./partials/projectConfig');
@@ -27,7 +26,7 @@ const action = async (options = {}) => {
   }
 
   try {
-    await stat(normalize(`./${configFileName}`));
+    await stat(normalize(`./goat.config.json`));
     Notifier.log('Goat is already initialized');
     return;
   } catch (error) {
