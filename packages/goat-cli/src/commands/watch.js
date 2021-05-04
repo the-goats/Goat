@@ -1,4 +1,4 @@
-const Notifier = require('@the-goat/notifier');
+import Notifier from '@the-goat/notifier';
 const commander = require('commander');
 const { watch, GoatEvents } = require('@the-goat/goat');
 

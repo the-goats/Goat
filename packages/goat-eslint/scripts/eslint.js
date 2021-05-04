@@ -1,4 +1,4 @@
-const Notifier = require('@the-goat/notifier');
+import Notifier from '@the-goat/notifier';
 const { Linter } = require('eslint');
 const eslintConfig = require('eslint-config-airbnb-base');
 const {

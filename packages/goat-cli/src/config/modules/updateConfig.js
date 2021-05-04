@@ -1,3 +1,5 @@
+import Notifier from '@the-goat/notifier';
+
 /**
  * If current goat config does not match the current goat version, check if the config can be updated, otherwise prompt the user to reinitialize
  * @param {Object} config
@@ -8,7 +10,6 @@ async function updateConfig(config) {
   const { lte } = require('semver');
   const { normalize } = require('path');
   const { version } = require('../../../package.json');
-  const Notifier = require('@the-goat/notifier');
   const configFile = './.goat/config';
 
   let newConfig = config;

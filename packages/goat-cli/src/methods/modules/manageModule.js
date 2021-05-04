@@ -1,6 +1,7 @@
+import Notifier from '@the-goat/notifier';
+
 const importGlobal = require('import-global');
 const { promisify } = require('util');
-const Notifier = require('@the-goat/notifier');
 const exec = promisify(require('child_process').exec);
 const getGlobalConfig = require('../settings/getGlobalConfig');
 const updateGlobalSettings = require('../settings/updateGlobalSettings');

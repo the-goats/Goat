@@ -1,6 +1,7 @@
+import Notifier from '@the-goat/notifier';
+
 const { EventEmitter } = require('events');
 const { parse } = require('path');
-const Notifier = require('@the-goat/notifier');
 const matchPattern = require('./modules/matchPattern');
 const matchEvent = require('./modules/matchEvent');
 const eventMessage = require('./modules/eventMessage');
@@ -52,4 +53,4 @@ class GoatEvents extends EventEmitter {
   get on() { return undefined; }
 }
 
-module.exports = GoatEvents;
+export default GoatEvents;

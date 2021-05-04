@@ -1,10 +1,11 @@
+import Notifier from '@the-goat/notifier';
+
 const {
   access,
   writeFile,
   readFile,
   F_OK,
 } = require('fs').promises;
-const Notifier = require('@the-goat/notifier');
 const settingsRef = require('../../references/settings');
 
 /**

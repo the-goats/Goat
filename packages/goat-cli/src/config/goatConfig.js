@@ -1,3 +1,5 @@
+import Notifier from '@the-goat/notifier';
+
 const {
   readFile,
   stat,
@@ -5,7 +7,6 @@ const {
 const {
   gt, satisfies, major, minor,
 } = require('semver');
-const Notifier = require('@the-goat/notifier');
 const { version } = require('../../package.json');
 
 const configFile = './.goat/config';

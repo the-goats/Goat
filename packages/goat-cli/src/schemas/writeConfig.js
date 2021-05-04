@@ -1,9 +1,10 @@
+import Notifier from '@the-goat/notifier';
+
 /**
  * Update the config with a given schema
  * @param {Object} schema
  */
 function writeConfig(schema) {
-  const Notifier = require('@the-goat/notifier');
   const { merge } = require('lodash');
   const { writeFileSync } = require('fs');
 

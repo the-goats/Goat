@@ -1,6 +1,7 @@
+import Notifier from '@the-goat/notifier';
+
 const { writeFile } = require('fs').promises;
 const mkdirp = require('mkdirp');
-const Notifier = require('@the-goat/notifier');
 
 /**
  * Create project files from package

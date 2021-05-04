@@ -1,6 +1,4 @@
 const isEmpty = require('lodash/isEmpty');
-const Notifier = require('@the-goat/notifier');
-
 const fileExtensions = '.+(es6.js|ts)';
 
 /**

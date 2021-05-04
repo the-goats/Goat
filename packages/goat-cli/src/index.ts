@@ -1,13 +1,14 @@
+import Notifier from '@the-goat/notifier';
+import CollectCommands from './methods/commands/CollectCommands';
+import getPackages from './packages/getPackages';
+
 const updateNotifier = require('update-notifier');
 const commander = require('commander');
-const Notifier = require('@the-goat/notifier');
-const CollectCommands = require('./methods/commands/CollectCommands');
 const setCommandWatch = require('./commands/watch');
 const setCommandBuild = require('./commands/build');
 const setCommandModule = require('./commands/module');
 const setCommandProject = require('./commands/project');
 const pkg = require('../package.json');
-const getPackages = require('./packages/getPackages');
 
 const goat = new commander.Command();
 
@@ -17,9 +18,6 @@ async function base() {
     .version(pkg.version, '-v, -V, --version', 'output the current version')
     .name('Goat')
     .description('Goat');
-
-  goat
-    .option('-D, --debug', 'Debug Goat and modules');
 
   let config;
   try {
@@ -50,11 +48,4 @@ async function base() {
   goat.parse(process.argv);
 }
 
-module.exports = () => {
-  global.DEBUG = process.argv.includes('--debug') || process.argv.includes('-D');
-  if (global.DEBUG) {
-    const timeFunction = require('./methods/debug/timeFunction');
-    return timeFunction(base, 'goat');
-  }
-  return base();
-};
+export default base;

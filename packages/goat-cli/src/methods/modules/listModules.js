@@ -1,4 +1,4 @@
-const Notifier = require('@the-goat/notifier');
+import Notifier from '@the-goat/notifier';
 
 /**
  * Format module data to a printable array

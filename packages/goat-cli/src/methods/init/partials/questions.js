@@ -1,5 +1,6 @@
+import Notifier from '@the-goat/notifier';
+
 const inquirer = require('inquirer');
-const Notifier = require('@the-goat/notifier');
 
 /**
  * Inquire the user preferences.

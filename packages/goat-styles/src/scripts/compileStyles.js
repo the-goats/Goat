@@ -1,4 +1,4 @@
-const Notifier = require('@the-goat/notifier');
+import Notifier from '@the-goat/notifier';
 const gulp = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const compass = require('compass-importer');

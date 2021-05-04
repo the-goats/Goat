@@ -1,5 +1,3 @@
 #!/usr/bin/env node
 
-const Goat = require('../dist/index');
-
-Goat();
+require('../dist/index').default();

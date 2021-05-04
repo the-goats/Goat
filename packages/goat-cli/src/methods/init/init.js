@@ -1,6 +1,7 @@
+import Notifier from '@the-goat/notifier';
+
 const { stat } = require('fs').promises;
 const { normalize } = require('path');
-const Notifier = require('@the-goat/notifier');
 const configFileName = require('./partials/configFileName');
 const initQuestions = require('./partials/questions');
 const initializeGoatConfig = require('./partials/initConfig');

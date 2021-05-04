@@ -1,5 +1,6 @@
+import Notifier from '@the-goat/notifier';
+
 const importGlobal = require('import-global');
-const Notifier = require('@the-goat/notifier');
 
 /**
  * Require local or global module
@@ -10,7 +11,7 @@ function loadModule(module) {
   if (!module.global) {
     try {
       // eslint-disable-next-line import/no-dynamic-require
-      return require(module.package);
+      return require(module.package).default;
     } catch (error) {
       Notifier.error(`The module ${module.package} could not be loaded, please try updating goat or remove the module from your project config.`);
       process.exit();
@@ -27,4 +28,4 @@ function loadModule(module) {
   throw new Error('Load module failed');
 }
 
-module.exports = loadModule;
+export default loadModule;

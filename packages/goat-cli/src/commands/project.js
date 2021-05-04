@@ -1,3 +1,5 @@
+import Notifier from '@the-goat/notifier';
+
 const commander = require('commander');
 const { projectModules } = require('../methods/modules/listModules');
 // const addModule = require('../methods/modules/addModule');
@@ -38,7 +40,6 @@ function commandProject() {
       try {
         await require('../config/goatConfig')();
       } catch (error) {
-        const Notifier = require('@the-goat/notifier');
         Notifier.error(error.message);
       }
       program.help();

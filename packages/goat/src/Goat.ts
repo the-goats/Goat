@@ -1,4 +1,3 @@
-// @ts-ignore
 import Notifier from '@the-goat/notifier';
 import { Command } from 'commander';
 import GoatEvents from './events/GoatEvents';
@@ -23,9 +22,20 @@ interface IGoatConfig {
   options?: IGoatOption[];
 }
 
-interface IGoatProjectConfig {
+interface IGoatActionConfig {
   name: string;
   watch: boolean;
+}
+
+export interface IGoatProjectConfig {
+  'goatVersion': string,
+  'modules': [
+    {
+      'name': string,
+      'package': string,
+      'description': string
+    },
+  ]
 }
 
 /**
@@ -101,7 +111,7 @@ export default class Goat {
   /**
    * Method to be executed by running Goat command.
    */
-  action(config: IGoatProjectConfig) {
+  action(config: IGoatActionConfig) {
     if (config.watch) {
       const watchFiles = require('./events/watch');
       watchFiles(this.events);
@@ -130,7 +140,7 @@ export default class Goat {
   /**
    * Forms the base of all Goat actions,
    */
-  actionBase(config: IGoatProjectConfig) {
+  actionBase(config: IGoatActionConfig) {
     this.configuration = this.getConfiguration();
     Notifier.log(`${Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
@@ -149,7 +159,7 @@ export default class Goat {
   /**
    * Base function for watch tasks
    */
-  watchBase(config: IGoatProjectConfig, events: GoatEvents) {
+  watchBase(config: IGoatActionConfig, events: GoatEvents) {
     this.events = events;
     this.configuration = this.getConfiguration();
     if (!this.watch) {
