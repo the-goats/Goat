@@ -2,13 +2,18 @@
   "name": "@the-goat/modernizr",
   "version": "1.10.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && npm run compile",
+    "clean": "../../node_modules/.bin/rimraf -rf ./dist",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build"
   },
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
+    "@the-goat/goat": "*",
     "customizr": "^2.0.1",
     "lodash": "^4.17.20"
   },

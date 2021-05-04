@@ -2,13 +2,18 @@
   "name": "@the-goat/eslint",
   "version": "1.12.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && npm run compile",
+    "clean": "../../node_modules/.bin/rimraf -rf ./dist",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build"
   },
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "ISC",
   "dependencies": {
+    "@the-goat/goat": "*",
     "@the-goat/notifier": "^1.12.1",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^14.1.0",

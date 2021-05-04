@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "npm run clean && npm run compile",
-    "clean": "rimraf -rf ./dist",
+    "clean": "../../node_modules/.bin/rimraf -rf ./dist",
     "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run build",
     "test": "npm run build"
@@ -22,9 +22,6 @@
     "babel-preset-airbnb": "^5.0.0",
     "lodash": "^4.17.20",
     "rollup": "^2.35.1"
-  },
-  "devDependencies": {
-    "rimraf": "^2.6.2"
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
   "goat": {

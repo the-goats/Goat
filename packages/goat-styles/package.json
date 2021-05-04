@@ -2,13 +2,18 @@
   "name": "@the-goat/styles",
   "version": "1.12.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && npm run compile",
+    "clean": "../../node_modules/.bin/rimraf -rf ./dist",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build"
   },
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
+    "@the-goat/goat": "*",
     "@the-goat/notifier": "^1.12.1",
     "compass-importer": "^0.4.1",
     "gulp": "^4.0.2",

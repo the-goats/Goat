@@ -1,4 +1,6 @@
-module.exports = (Goat) => new Goat({
+import { Goat } from '@the-goat/goat';
+
+export default () => new Goat({
   name: 'Storybook',
   command: 'story',
   description: 'Manage a design system using storybook',

@@ -1,28 +1,31 @@
-module.exports = (Goat) => new Goat({
+import { Goat } from '@the-goat/goat';
+
+export default () => new Goat({
   name: 'Eslint',
   command: 'eslint',
   description: 'Run eslint',
-  schema: require('./scripts/schema'),
+  schema: require('../scripts/schema'),
   method: (config) => {
-    const { processEslint } = require('./scripts/eslint');
+    const { processEslint } = require('../scripts/eslint');
     return new Promise((resolve) => {
       const { configuration } = config;
-      const sources = Array.isArray(configuration.locations.javascript.src) ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
+      const sources = Array.isArray(configuration.locations.javascript.src)
+        ? configuration.locations.javascript.src
+        : [configuration.locations.javascript.src];
       processEslint({
         ...config,
         sources,
       });
-      resolve(true);
+      resolve();
     });
   },
   watch: (config) => {
-    const {
-      processEslint,
-      processEslintFile,
-    } = require('./scripts/eslint');
+    const { processEslint, processEslintFile } = require('../scripts/eslint');
     const { normalize } = require('path');
     const { configuration, events } = config;
-    const sources = Array.isArray(configuration.locations.javascript.src) ? configuration.locations.javascript.src : [configuration.locations.javascript.src];
+    const sources: string[] = Array.isArray(configuration.locations.javascript.src)
+      ? configuration.locations.javascript.src
+      : [configuration.locations.javascript.src];
     processEslint({
       ...config,
       sources,
@@ -32,7 +35,7 @@ module.exports = (Goat) => new Goat({
       name: 'Eslint',
       pattern: paths,
       events: /file:/,
-      method: (data) => {
+      method: (data: { path: string }) => {
         processEslintFile({
           ...config,
           file: data.path,
