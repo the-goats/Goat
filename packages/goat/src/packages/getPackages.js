@@ -1,4 +1,4 @@
-import Goat from '../bootstrap/index.ts';
+import Goat from '../bootstrap';
 import loadModule from '../methods/modules/loadModule';
 
 /**

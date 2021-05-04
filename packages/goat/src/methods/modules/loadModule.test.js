@@ -1,5 +1,5 @@
 import loadModule from './loadModule';
-import Goat from '../../bootstrap/index.ts';
+import Goat from '../../bootstrap';
 
 test('Load a module', () => {
   const modules = [
