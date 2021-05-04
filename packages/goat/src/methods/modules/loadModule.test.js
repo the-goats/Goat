@@ -3,9 +3,9 @@ import Goat from '../../bootstrap';
 
 test('Load a module', () => {
   const modules = [
-    { name: 'Goat Styles', package: '@geit/styles' },
-    { name: 'Goat Babel', package: '@geit/babel' },
-    { name: 'Goat ESlint', package: '@geit/eslint' },
+    { name: 'Goat Styles', package: '@the-goat/styles' },
+    { name: 'Goat Babel', package: '@the-goat/babel' },
+    { name: 'Goat ESlint', package: '@the-goat/eslint' },
   ];
 
   modules.forEach((ref) => {

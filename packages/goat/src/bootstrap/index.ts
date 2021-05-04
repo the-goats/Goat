@@ -28,7 +28,7 @@ interface IGoatProjectConfig {
  * Class defining all Goat tasks
  * @class Goat
  */
-class Goat {
+export default class Goat {
   private name: string;
 
   private key: string;
@@ -166,5 +166,3 @@ class Goat {
     return this.command;
   }
 }
-
-module.exports = Goat;

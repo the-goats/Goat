@@ -1,4 +1,6 @@
-module.exports = (Goat) => new Goat({
+import Goat from '@the-goat/goat/bootstrap';
+
+export default () => new Goat({
   name: 'Compile',
   command: 'compile',
   description: 'Webpack based compiler for Javascript and scss',

@@ -4,27 +4,27 @@ import getPackages from './getPackages';
 const config = {
   goatVersion: '1.5.0',
   functions: [
-    '@geit/styles',
-    '@geit/babel',
-    '@geit/eslint',
-    '@geit/modernizr',
+    '@the-goat/styles',
+    '@the-goat/babel',
+    '@the-goat/eslint',
+    '@the-goat/modernizr',
   ],
   modules: [
     {
       name: 'Goat Styles',
-      package: '@geit/styles',
+      package: '@the-goat/styles',
     },
     {
       name: 'Goat Babel',
-      package: '@geit/babel',
+      package: '@the-goat/babel',
     },
     {
       name: 'Goat ESlint',
-      package: '@geit/eslint',
+      package: '@the-goat/eslint',
     },
     {
       name: 'Goat Modernizr',
-      package: '@geit/modernizr',
+      package: '@the-goat/modernizr',
     },
   ],
 };

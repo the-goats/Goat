@@ -4,10 +4,10 @@ test('Get the global config', async () => {
   const beforeConfig = {
     goatVersion: '1.4.0',
     functions: [
-      '@geit/styles',
-      '@geit/babel',
-      '@geit/eslint',
-      '@geit/modernizr',
+      '@the-goat/styles',
+      '@the-goat/babel',
+      '@the-goat/eslint',
+      '@the-goat/modernizr',
     ],
   };
 

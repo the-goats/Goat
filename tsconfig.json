@@ -6,34 +6,34 @@
       "@the-goat/compile": [
         "compile"
       ],
-      "@geit/goat": [
+      "@the-goat/goat": [
         "goat/src"
       ],
-      "@geit/goat-babel": [
+      "@the-goat/goat-babel": [
         "goat-babel/src"
       ],
-      "@geit/goat-eslint": [
+      "@the-goat/goat-eslint": [
         "goat-eslint/src"
       ],
-      "@geit/goat-modernizr": [
+      "@the-goat/goat-modernizr": [
         "goat-modernizr/src"
       ],
-      "@geit/goat-styles": [
+      "@the-goat/goat-styles": [
         "goat-styles/src"
       ],
-      "@geit/icons": [
+      "@the-goat/icons": [
         "icons/src"
       ],
-      "@geit/js-bundler": [
+      "@the-goat/js-bundler": [
         "js-bundler/src"
       ],
-      "@geit/notifier": [
+      "@the-goat/notifier": [
         "notifier/src"
       ],
-      "@geit/storybook": [
+      "@the-goat/storybook": [
         "storybook/src"
       ],
-      "@geit/storybook-helpers": [
+      "@the-goat/storybook-helpers": [
         "storybook-helpers/src"
       ]
     }
