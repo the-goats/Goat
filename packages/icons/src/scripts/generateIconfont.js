@@ -45,7 +45,7 @@ async function createCSS(options, files) {
     return `.${options.classNamePrefix}-${name}::before { content: "\\${unicodeString}"; }\n`;
   }).join('');
 
-  const template = require.resolve('./templates/styles.scss');
+  const template = require.resolve('../../templates/styles.scss');
 
   const file = await ejs.renderFile(template, {
     styles: css,
@@ -73,7 +73,7 @@ async function createStyles(options, files) {
     return `.${options.classNamePrefix}-${name}::before { content: ${scssVariable}; }\n`;
   }).join('');
 
-  const template = require.resolve('./templates/styles.scss');
+  const template = require.resolve('../../templates/styles.scss');
   const file = await ejs.renderFile(template, {
     styles: scss,
     classNamePrefix: options.classNamePrefix,
@@ -101,7 +101,7 @@ async function createVariablesScss(options, files) {
     return `${scssVariable}: "\\${unicodeString}";\n`;
   }).join('');
 
-  const template = require.resolve('./templates/variables.scss');
+  const template = require.resolve('../../templates/variables.scss');
   const file = await ejs.renderFile(template, {
     variables,
     path: options.fontDirectory,
@@ -120,7 +120,7 @@ async function createVariablesScss(options, files) {
  * @returns {String}
  */
 async function createMixinsScss(options) {
-  const template = require.resolve('./templates/mixins.scss');
+  const template = require.resolve('../../templates/mixins.scss');
   const file = await ejs.renderFile(template, {
     fontName: options.fontName,
     classNamePrefix: options.classNamePrefix,
@@ -139,7 +139,7 @@ async function createMixinsScss(options) {
  */
 async function createPreview(options, files) {
   const lines = Object.keys(files.unicode).map((name) => `<li class="class-icon"><span class="${options.classNamePrefix}-${name}"></span><p class="name">${name}</p></li>`).join('');
-  const template = require.resolve('./templates/icons.html');
+  const template = require.resolve('../../templates/icons.html');
   const settings = {
     ...options,
     title: options.fontName,
@@ -223,7 +223,7 @@ async function createSelectionJson(options, files) {
     setId: 0,
     iconIdx: index + 1,
   }));
-  const template = require.resolve('./templates/selection.json');
+  const template = require.resolve('../../templates/selection.json');
   const selection = await ejs.renderFile(template, {
     icons: JSON.stringify(icons),
     prefix: options.classNamePrefix,
@@ -355,7 +355,7 @@ async function createSvgSymbol(options, files) {
     return `<symbol id="${options.classNamePrefix}-${fileName}">${contents}</symbol>`;
   }).join('');
 
-  const template = require.resolve('./templates/symbol.svg');
+  const template = require.resolve('../../templates/symbol.svg');
   const file = await ejs.renderFile(template, {
     icons: symbols,
   });
