@@ -86,7 +86,8 @@ export function runWatch(config: TGoatMethodConfig) {
   watch({
     ...getCompileTaskConfig(config),
     settings: {
+      // @ts-ignore
       production: !!config.options.production,
     },
-  });
+  } as TGoatCompileTaskConfig);
 }

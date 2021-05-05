@@ -1,19 +1,24 @@
+// @ts-ignore
 import Notifier from '@the-goat/notifier';
+import { parse } from 'path';
+import matchPattern from './modules/matchPattern';
+import matchEvent from './modules/matchEvent';
+import eventMessage from './modules/eventMessage';
 
-const { EventEmitter } = require('events');
-const { parse } = require('path');
-const matchPattern = require('./modules/matchPattern');
-const matchEvent = require('./modules/matchEvent');
-const eventMessage = require('./modules/eventMessage');
+// @ts-ignore
+// eslint-disable-next-line
+const EventEmitter: any = require('events').EventEmitter;
 
 /**
  * Execute callback event based on event data
- * @param {Function} callback
- * @param {Object} data
  * @returns
  */
-function handleEvent(callback, data) {
-  if (!data.event || (callback.pattern && !matchPattern(data.path, callback.pattern)) || !matchEvent(data.event, callback.events)) {
+function handleEvent(callback: any, data: any) {
+  if (
+    !data.event
+    || (callback.pattern && !matchPattern(data.path, callback.pattern))
+    || !matchEvent(data.event, callback.events)
+  ) {
     return;
   }
   Notifier.log(Notifier.style.cyan(`\tRunning ${callback.name || 'unnamed task'}`));
@@ -23,8 +28,9 @@ function handleEvent(callback, data) {
 /**
  * Custom event handler for goat packages
  */
+
 class GoatEvents extends EventEmitter {
-  emit(args) {
+  emit(args:any) {
     const parameters = {
       ...args,
     };
@@ -38,7 +44,7 @@ class GoatEvents extends EventEmitter {
   }
 
   watch(callback = {}) {
-    super.on('goat', (data) => {
+    super.on('goat', (data:any) => {
       if (!Array.isArray(callback)) {
         handleEvent(callback, data);
         return;
@@ -49,8 +55,11 @@ class GoatEvents extends EventEmitter {
     });
   }
 
+  // @ts-ignore
   // eslint-disable-next-line
-  get on() { return undefined; }
+  get on() {
+    return undefined;
+  }
 }
 
 export default GoatEvents;

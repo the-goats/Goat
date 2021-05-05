@@ -14,7 +14,7 @@ function cleanFileName(file) {
  * @param {String} event
  * @param {String} file
  */
-function eventMessage(event, file) {
+export default function eventMessage(event, file) {
   const eventParts = event.split(':');
   const fileName = cleanFileName(file);
   const eventMapping = {
@@ -30,5 +30,3 @@ function eventMessage(event, file) {
   const type = eventType.includes('Dir') ? 'Directory' : 'File';
   Notifier.log(Notifier.style.cyan(Notifier.style.bold(`\n${type} ${fileName} has been ${eventMapping[eventType]}`)));
 }
-
-module.exports = eventMessage;

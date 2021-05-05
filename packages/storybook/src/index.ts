@@ -20,6 +20,7 @@ export default () => new Goat({
     },
   ],
   async method(config) {
+    // @ts-ignore
     if (config.options.story) {
       require('./scripts/storybook/runStory')(config);
       return;
@@ -28,6 +29,7 @@ export default () => new Goat({
   },
   watch(config) {
     const notifier = require('@the-goat/notifier');
+    // @ts-ignore
     if (!config.options.story) {
       notifier.info('Skipping Storybook while watching, to include storybook run watch with the --story flag');
       return;

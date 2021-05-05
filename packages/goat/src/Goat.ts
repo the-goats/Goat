@@ -15,15 +15,7 @@ interface IGoatOption {
   label: string;
 }
 
-export type TGoatMethodConfig = Command & {
-  path: string;
-  options: {
-    story?: boolean;
-    production?: boolean;
-    analyse?: boolean;
-  };
-  configuration: IGoatExternalProjectConfig;
-};
+export type TGoatMethodConfig = Goat & { options: Command };
 
 interface IGoatConfig {
   name: string;
@@ -34,13 +26,8 @@ interface IGoatConfig {
   };
   command: string;
   method: (command: TGoatMethodConfig) => Promise<void>;
-  watch?: (command: TGoatMethodConfig & { event?: GoatEvents, events?: GoatEvents }) => void;
+  watch?: (command: TGoatMethodConfig) => void;
   options?: IGoatOption[];
-}
-
-interface IGoatActionConfig {
-  name: string;
-  watch: boolean;
 }
 
 /**
@@ -55,7 +42,7 @@ export default class Goat {
 
   private schema: JSONSchema6;
 
-  private path: string;
+  public path: string;
 
   private init?: {
     files?: () => void;
@@ -63,13 +50,13 @@ export default class Goat {
 
   public configuration: IGoatExternalProjectConfig;
 
-  private readonly command: string;
+  private readonly command: Command;
 
   private readonly method: (command: TGoatMethodConfig) => Promise<void>;
 
-  private readonly watch?: (command: TGoatMethodConfig & { event: GoatEvents }) => void;
+  private readonly watch?: (command: TGoatMethodConfig) => void;
 
-  private events: GoatEvents;
+  public events: GoatEvents;
 
   public options: IGoatOption[];
 
@@ -115,7 +102,7 @@ export default class Goat {
   /**
    * Method to be executed by running Goat command.
    */
-  action(config: IGoatActionConfig) {
+  action(config: any) {
     if (config.watch) {
       const watchFiles = require('./events/watch');
       watchFiles(this.events);
@@ -144,7 +131,7 @@ export default class Goat {
   /**
    * Forms the base of all Goat actions,
    */
-  public actionBase(config: IGoatActionConfig) {
+  public actionBase(config: Command): Promise<void> {
     Notifier.log(`${Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
     // const result = ;
@@ -156,7 +143,6 @@ export default class Goat {
 
     return this.method({
       ...this,
-      // @ts-ignore
       options: config,
     });
   }
@@ -164,7 +150,7 @@ export default class Goat {
   /**
    * Base function for watch tasks
    */
-  watchBase(config: IGoatActionConfig, events: GoatEvents) {
+  watchBase(config: Command, events: GoatEvents) {
     this.events = events;
     if (!this.watch) {
       Notifier.log('This command has no watch option');
@@ -173,14 +159,11 @@ export default class Goat {
     this.watch({
       ...this,
       options: config,
-      events,
     });
   }
 
   /**
    * Build command
-   * @returns {function} command
-   * @memberof Goat
    */
   getCommand() {
     return this.command;

@@ -17,7 +17,7 @@ export type TGoatCompileTaskConfig = TGoatMethodConfig & {
 /**
  * Get the destination for each file
  */
-function getDest(config: TGoatMethodConfig & { path: string }, el: string): string {
+function getDest(config: TGoatMethodConfig, el: string): string {
   const { dist, patterns } = config.configuration.locations;
   const { path } = config;
   const name = el.substring(0, el.lastIndexOf('.')).replace(`${path}/`, '').replace('.es6', '');
@@ -51,5 +51,5 @@ export function getCompileTaskConfig(
         [destination]: pathResolve(el),
       };
     }, {}),
-  };
+  } as TGoatCompileTaskConfig;
 }
