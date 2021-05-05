@@ -1,10 +1,13 @@
+import { TGoatMethodConfig } from '@the-goat/goat';
+
 /**
  * Collect Loaders
  * @param {Object} config
  * @returns {Array} an array of loaders
  */
-function getLoaders(config) {
+export default function getLoaders(config: TGoatMethodConfig) {
   const loaders = [];
+
   if (config.configuration.handlers.javascript) {
     loaders.push(require('./loaders/jsLoader')(config));
   }
@@ -16,5 +19,3 @@ function getLoaders(config) {
   }
   return loaders;
 }
-
-module.exports = getLoaders;

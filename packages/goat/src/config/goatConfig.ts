@@ -1,31 +1,35 @@
+// @ts-ignore
 import Notifier from '@the-goat/notifier';
-import { IGoatProjectConfig } from '../Goat';
-
-const {
-  readFile,
-  stat,
-} = require('fs').promises;
-const {
+import { resolve } from 'path';
+import { promises, readFileSync } from 'fs';
+import {
   gt, satisfies, major, minor,
-} = require('semver');
-const { version } = require('../../package.json');
+} from 'semver';
+import { IGoatInternalProjectConfig } from './index';
 
-const configFile = './.goat/config';
+const { version } = JSON.parse(readFileSync(resolve(__dirname, '../../package.json'), 'utf-8'));
+
+const configFile = resolve('./.goat/config');
+
+const { readFile, stat } = promises;
 
 /**
  * Check if goat is initialized and get the config
- * @returns {Object} config = Goat configuration containing used packages
  */
-export default async function goatConfig():Promise<IGoatProjectConfig> {
+export default async function goatConfig(): Promise<IGoatInternalProjectConfig> {
   try {
     await stat('./.goat');
   } catch (e) {
-    const error = new Error(`No Goat project seems to be initiated here, please check your path or run ${Notifier.script('goat init')}`);
+    const error = new Error(
+      `No Goat project seems to be initiated here, please check your path or run ${Notifier.script(
+        'goat init',
+      )}`,
+    );
     error.name = 'NO_GOAT_PROJECT';
     throw error;
   }
 
-  const config = JSON.parse(await readFile(configFile));
+  const config = JSON.parse(await readFile(configFile, 'utf-8'));
   const goatVersion = `${major(version)}.${minor(version)}.x`;
   if (satisfies(config.goatVersion, goatVersion)) {
     return config;

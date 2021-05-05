@@ -6,6 +6,7 @@ module.exports = {
         'no-debugger': 'off',
         'max-len': 'off',
         'global-require': 'off',
+        "import/no-extraneous-dependencies": ["error", {"peerDependencies": false}]
     },
     parserOptions: {
         project: './tsconfig.json',

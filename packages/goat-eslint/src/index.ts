@@ -9,6 +9,9 @@ export default () => new Goat({
     const { processEslint } = require('../scripts/eslint');
     return new Promise((resolve) => {
       const { configuration } = config;
+      if (!configuration.locations.javascript) {
+        throw new Error('Missing JavaScript location');
+      }
       const sources = Array.isArray(configuration.locations.javascript.src)
         ? configuration.locations.javascript.src
         : [configuration.locations.javascript.src];
@@ -23,6 +26,12 @@ export default () => new Goat({
     const { processEslint, processEslintFile } = require('../scripts/eslint');
     const { normalize } = require('path');
     const { configuration, events } = config;
+    if (!configuration.locations.javascript) {
+      throw new Error('Missing JavaScript location');
+    }
+    if (!events) {
+      throw new Error('Missing Watchable eventemitter');
+    }
     const sources: string[] = Array.isArray(configuration.locations.javascript.src)
       ? configuration.locations.javascript.src
       : [configuration.locations.javascript.src];

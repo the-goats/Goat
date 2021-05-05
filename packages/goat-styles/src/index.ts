@@ -21,6 +21,9 @@ export default () => new Goat({
     const getSettings = require('./scripts/getSettings');
     const { compileStyles } = require('./scripts/compileStyles');
     const { events } = config;
+    if (!events) {
+      throw new Error('Missing Watchable eventemitter');
+    }
     const settings = getSettings(config);
     compileStyles({ ...config, settings }).pipe(sizeReport());
     events.watch({

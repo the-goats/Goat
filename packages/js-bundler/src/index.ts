@@ -13,6 +13,12 @@ export default () => new Goat({
     const { configuration, events } = config;
     const { normalize } = require('path');
     const { runAll, runSingle } = require('./scripts/runner');
+    if (!configuration.locations.javascript) {
+      throw new Error('Missing JavaScript location');
+    }
+    if (!events) {
+      throw new Error('Missing Watchable eventemitter');
+    }
     const sources: string[] = Array.isArray(configuration.locations.javascript.src)
       ? configuration.locations.javascript.src
       : [configuration.locations.javascript.src];

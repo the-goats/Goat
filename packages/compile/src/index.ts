@@ -1,9 +1,10 @@
 import { Goat } from '@the-goat/goat';
+import { runAll, runWatch } from './scripts/webpack/runner';
 
 export default () => new Goat({
   name: 'Compile',
   command: 'compile',
-  description: 'Webpack based compiler for Javascript and scss',
+  description: 'Webpack based compiler for TypeScript, JavaScript and SCSS',
   schema: require('./schema/schema.js'),
   options: [
     {
@@ -20,23 +21,10 @@ export default () => new Goat({
     },
   ],
   async method(config) {
-    const { runAll } = require('./scripts/webpack/runner');
-    return runAll({
-      ...config,
-      settings: {
-        production: config.options.production,
-        analyse: config.options.analyse,
-      },
-    });
+    return runAll(config);
   },
   watch(config) {
-    const { runWatch } = require('./scripts/webpack/runner');
-    runWatch({
-      ...config,
-      settings: {
-        production: config.options.production,
-      },
-    });
+    runWatch(config);
   },
   init: {
     files: () => require('./init/files.js'),

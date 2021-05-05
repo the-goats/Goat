@@ -1,14 +1,18 @@
+import { normalize, resolve, join } from 'path';
+import { get } from 'lodash';
+import getLoaders from './loaders';
+import { TGoatCompileTaskConfig } from './index';
+import getPlugins from './plugins';
+
 /**
  * Get webpack config
  * @param {Object} config
  * @returns {Object} webpack configuration object
  */
-module.exports = function getCommon(config) {
+export default function getCommon(config: TGoatCompileTaskConfig) {
   const { path, configuration, entryFiles } = config;
-  const loaders = require('./loaders')(config);
-  const plugins = require('./plugins')(config);
-  const { normalize, resolve, join } = require('path');
-  const { get } = require('lodash');
+  const loaders = getLoaders(config);
+
   return {
     context: path,
     entry: entryFiles,
@@ -20,7 +24,7 @@ module.exports = function getCommon(config) {
     module: {
       rules: loaders,
     },
-    plugins,
+    plugins: getPlugins(config),
     resolve: {
       extensions: ['.js', '.json', '.twig'],
       alias: {
@@ -32,4 +36,4 @@ module.exports = function getCommon(config) {
       ],
     },
   };
-};
+}

@@ -1,13 +1,12 @@
+// @ts-ignore
 import Notifier from '@the-goat/notifier';
+import { validate } from 'jsonschema';
+import { IGoatExternalProjectConfig } from '../config';
 
 /**
  * Validate the config object against the provided schema
- * @param {Object} config
- * @param {Object} schema
- * @returns {Boolean} isValid
  */
-function checkSchema(config, schema) {
-  const { validate } = require('jsonschema');
+export default function checkSchema(config: IGoatExternalProjectConfig, schema: {}) {
   const result = validate(config, schema);
   if (result.errors.length === 0) {
     return true;
@@ -17,5 +16,3 @@ function checkSchema(config, schema) {
   });
   return false;
 }
-
-module.exports = checkSchema;

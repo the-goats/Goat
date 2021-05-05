@@ -1,6 +1,12 @@
+// @ts-ignore
 import Notifier from '@the-goat/notifier';
 import { Command } from 'commander';
+import { JSONSchema6 } from 'json-schema';
 import GoatEvents from './events/GoatEvents';
+import writeConfig from './schemas/writeConfig';
+import { getConfig, validateConfig } from './config/config';
+import checkSchema from './validators/schema';
+import { IGoatExternalProjectConfig } from './config';
 
 interface IGoatOption {
   allowOnOnce?: boolean;
@@ -9,16 +15,26 @@ interface IGoatOption {
   label: string;
 }
 
+export type TGoatMethodConfig = Command & {
+  path: string;
+  options: {
+    story?: boolean;
+    production?: boolean;
+    analyse?: boolean;
+  };
+  configuration: IGoatExternalProjectConfig;
+};
+
 interface IGoatConfig {
   name: string;
   description: string;
-  schema: string;
+  schema: JSONSchema6;
   init?: {
     files?: () => void;
   };
   command: string;
-  method: (command: Command) => Promise<void>;
-  watch?: (command: Command) => void;
+  method: (command: TGoatMethodConfig) => Promise<void>;
+  watch?: (command: TGoatMethodConfig & { event?: GoatEvents, events?: GoatEvents }) => void;
   options?: IGoatOption[];
 }
 
@@ -27,20 +43,8 @@ interface IGoatActionConfig {
   watch: boolean;
 }
 
-export interface IGoatProjectConfig {
-  'goatVersion': string,
-  'modules': [
-    {
-      'name': string,
-      'package': string,
-      'description': string
-    },
-  ]
-}
-
 /**
  * Class defining all Goat tasks
- * @class Goat
  */
 export default class Goat {
   private name: string;
@@ -49,7 +53,7 @@ export default class Goat {
 
   private description: string;
 
-  private schema: string;
+  private schema: JSONSchema6;
 
   private path: string;
 
@@ -57,17 +61,17 @@ export default class Goat {
     files?: () => void;
   };
 
-  private configuration = null;
+  public configuration: IGoatExternalProjectConfig;
 
   private readonly command: string;
 
-  private readonly method: (command: Command) => Promise<void>;
+  private readonly method: (command: TGoatMethodConfig) => Promise<void>;
 
-  private readonly watch?: (command: Command) => void;
+  private readonly watch?: (command: TGoatMethodConfig & { event: GoatEvents }) => void;
 
   private events: GoatEvents;
 
-  private options?: IGoatOption[];
+  public options: IGoatOption[];
 
   constructor(build: IGoatConfig) {
     this.name = build.name;
@@ -78,9 +82,9 @@ export default class Goat {
     this.watch = build.watch;
     this.path = process.cwd();
     this.init = build.init;
-    this.configuration = null;
     this.events = new GoatEvents();
-    this.options = build.options;
+    this.options = build.options || [];
+    this.configuration = this.getConfiguration();
     this.command = this.buildCommand();
   }
 
@@ -123,16 +127,16 @@ export default class Goat {
   /**
    * Goat configuration object of the current project
    */
-  getConfiguration() {
-    const { getConfig, validateConfig } = require('./config/config');
-    const checkSchema = require('./validators/schema');
+  private getConfiguration(): IGoatExternalProjectConfig {
     const configuration = getConfig();
+    if (!configuration) {
+      throw new Error('Missing Goat configuraton');
+    }
     const isValid = validateConfig(configuration);
     // Validate used config
     if (!isValid || (this.schema && !checkSchema(configuration, this.schema))) {
       Notifier.error('The configuration is not correct');
-      const { updateConfig } = require('./schemas/writeConfig');
-      updateConfig(this.schema);
+      writeConfig(this.schema);
     }
     return configuration;
   }
@@ -140,8 +144,7 @@ export default class Goat {
   /**
    * Forms the base of all Goat actions,
    */
-  actionBase(config: IGoatActionConfig) {
-    this.configuration = this.getConfiguration();
+  public actionBase(config: IGoatActionConfig) {
     Notifier.log(`${Notifier.emoji('goat')} Running ${this.name || 'task'} in ${process.cwd()}\n`);
 
     // const result = ;
@@ -150,8 +153,10 @@ export default class Goat {
     //     callback();
     //   }
     // });
+
     return this.method({
       ...this,
+      // @ts-ignore
       options: config,
     });
   }
@@ -161,7 +166,6 @@ export default class Goat {
    */
   watchBase(config: IGoatActionConfig, events: GoatEvents) {
     this.events = events;
-    this.configuration = this.getConfiguration();
     if (!this.watch) {
       Notifier.log('This command has no watch option');
       return;

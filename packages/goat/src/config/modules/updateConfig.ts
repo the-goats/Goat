@@ -1,15 +1,18 @@
-import Notifier from '@the-goat/notifier';;
+// @ts-ignore
+import Notifier from '@the-goat/notifier';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+import { IGoatInternalProjectConfig } from '..';
+
+const { version } = JSON.parse(readFileSync(resolve(__dirname, '../../../package.json'), 'utf-8'));
 
 /**
  * If current goat config does not match the current goat version, check if the config can be updated, otherwise prompt the user to reinitialize
- * @param {Object} config
- * @returns {Object} config
  */
-async function updateConfig(config) {
+async function updateConfig(config: IGoatInternalProjectConfig) {
   const { writeFile } = require('fs').promises;
   const { lte } = require('semver');
   const { normalize } = require('path');
-  const { version } = require('../../../package.json');
   const configFile = './.goat/config';
 
   let newConfig = config;

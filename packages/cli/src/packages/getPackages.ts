@@ -1,10 +1,10 @@
-import { Goat, IGoatProjectConfig } from '@the-goat/goat';
+import { Goat, IGoatInternalProjectConfig } from '@the-goat/goat';
 import loadModule from '../methods/modules/loadModule';
 
 /**
  * Collect modules
  */
-export default async function getModules({ modules }: IGoatProjectConfig) {
+export default async function getModules({ modules }: IGoatInternalProjectConfig) {
   return (
     modules
       // @ts-ignore

@@ -10,6 +10,13 @@ export default () => new Goat({
     return runAll(config);
   },
   watch(config) {
+    if (!config.configuration.locations.icons) {
+      throw new Error('Missing icons location');
+    }
+    if (!config.events) {
+      throw new Error('Missing Watchable eventemitter');
+    }
+
     const { runAll, runSingle } = require('./scripts/generateIconfont');
     runAll(config);
     config.events.watch({
