@@ -1,5 +1,6 @@
-const { get } = require('lodash');
-const getGlobalConfig = require('../settings/getGlobalConfig');
+import { get } from 'lodash';
+import getGlobalConfig from '../settings/getGlobalConfig';
+import modules from '../../modules';
 
 /**
  * Collect available modules
@@ -7,16 +8,15 @@ const getGlobalConfig = require('../settings/getGlobalConfig');
  */
 async function collectModules() {
   const globalGoat = await getGlobalConfig();
-  const modules = require('../../../modules');
   let userModules = get(globalGoat, 'modules');
   if (!userModules) {
     return modules;
   }
-  userModules = userModules.map((module) => ({
+  userModules = userModules.map((module: any) => ({
     ...module,
     global: true,
   }));
   return modules.concat(userModules);
 }
 
-module.exports = collectModules();
+export default collectModules();

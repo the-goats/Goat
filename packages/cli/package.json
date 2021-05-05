@@ -46,5 +46,9 @@
     "test": "npm run build",
     "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json"
   },
-  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3"
+  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "@types/mkdirp": "^1.0.1"
+  }
 }

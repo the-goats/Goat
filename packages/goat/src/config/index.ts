@@ -59,11 +59,11 @@ export interface IGoatExternalProjectConfig {
 export interface IGoatInternalProjectConfig {
   goatVersion: string;
   functions: string[],
-  modules: [
-    {
-      name: string;
-      package: string;
-      description: string;
-    },
-  ];
+  modules: {
+    name: string,
+    package: string,
+    description: string,
+    global?: boolean,
+    default: boolean,
+  }[]
 }

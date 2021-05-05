@@ -1,4 +1,6 @@
-module.exports = [
+import { IGoatInternalProjectConfig } from '@the-goat/goat';
+
+const modules: IGoatInternalProjectConfig['modules'] = [
   {
     name: 'Compile',
     package: '@the-goat/compile',
@@ -48,3 +50,5 @@ module.exports = [
     default: false,
   },
 ];
+
+export default modules;

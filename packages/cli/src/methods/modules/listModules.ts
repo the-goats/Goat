@@ -1,15 +1,16 @@
 import Notifier from '@the-goat/notifier';
-import { goatConfig } from '@the-goat/goat';
+import { goatConfig, IGoatInternalProjectConfig } from '@the-goat/goat';
+import collectModules from './collectModules';
 
 /**
  * Format module data to a printable array
- * @param {array} items
- * @returns {array}
  */
-function formatModules(items) {
-  const modules = {};
+function formatModules(items: IGoatInternalProjectConfig['modules']) {
+  const modules:{ [key:string]: { Name: string, Description: string } } = {};
   items.forEach((module) => {
-    const content = (({ name, description = '' }) => ({ Name: name, Description: description }))(module);
+    const content = (({ name, description = '' }) => ({ Name: name, Description: description }))(
+      module,
+    );
     modules[module.package] = content;
   });
   return modules;
@@ -19,7 +20,6 @@ function formatModules(items) {
  * Display a table listing all available modules
  */
 async function listModules() {
-  const collectModules = require('./collectModules');
   const modules = await collectModules;
   const internalModules = modules.filter((module) => !module.global);
   const installedModules = modules.filter((module) => module.global);
@@ -29,8 +29,12 @@ async function listModules() {
   Notifier.log('\n');
   Notifier.log('Modules installed on your system:');
   console.table(formatModules(installedModules));
-  Notifier.log(`* You can add new modules by running ${Notifier.script('goat module add MODULE_NAME')}`);
-  Notifier.log(`* You can remove modules by running ${Notifier.script('goat module remove MODULE_NAME')}`);
+  Notifier.log(
+    `* You can add new modules by running ${Notifier.script('goat module add MODULE_NAME')}`,
+  );
+  Notifier.log(
+    `* You can remove modules by running ${Notifier.script('goat module remove MODULE_NAME')}`,
+  );
 }
 
 /**
