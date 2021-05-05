@@ -30,6 +30,10 @@ module.exports = {
             },
             {
               directory: 'components',
+              pattern: '**/!(*.stories|*.component|*.min|*.test).ts',
+            },
+            {
+              directory: 'components',
               pattern: '**/!(*.stories|*.component|*.min|*.test|_*).scss',
             },
           ],

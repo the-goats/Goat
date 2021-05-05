@@ -11,7 +11,7 @@ import getPlugins from './plugins';
  */
 export default function getCommon(config: TGoatCompileTaskConfig) {
   const { path, configuration, entryFiles } = config;
-  const loaders = getLoaders(config);
+  const rules = getLoaders(config);
 
   return {
     context: path,
@@ -22,11 +22,11 @@ export default function getCommon(config: TGoatCompileTaskConfig) {
       publicPath: get(configuration, 'bundler.js.output.publicPath'),
     },
     module: {
-      rules: loaders,
+      rules,
     },
     plugins: getPlugins(config),
     resolve: {
-      extensions: ['.js', '.json', '.twig'],
+      extensions: ['.js', '.json', '.twig', '.tsx', '.ts'],
       alias: {
         Goat: resolve(join(path, '/.goat')),
       },
