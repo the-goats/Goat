@@ -7,6 +7,7 @@ import writeConfig from './schemas/writeConfig';
 import { getConfig, validateConfig } from './config/config';
 import checkSchema from './validators/schema';
 import { IGoatExternalProjectConfig } from './config';
+import watchFiles from './events/watch';
 
 interface IGoatOption {
   allowOnOnce?: boolean;
@@ -104,7 +105,6 @@ export default class Goat {
    */
   action(config: any) {
     if (config.watch) {
-      const watchFiles = require('./events/watch');
       watchFiles(this.events);
       return this.watchBase(config, this.events);
     }
