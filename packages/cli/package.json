@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/cli",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "@the-goat/task-icons": "^2.0.1",
     "@the-goat/task-js-bundler": "^2.0.1",
     "@the-goat/task-modernizr": "^2.0.1",
-    "@the-goat/task-storybook": "^2.0.1",
+    "@the-goat/task-storybook": "^2.0.4",
     "@the-goat/task-styles": "^2.0.1",
     "bluebird": "^3.7.2",
     "commander": "^7.2.0",
@@ -46,7 +46,7 @@
     "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
     "watch": "../../node_modules/.bin/tsc -w -p tsconfig.build.json"
   },
-  "gitHead": "cde06fb187ecfb56124870b81c47de0dc1e49535",
+  "gitHead": "be240b7e9574d5e82fe5d05839ec1421663408e4",
   "devDependencies": {
     "@types/bluebird": "^3.5.34",
     "@types/lodash": "^4.14.168",

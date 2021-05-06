@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/task-storybook",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -49,5 +49,5 @@
     "name": "Storybook",
     "description": "Manage a design system using storybook"
   },
-  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3"
+  "gitHead": "be240b7e9574d5e82fe5d05839ec1421663408e4"
 }
