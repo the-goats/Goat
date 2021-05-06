@@ -44,7 +44,8 @@
     "clean": "../../node_modules/.bin/rimraf -rf ./dist",
     "prepublishOnly": "npm run build",
     "test": "npm run build",
-    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json"
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
+    "watch": "../../node_modules/.bin/tsc -w -p tsconfig.build.json"
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
   "devDependencies": {

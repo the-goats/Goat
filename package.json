@@ -11,7 +11,8 @@
     "fix": ".eslint --fix packages/**/src",
     "postinstall": "lerna bootstrap",
     "release": "lerna publish",
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "watch": "lerna run watch --parallel"
   },
   "repository": {
     "type": "git",
