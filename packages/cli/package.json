@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "@the-goat/core": "^2.0.1",
+    "@the-goat/storybook-helpers": "^2.0.0",
     "@the-goat/task-babel": "^2.0.1",
     "@the-goat/task-compile": "^2.0.1",
     "@the-goat/task-eslint": "^2.0.1",
