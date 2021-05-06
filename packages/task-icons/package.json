@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/task-icons",
-  "version": "2.0.1-2.0.0-alpha.0",
+  "version": "2.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -30,5 +30,5 @@
     "name": "Icons",
     "description": "Generate icon font files based on svg files"
   },
-  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3"
+  "gitHead": "cde06fb187ecfb56124870b81c47de0dc1e49535"
 }
