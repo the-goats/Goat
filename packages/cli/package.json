@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/cli",
-  "version": "2.0.0",
+  "version": "2.0.1-2.0.0-alpha.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "@the-goat/task-babel": "^2.0.0",
     "@the-goat/task-compile": "^2.0.0",
     "@the-goat/task-eslint": "^2.0.0",
-    "@the-goat/task-icons": "^2.0.0",
+    "@the-goat/task-icons": "^2.0.1-2.0.0-alpha.0",
     "@the-goat/task-js-bundler": "^2.0.0",
     "@the-goat/task-modernizr": "^2.0.0",
     "@the-goat/task-storybook": "^2.0.0",
