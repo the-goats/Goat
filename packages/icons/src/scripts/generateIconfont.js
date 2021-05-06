@@ -487,17 +487,17 @@ function runAll(config) {
 
   const directories = getDirectories(config.configuration.locations.icons.src);
   if (directories.length) {
-    return Promise.all(directories, (directory) => {
+    return Promise.all(directories.map((directory) => {
       const options = getOptions(
         config,
         join(config.configuration.locations.icons.src, directory),
         join(config.configuration.locations.icons.dist, directory),
         directory,
       );
-      generateIconfont(options)
+      return generateIconfont(options)
         .then(() => console.info(`Set ${directory} generated`))
         .catch((error) => console.error(error));
-    });
+    }));
   }
   const options = getOptions(config);
   return generateIconfont(options)
