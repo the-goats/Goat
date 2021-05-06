@@ -41,6 +41,10 @@ export function getConfig(): IGoatExternalProjectConfig | null {
  * @returns
  */
 export function validateConfig(config: IGoatExternalProjectConfig) {
+  if (!checkVersion(config.version)) {
+    throw new Error('Invalid Goat-version');
+  }
+
   let isValid = true;
 
   // Validate used config
@@ -49,7 +53,7 @@ export function validateConfig(config: IGoatExternalProjectConfig) {
   }
 
   // Validate config version
-  if (!config.version || !checkVersion(config.version)) {
+  if (!config.version) {
     isValid = false;
   }
   return isValid;

@@ -14,7 +14,7 @@ import setCommandProject from './commands/project';
 const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'));
 const goat = new commander.Command();
 
-async function base() {
+export default async function base() {
   updateNotifier({ pkg }).notify();
   goat
     .version(pkg.version, '-v, -V, --version', 'output the current version')
@@ -49,5 +49,3 @@ async function base() {
   goat.allowUnknownOption(true);
   goat.parse(process.argv);
 }
-
-export default base;

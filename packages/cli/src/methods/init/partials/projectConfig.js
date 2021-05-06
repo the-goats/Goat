@@ -9,7 +9,7 @@ const getPackageConfig = require('./getPackageConfig');
 function initializeProjectConfig(answers, packages) {
   let projectConfiguration = {
     name: answers.project_name,
-    version: '1.x',
+    version: '2.x',
   };
   packages.forEach((pckg) => {
     projectConfiguration = merge(projectConfiguration, getPackageConfig(pckg));
