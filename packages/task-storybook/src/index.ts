@@ -1,4 +1,7 @@
 import { Goat, notify as notifier } from '@the-goat/core';
+import runStory from './scripts/storybook/runStory';
+import buildStory from './scripts/storybook/buildStory';
+import files from './init/files';
 
 export default () => new Goat({
   name: 'Storybook',
@@ -22,20 +25,22 @@ export default () => new Goat({
   async method(config) {
     // @ts-ignore
     if (config.options.story) {
-      require('./scripts/storybook/runStory')(config);
+      runStory(config);
       return;
     }
-    require('./scripts/storybook/buildStory')(config);
+    buildStory(config);
   },
   watch(config) {
     // @ts-ignore
     if (!config.options.story) {
-      notifier.info('Skipping Storybook while watching, to include storybook run watch with the --story flag');
+      notifier.info(
+        'Skipping Storybook while watching, to include storybook run watch with the --story flag',
+      );
       return;
     }
-    require('./scripts/storybook/runStory')(config);
+    runStory(config);
   },
   init: {
-    files: () => require('./init/files.js'),
+    files: () => files,
   },
 });

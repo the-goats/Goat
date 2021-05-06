@@ -34,6 +34,7 @@ export interface IGoatExternalProjectConfig {
     namespaces: {
       [key:string]: string
     };
+    static?: string
   };
   icons: {
     fontName: string;
