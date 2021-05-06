@@ -1,6 +1,6 @@
 // @ts-ignore
 import Notifier from '@the-goat/notifier';
-import { Command } from 'commander';
+import commander, { Command } from 'commander';
 import { JSONSchema6 } from 'json-schema';
 import GoatEvents from './events/GoatEvents';
 import writeConfig from './schemas/writeConfig';
@@ -78,13 +78,13 @@ export default class Goat {
   /**
    * Build the commander command object
    */
-  private buildCommand() {
-    const commander = require('commander');
+  private buildCommand():Command {
     const command = new commander.Command(this.key)
       .allowUnknownOption(true)
       .command(this.key)
       .description(this.description)
-      .action(this.action);
+      // DO NOT SIMPLIFY: this-binding required
+      .action((config: any) => this.action(config));
     if (this.watch) {
       command.option('-w, --watch', 'Watch for file changes');
     }
@@ -96,7 +96,7 @@ export default class Goat {
         command.option(option.flags, option.label);
       });
     }
-    return command;
+    return command as Command;
   }
 
   /**
