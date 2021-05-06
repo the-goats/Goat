@@ -17,8 +17,6 @@
         "defer-to-connect": "^1.0.1"
       }
     },
-    "@the-goat/babel": {},
-    "@the-goat/compile": {},
     "@the-goat/core": {
       "version": "2.0.1",
       "requires": {
@@ -665,14 +663,6 @@
         }
       }
     },
-    "@the-goat/eslint": {},
-    "@the-goat/goat": {},
-    "@the-goat/icons": {},
-    "@the-goat/js-bundler": {},
-    "@the-goat/modernizr": {},
-    "@the-goat/notifier": {},
-    "@the-goat/storybook": {},
-    "@the-goat/styles": {},
     "@the-goat/task-babel": {
       "version": "2.0.1",
       "requires": {
