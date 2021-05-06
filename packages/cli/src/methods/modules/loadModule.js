@@ -13,6 +13,7 @@ function loadModule(module) {
       // eslint-disable-next-line import/no-dynamic-require
       return require(module.package).default;
     } catch (error) {
+      console.log(error);
       Notifier.error(`The module ${module.package} could not be loaded, please try updating goat or remove the module from your project config.`);
       process.exit();
     }
