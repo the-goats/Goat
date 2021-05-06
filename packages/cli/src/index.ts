@@ -1,16 +1,17 @@
 import Notifier from '@the-goat/notifier';
 import { goatConfig } from '@the-goat/goat';
+import updateNotifier from 'update-notifier';
+import commander from 'commander';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 import CollectCommands from './methods/commands/CollectCommands';
 import getPackages from './packages/getPackages';
+import setCommandWatch from './commands/watch';
+import setCommandBuild from './commands/build';
+import setCommandModule from './commands/module';
+import setCommandProject from './commands/project';
 
-const updateNotifier = require('update-notifier');
-const commander = require('commander');
-const setCommandWatch = require('./commands/watch');
-const setCommandBuild = require('./commands/build');
-const setCommandModule = require('./commands/module');
-const setCommandProject = require('./commands/project');
-const pkg = require('../package.json');
-
+const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'));
 const goat = new commander.Command();
 
 async function base() {

@@ -40,7 +40,7 @@ function commandRemoveModule() {
  * Create Module command
  * @returns {function} command
  */
-function commandModule() {
+export default function commandModule() {
   const program = new commander.Command('module')
     .description('Manage Goat modules');
   program.addCommand(commandListModules());
@@ -48,5 +48,3 @@ function commandModule() {
   program.addCommand(commandRemoveModule());
   return program;
 }
-
-module.exports = commandModule;

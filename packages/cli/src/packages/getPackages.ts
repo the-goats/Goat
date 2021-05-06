@@ -4,7 +4,7 @@ import loadModule from '../methods/modules/loadModule';
 /**
  * Collect modules
  */
-export default async function getModules({ modules }: IGoatInternalProjectConfig) {
+export default async function getModules({ modules }: IGoatInternalProjectConfig):Promise<Goat[]> {
   return (
     modules
       // @ts-ignore

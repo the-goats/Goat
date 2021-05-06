@@ -15,23 +15,23 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@the-goat/goat": "*",
-    "@the-goat/notifier": "^1.12.1",
     "@the-goat/babel": "^1.12.1",
+    "@the-goat/compile": "^1.11.5",
     "@the-goat/eslint": "^1.12.1",
+    "@the-goat/goat": "*",
+    "@the-goat/icons": "^1.13.5",
     "@the-goat/js-bundler": "^1.12.1",
     "@the-goat/modernizr": "^1.10.0",
-    "@the-goat/styles": "^1.12.1",
-    "@the-goat/compile": "^1.11.5",
-    "@the-goat/icons": "^1.13.5",
+    "@the-goat/notifier": "^1.12.1",
     "@the-goat/storybook": "^1.12.1",
+    "@the-goat/styles": "^1.12.1",
     "bluebird": "^3.7.2",
-    "commander": "^6.2.1",
+    "commander": "^7.2.0",
     "import-global": "^0.1.0",
     "inquirer": "^7.3.3",
     "lodash": "^4.17.20",
     "mkdirp": "^1.0.4",
-    "update-notifier": "^5.0.1"
+    "update-notifier": "^5.1.0"
   },
   "bin": {
     "goat": "./bin/goat.js"
@@ -49,7 +49,9 @@
   },
   "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
   "devDependencies": {
+    "@types/bluebird": "^3.5.34",
     "@types/lodash": "^4.14.168",
-    "@types/mkdirp": "^1.0.1"
+    "@types/mkdirp": "^1.0.1",
+    "@types/update-notifier": "^5.0.0"
   }
 }

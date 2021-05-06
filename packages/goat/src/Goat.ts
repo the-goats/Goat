@@ -34,7 +34,7 @@ interface IGoatConfig {
  * Class defining all Goat tasks
  */
 export default class Goat {
-  private name: string;
+  public name: string;
 
   private key: string;
 
@@ -52,9 +52,9 @@ export default class Goat {
 
   private readonly command: Command;
 
-  private readonly method: (command: TGoatMethodConfig) => Promise<void>;
+  public readonly method: (command: TGoatMethodConfig) => Promise<void>;
 
-  private readonly watch?: (command: TGoatMethodConfig) => void;
+  public readonly watch?: (command: TGoatMethodConfig) => void;
 
   public events: GoatEvents;
 

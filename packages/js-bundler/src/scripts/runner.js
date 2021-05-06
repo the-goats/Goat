@@ -1,4 +1,5 @@
 const isEmpty = require('lodash/isEmpty');
+
 const fileExtensions = '.+(es6.js|ts)';
 
 /**
@@ -54,11 +55,11 @@ function run(config) {
   const compiler = getWebpackSetup(config);
   return new Promise((resolve, reject) => {
     compiler.run((error, stats) => {
-      logResults(error, stats);
       if (error) {
         reject(error);
         return;
       }
+      logResults(stats);
       if (stats.compilation.errors.length) {
         reject(stats.compilation.errors[0]);
         return;

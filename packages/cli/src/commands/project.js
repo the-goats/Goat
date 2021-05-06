@@ -52,7 +52,7 @@ function commandProject() {
  * Create Project command
  * @returns {commander.Command}
  */
-function buildCommand() {
+export default function buildCommand() {
   const programModule = commandProjectModules();
   programModule.addCommand(commandListModules());
   // programModule.addCommand(commandAddModules());
@@ -60,5 +60,3 @@ function buildCommand() {
   program.addCommand(programModule);
   return program;
 }
-
-module.exports = buildCommand;
