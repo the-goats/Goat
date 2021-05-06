@@ -1,4 +1,4 @@
-import { Goat, IGoatInternalProjectConfig } from '@the-goat/goat';
+import { Goat, IGoatInternalProjectConfig } from '@the-goat/core';
 import loadModule from '../methods/modules/loadModule';
 
 /**

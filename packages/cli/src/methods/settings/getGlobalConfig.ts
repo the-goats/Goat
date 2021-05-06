@@ -1,4 +1,4 @@
-import Notifier from '@the-goat/notifier';
+import { notify as Notifier } from '@the-goat/core';
 import { constants, promises } from 'fs';
 import mkdirp from 'mkdirp';
 import settingsRef from '../../references/settings';

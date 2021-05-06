@@ -1,5 +1,5 @@
-import Notifier from '@the-goat/notifier';
-import { goatConfig } from '@the-goat/goat';
+import { notify as Notifier, goatConfig } from '@the-goat/core';
+
 import updateNotifier from 'update-notifier';
 import commander from 'commander';
 import { readFileSync } from 'fs';

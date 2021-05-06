@@ -1,4 +1,4 @@
-import Notifier from '@the-goat/notifier';
+import { notify as Notifier } from '@the-goat/core';
 
 const { stat } = require('fs').promises;
 const { normalize } = require('path');
@@ -26,7 +26,7 @@ const action = async (options = {}) => {
   }
 
   try {
-    await stat(normalize(`./goat.config.json`));
+    await stat(normalize('./goat.config.json'));
     Notifier.log('Goat is already initialized');
     return;
   } catch (error) {

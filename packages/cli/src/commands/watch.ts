@@ -1,6 +1,7 @@
-import Notifier from '@the-goat/notifier';
+import {
+  notify as Notifier, watch, Goat, GoatEvents,
+} from '@the-goat/core';
 import commander, { Command } from 'commander';
-import { watch, Goat, GoatEvents } from '@the-goat/goat';
 
 commander.allowUnknownOption(true);
 

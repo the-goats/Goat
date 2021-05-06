@@ -1,4 +1,4 @@
-import { generateConfig } from '@the-goat/goat';
+import { generateConfig } from '@the-goat/core';
 
 /**
  * Get config of packages

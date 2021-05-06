@@ -1,4 +1,4 @@
-import Notifier from '@the-goat/notifier';
+import { notify as Notifier } from '@the-goat/core';
 
 const importGlobal = require('import-global');
 const { promisify } = require('util');

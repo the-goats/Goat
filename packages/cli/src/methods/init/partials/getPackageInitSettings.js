@@ -1,4 +1,4 @@
-import { Goat } from '@the-goat/goat';
+import { Goat } from '@the-goat/core';
 import loadModule from '../../modules/loadModule';
 
 /**

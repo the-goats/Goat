@@ -1,7 +1,6 @@
-import Notifier from '@the-goat/notifier';
+import { notify as Notifier, Goat } from '@the-goat/core';
 import commander, { Command } from 'commander';
 import Bluebird from 'bluebird';
-import { Goat } from '@the-goat/goat';
 
 // commander.allowUnknownOption(true);
 
@@ -17,7 +16,7 @@ async function loadBuildCommands(config: Command, packages: Goat[]) {
     if (!resultPromise) {
       Notifier.log(
         Notifier.style.red(
-          `\t- NO TASK RESULT FOR ${module.name}: CONTACT GOATKEEPER TO FIX PACKAGE`,
+          `\t- NO TASK RESULT FOR ${module.name}: CONTACT SHEPHERD TO FIX PACKAGE`,
         ),
       );
     }
