@@ -38,7 +38,7 @@
 
 ## 1.10.0
 - Chore: Updated dependencies
-- Chore: removed `@geit/fractal`, due to poorly maintained dependencies and better alternatives
+- Chore: removed `@the-goat/fractal`, due to poorly maintained dependencies and better alternatives
 - Feat: Moved Goat styles from node sass to dart sass
 - Feat: Removed `mkdirp` from goat babel in favor of fs.mkdir recursive
 

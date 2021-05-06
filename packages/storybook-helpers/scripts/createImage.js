@@ -1,4 +1,4 @@
-const { createAttributes } = require('../index');
+const { createAttributes } = require('@the-goat/storybook-helpers');
 const image = require('./components/image.twig');
 
 function createImage(attributes) {

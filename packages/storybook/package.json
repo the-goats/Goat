@@ -2,9 +2,14 @@
   "name": "@the-goat/storybook",
   "version": "1.12.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && npm run compile",
+    "clean": "../../node_modules/.bin/rimraf -rf ./dist",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
+    "watch": "../../node_modules/.bin/tsc -w -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build"
   },
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
@@ -21,6 +26,7 @@
     "@storybook/core": "^6.1.11",
     "@storybook/html": "^6.1.11",
     "@storybook/theming": "^6.1.11",
+    "@the-goat/goat": "*",
     "@the-goat/notifier": "^1.12.1",
     "@the-goat/storybook-helpers": "^1.9.1",
     "add-attributes-twig-extension": "^0.1.0",

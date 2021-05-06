@@ -1,8 +1,8 @@
 {
-  "name": "@geit/goat",
+  "name": "@the-goat/goat",
   "version": "1.13.5",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stefspakman/Goat.git"
@@ -16,32 +16,28 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@geit/babel": "^1.12.1",
-    "@geit/eslint": "^1.12.1",
-    "@geit/js-bundler": "^1.12.1",
-    "@geit/modernizr": "^1.10.0",
-    "@geit/styles": "^1.12.1",
-    "@the-goat/compile": "^1.11.5",
-    "@the-goat/icons": "^1.13.5",
     "@the-goat/notifier": "^1.12.1",
-    "@the-goat/storybook": "^1.12.1",
     "chokidar": "^3.4.3",
-    "commander": "^6.2.1",
-    "import-global": "^0.1.0",
-    "inquirer": "^7.3.3",
+    "commander": "^7.2.0",
+    "json-schema": "^0.3.0",
     "json-schema-defaults": "^0.4.0",
     "jsonschema": "^1.4.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "minimatch": "^3.0.4",
-    "mkdirp": "^1.0.4",
-    "semver": "^7.3.4",
-    "update-notifier": "^5.0.1"
+    "semver": "^7.3.4"
   },
-  "bin": {
-    "goat": "./bin/goat.js"
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "../../node_modules/.bin/rimraf -rf ./dist",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
+    "watch": "../../node_modules/.bin/tsc -w -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build"
   },
-  "engines": {
-    "node": ">=11.0.0 <15.0.0"
-  },
-  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3"
+  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
+  "devDependencies": {
+    "@types/json-schema": "^7.0.7",
+    "@types/lodash": "^4.14.168",
+    "@types/semver": "^7.3.5"
+  }
 }

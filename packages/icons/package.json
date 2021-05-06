@@ -2,13 +2,19 @@
   "name": "@the-goat/icons",
   "version": "1.13.5",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && npm run compile",
+    "clean": "../../node_modules/.bin/rimraf -rf ./dist",
+    "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
+    "watch": "../../node_modules/.bin/tsc -w -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "npm run build"
   },
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
+    "@the-goat/goat": "*",
     "ejs": "^3.1.5",
     "get-stream": "^6.0.0",
     "lodash": "^4.17.20",

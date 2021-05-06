@@ -1,0 +1,41 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      "@the-goat/compile": [
+        "compile"
+      ],
+      "@the-goat/goat": [
+        "goat/src"
+      ],
+      "@the-goat/goat-babel": [
+        "goat-babel/src"
+      ],
+      "@the-goat/goat-eslint": [
+        "goat-eslint/src"
+      ],
+      "@the-goat/goat-modernizr": [
+        "goat-modernizr/src"
+      ],
+      "@the-goat/goat-styles": [
+        "goat-styles/src"
+      ],
+      "@the-goat/icons": [
+        "icons/src"
+      ],
+      "@the-goat/js-bundler": [
+        "js-bundler/src"
+      ],
+      "@the-goat/notifier": [
+        "notifier/src"
+      ],
+      "@the-goat/storybook": [
+        "storybook/src"
+      ],
+      "@the-goat/storybook-helpers": [
+        "storybook-helpers/src"
+      ]
+    }
+  }
+}
