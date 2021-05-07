@@ -22,7 +22,7 @@ interface IGoatConfig {
   description: string;
   schema: JSONSchema6;
   init?: {
-    files?: () => void;
+    files?: () => { files: { destination: string; name: string; data: string | Uint8Array }[] };
   };
   command: string;
   method: (command: TGoatMethodConfig) => Promise<void>;
@@ -40,12 +40,12 @@ export default class Goat {
 
   private description: string;
 
-  private schema: JSONSchema6;
+  public schema: JSONSchema6;
 
   public path: string;
 
-  private init?: {
-    files?: () => void;
+  public init?: {
+    files?: () => { files: { destination: string; name: string; data: string | Uint8Array }[] };
   };
 
   public configuration: IGoatExternalProjectConfig;
@@ -78,7 +78,7 @@ export default class Goat {
   /**
    * Build the commander command object
    */
-  private buildCommand():Command {
+  private buildCommand(): Command {
     const command = new commander.Command(this.key)
       .allowUnknownOption(true)
       .command(this.key)

@@ -48,7 +48,7 @@
     "compile": "../../node_modules/.bin/tsc -p tsconfig.build.json",
     "watch": "../../node_modules/.bin/tsc -w -p tsconfig.build.json"
   },
-  "gitHead": "be240b7e9574d5e82fe5d05839ec1421663408e4",
+  "gitHead": "cb00bb74e30b18a7c8a4108a30e4975d4dc04e90",
   "devDependencies": {
     "@types/bluebird": "^3.5.34",
     "@types/inquirer": "^7.3.1",

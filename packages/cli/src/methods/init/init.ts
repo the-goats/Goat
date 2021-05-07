@@ -20,7 +20,7 @@ const action = async (options?: { reset?: boolean }) => {
     const initSettings = getPackageInitialisation(answers.project_packages);
     initializeGoatConfig(answers);
     initializeProjectConfig(answers, initSettings);
-    packageFiles(initSettings);
+    packageFiles(initSettings as any);
   };
   if (options && options.reset) {
     init();

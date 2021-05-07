@@ -38,7 +38,7 @@
     "prepublishOnly": "npm run build",
     "test": "npm run build"
   },
-  "gitHead": "cee2b439089c6f90cdf345d85bbf0ae4414988b3",
+  "gitHead": "cb00bb74e30b18a7c8a4108a30e4975d4dc04e90",
   "devDependencies": {
     "@types/json-schema": "^7.0.7",
     "@types/lodash": "^4.14.168",
