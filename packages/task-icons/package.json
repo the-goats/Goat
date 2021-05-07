@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/task-icons",
-  "version": "2.0.1",
+  "version": "2.0.8",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
-    "@the-goat/core": "^2.0.1",
+    "@the-goat/core": "^2.0.8",
     "ejs": "^3.1.5",
     "get-stream": "^6.0.0",
     "lodash": "^4.17.20",
