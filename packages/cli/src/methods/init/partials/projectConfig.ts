@@ -1,12 +1,12 @@
-const { merge } = require('lodash');
-const { writeFile } = require('fs').promises;
-const getPackageConfig = require('./getPackageConfig');
+import { merge } from 'lodash';
+import { promises } from 'fs';
+import getPackageConfig from './getPackageConfig';
 
 /**
  * Collect project config from included packages and write to a config file.
  * @param {Object} answers
  */
-function initializeProjectConfig(answers, packages) {
+export default function initializeProjectConfig(answers: { project_name: string }, packages: {}[]) {
   let projectConfiguration = {
     name: answers.project_name,
     version: '2.x',
@@ -14,7 +14,5 @@ function initializeProjectConfig(answers, packages) {
   packages.forEach((pckg) => {
     projectConfiguration = merge(projectConfiguration, getPackageConfig(pckg));
   });
-  writeFile('goat.config.json', JSON.stringify(projectConfiguration, null, 2));
+  return promises.writeFile('goat.config.json', JSON.stringify(projectConfiguration, null, 2));
 }
-
-module.exports = initializeProjectConfig;

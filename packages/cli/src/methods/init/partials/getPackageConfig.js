@@ -5,7 +5,7 @@ import { generateConfig } from '@the-goat/core';
  * @param {array} pckg
  * @returns {object}
  */
-function getPackageConfig(pckg) {
+export default function getPackageConfig(pckg) {
   const { merge } = require('lodash');
 
   if (!Array.isArray(pckg)) {
@@ -17,5 +17,3 @@ function getPackageConfig(pckg) {
     return merge(result, config);
   });
 }
-
-module.exports = getPackageConfig;
