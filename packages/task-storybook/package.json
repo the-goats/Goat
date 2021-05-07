@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/task-storybook",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -26,7 +26,7 @@
     "@storybook/core": "6.1.11",
     "@storybook/html": "6.1.11",
     "@storybook/theming": "6.1.11",
-    "@the-goat/core": "^2.0.8",
+    "@the-goat/core": "^2.0.9",
     "@the-goat/storybook-helpers": "^2.0.7",
     "add-attributes-twig-extension": "^0.1.0",
     "app-root-path": "^3.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/task-styles",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
-    "@the-goat/core": "^2.0.8",
+    "@the-goat/core": "^2.0.9",
     "compass-importer": "^0.4.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",

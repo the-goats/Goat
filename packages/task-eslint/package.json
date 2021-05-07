@@ -1,6 +1,6 @@
 {
   "name": "@the-goat/task-eslint",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "ISC",
   "dependencies": {
-    "@the-goat/core": "^2.0.8",
+    "@the-goat/core": "^2.0.9",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2"
