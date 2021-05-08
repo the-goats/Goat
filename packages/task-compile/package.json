@@ -26,6 +26,7 @@
     "file-loader": "^6.2.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
+    "json-schema": "^0.3.0",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^1.3.3",
     "minimatch": "^3.0.4",
@@ -46,6 +47,7 @@
   },
   "gitHead": "cb00bb74e30b18a7c8a4108a30e4975d4dc04e90",
   "devDependencies": {
+    "@types/json-schema": "^7.0.7",
     "@types/lodash": "^4.14.168",
     "commander": "^7.2.0"
   }

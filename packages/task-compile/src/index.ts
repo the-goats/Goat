@@ -1,11 +1,13 @@
 import { GoatTask } from '@the-goat/core';
 import { runAll, runWatch } from './scripts/webpack/runner';
+import schema from './schema';
+import files from './init/files';
 
 export default () => new GoatTask({
   name: 'Compile',
   command: 'compile',
   description: 'Webpack based compiler for TypeScript, JavaScript and SCSS',
-  schema: require('./schema/schema.js'),
+  schema,
   options: [
     {
       label: 'Compile for production',
@@ -27,6 +29,6 @@ export default () => new GoatTask({
     runWatch(config);
   },
   init: {
-    files: () => require('./init/files.js'),
+    files: () => files,
   },
 });

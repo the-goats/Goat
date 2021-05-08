@@ -1,5 +1,6 @@
-module.exports = {
-  id: '/JsBundler',
+import { JSONSchema6 } from 'json-schema';
+
+const schema: JSONSchema6 = {
   type: 'object',
   properties: {
     locations: {
@@ -109,3 +110,5 @@ module.exports = {
   },
   required: ['locations', 'bundler', 'styles', 'handlers'],
 };
+
+export default schema;
