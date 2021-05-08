@@ -38,7 +38,7 @@ export default class Goat {
 
   private key: string;
 
-  private description: string;
+  public description: string;
 
   public schema: JSONSchema6;
 

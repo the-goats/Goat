@@ -1,48 +1,38 @@
-import { notify as Notifier } from '@the-goat/core';
+import { Goat, IGoatInternalProjectConfig, notify as Notifier } from '@the-goat/core';
+import importGlobal from 'import-global';
+import { promisify } from 'util';
+import { exec } from 'child_process';
+import getGlobalConfig from '../settings/getGlobalConfig';
+import updateGlobalSettings from '../settings/updateGlobalSettings';
+import confirm from '../helpers/confirm';
 
-const importGlobal = require('import-global');
-const { promisify } = require('util');
-const exec = promisify(require('child_process').exec);
-const getGlobalConfig = require('../settings/getGlobalConfig');
-const updateGlobalSettings = require('../settings/updateGlobalSettings');
-const confirm = require('../helpers/confirm');
+const execAsync = promisify(exec);
 
 /**
  * Check if the module is added to the global settings
- * @param {Object} config
- * @param {String} module
- * @returns {Boolean}
  */
-function checkInstalledModules(config, module) {
+function checkInstalledModules(config: IGoatInternalProjectConfig, module: string): boolean {
   return Boolean(config.modules.filter((item) => item.package === module).length);
 }
 
 /**
  * Install module using NPM
- * @param {String} module
- * @returns {Promise}
  */
-function installModule(module) {
-  return exec(`npm install ${module} -g`);
+function installModule(module: string) {
+  return execAsync(`npm install ${module} -g`);
 }
 
 /**
  * Uninstall module from the system
- * @param {String} module
- * @returns {Promise}
  */
-function uninstallModule(module) {
-  return exec(`npm uninstall ${module} -g`);
+function uninstallModule(module: string) {
+  return execAsync(`npm uninstall ${module} -g`);
 }
 
 /**
  * Add module details to the global settings
- * @param {Object} config
- * @param {Object} moduleConfig
- * @param {boolean} [isDefault=false]
- * @returns {Promise}
  */
-function addToSettings(config, moduleConfig, isDefault = false) {
+function addToSettings(config: IGoatInternalProjectConfig, moduleConfig: { name: string, goat: Goat, description: string }, isDefault = false) {
   config.modules.push({
     name: moduleConfig.goat.name,
     package: moduleConfig.name,
@@ -54,11 +44,8 @@ function addToSettings(config, moduleConfig, isDefault = false) {
 
 /**
  * Remove module details from the global settings
- * @param {Object} config
- * @param {String} module
- * @returns {Promise}
  */
-function removeFromSettings(config, module) {
+function removeFromSettings(config: IGoatInternalProjectConfig, module:string) {
   // eslint-disable-next-line no-param-reassign
   config.modules = config.modules.filter((item) => item.package !== module);
   return updateGlobalSettings(config);
@@ -66,9 +53,8 @@ function removeFromSettings(config, module) {
 
 /**
  * Action to remove a module from Goat
- * @param {String} module
  */
-async function actionRemoveModule(module) {
+export async function actionRemoveModule(module:string) {
   const config = await getGlobalConfig();
   if (!checkInstalledModules(config, module)) {
     Notifier.error(`${module} is not installed`);
@@ -87,10 +73,8 @@ async function actionRemoveModule(module) {
 
 /**
  * Get the package.json file of the requested module. If the module does not exist, install it
- * @param {String} module
- * @returns {Object}
  */
-async function getModulePackage(module) {
+async function getModulePackage(module:string) {
   try {
     return importGlobal(`${module}/package.json`);
   } catch ({ code }) {
@@ -105,9 +89,8 @@ async function getModulePackage(module) {
 
 /**
  * Action to add a module to Goat
- * @param {String} module
  */
-async function actionAddModule(module) {
+export async function actionAddModule(module:string) {
   const config = await getGlobalConfig();
   if (checkInstalledModules(config, module)) {
     Notifier.error(`${module} is already installed`);
@@ -128,8 +111,3 @@ async function actionAddModule(module) {
   addToSettings(config, modulePacakge);
   Notifier.log(`${module} is succesfully installed`);
 }
-
-module.exports = {
-  actionAddModule,
-  actionRemoveModule,
-};
