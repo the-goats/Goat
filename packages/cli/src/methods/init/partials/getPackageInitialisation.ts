@@ -1,10 +1,10 @@
-import { Goat } from '@the-goat/core';
+import { GoatTask } from '@the-goat/core';
 import loadModule from '../../modules/loadModule';
 
 /**
  * Get init settings of a package
  */
-function getPackageInitSettings(packageConfigs: Array<() => Goat> | (() => Goat)) {
+function getPackageInitSettings(packageConfigs: Array<() => GoatTask> | (() => GoatTask)) {
   if (!Array.isArray(packageConfigs)) {
     const config = packageConfigs();
     return {

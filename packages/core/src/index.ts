@@ -1,4 +1,4 @@
-import Goat, { TGoatMethodConfig } from './Goat';
+import GoatTask, { TGoatTaskMethodConfig } from './GoatTask';
 import watch from './events/watch';
 import goatConfig from './config/goatConfig';
 import { IGoatInternalProjectConfig, IGoatExternalProjectConfig } from './config';
@@ -7,13 +7,13 @@ import notify from './notifier';
 import generateConfig from './schemas/generateConfig';
 
 export {
-  Goat,
+  GoatTask,
   generateConfig,
   goatConfig,
   notify,
   watch,
   GoatEvents,
-  TGoatMethodConfig,
+  TGoatTaskMethodConfig,
   IGoatInternalProjectConfig,
   IGoatExternalProjectConfig,
 };

@@ -1,4 +1,4 @@
-import { notify as Notifier, Goat } from '@the-goat/core';
+import { notify as Notifier, GoatTask } from '@the-goat/core';
 import commander, { Command } from 'commander';
 import Bluebird from 'bluebird';
 
@@ -7,7 +7,7 @@ import Bluebird from 'bluebird';
 /**
  * Load build capable tasks
  */
-async function loadBuildCommands(config: Command, packages: Goat[]) {
+async function loadBuildCommands(config: Command, packages: GoatTask[]) {
   const buildPackages = packages.filter((module) => module.method !== undefined);
   Notifier.log(Notifier.style.green('Building Tasks:'));
   return Bluebird.mapSeries(buildPackages, (module) => {
@@ -29,7 +29,7 @@ async function loadBuildCommands(config: Command, packages: Goat[]) {
 /**
  * Create Build command
  */
-export default function setCommandBuild(packages: Goat[]) {
+export default function setCommandBuild(packages: GoatTask[]) {
   return new commander.Command('build')
     .command('build')
     .alias('b')

@@ -1,7 +1,7 @@
-import { Goat } from '@the-goat/core';
+import { GoatTask } from '@the-goat/core';
 import { runAll, runWatch } from './scripts/webpack/runner';
 
-export default () => new Goat({
+export default () => new GoatTask({
   name: 'Compile',
   command: 'compile',
   description: 'Webpack based compiler for TypeScript, JavaScript and SCSS',

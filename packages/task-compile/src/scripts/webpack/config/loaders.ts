@@ -1,11 +1,11 @@
-import { TGoatMethodConfig } from '@the-goat/core';
+import { TGoatTaskMethodConfig } from '@the-goat/core';
 
 /**
  * Collect Loaders
  * @param {Object} config
  * @returns {Array} an array of loaders
  */
-export default function getLoaders(config: TGoatMethodConfig) {
+export default function getLoaders(config: TGoatTaskMethodConfig) {
   const loaders = [];
 
   if (config.configuration.handlers.javascript) {

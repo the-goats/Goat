@@ -1,6 +1,6 @@
-import { Goat } from '@the-goat/core';
+import { GoatTask } from '@the-goat/core';
 
-export default () => new Goat({
+export default () => new GoatTask({
   name: 'Babel',
   command: 'babel',
   description: 'Compile .es6.js files using babel',

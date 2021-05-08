@@ -1,4 +1,4 @@
-import { Goat, IGoatInternalProjectConfig, notify as Notifier } from '@the-goat/core';
+import { GoatTask, IGoatInternalProjectConfig, notify as Notifier } from '@the-goat/core';
 import importGlobal from 'import-global';
 import { promisify } from 'util';
 import { exec } from 'child_process';
@@ -32,7 +32,7 @@ function uninstallModule(module: string) {
 /**
  * Add module details to the global settings
  */
-function addToSettings(config: IGoatInternalProjectConfig, moduleConfig: { name: string, goat: Goat, description: string }, isDefault = false) {
+function addToSettings(config: IGoatInternalProjectConfig, moduleConfig: { name: string, goat: GoatTask, description: string }, isDefault = false) {
   config.modules.push({
     name: moduleConfig.goat.name,
     package: moduleConfig.name,

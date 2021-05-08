@@ -2,7 +2,7 @@
  * Get the Webpack Production setup
  * @returns {Object}
  */
-import { TGoatMethodConfig } from '@the-goat/core';
+import { TGoatTaskMethodConfig } from '@the-goat/core';
 import { merge } from 'webpack-merge';
 import webpack from 'webpack';
 import getCommon from './config/webpack.common';
@@ -25,7 +25,7 @@ function getWebpackDevelopmentSetup() {
   };
 }
 
-function modifyWebpackConfig(config: TGoatMethodConfig, instance: any) {
+function modifyWebpackConfig(config: TGoatTaskMethodConfig, instance: any) {
   try {
     // eslint-disable-next-line import/no-dynamic-require
     const modifyWebpack = require(`${config.path}/.goat/webpack`).webpack(instance);

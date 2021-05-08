@@ -1,6 +1,6 @@
-import { Goat } from '@the-goat/core';
+import { GoatTask } from '@the-goat/core';
 
-export default () => new Goat({
+export default () => new GoatTask({
   name: 'Icons',
   command: 'icons',
   description: 'Generate icon font files based on svg files',

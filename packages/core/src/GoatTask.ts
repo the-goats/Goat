@@ -8,16 +8,16 @@ import checkSchema from './validators/schema';
 import { IGoatExternalProjectConfig } from './config';
 import watchFiles from './events/watch';
 
-interface IGoatOption {
+interface IGoatTaskOption {
   allowOnOnce?: boolean;
   allowOnWatch?: boolean;
   flags: string;
   label: string;
 }
 
-export type TGoatMethodConfig = Goat & { options: Command };
+export type TGoatTaskMethodConfig = GoatTask & { options: Command };
 
-interface IGoatConfig {
+interface IGoatTaskConfig {
   name: string;
   description: string;
   schema: JSONSchema6;
@@ -25,15 +25,15 @@ interface IGoatConfig {
     files?: () => { files: { destination: string; name: string; data: string | Uint8Array }[] };
   };
   command: string;
-  method: (command: TGoatMethodConfig) => Promise<void>;
-  watch?: (command: TGoatMethodConfig) => void;
-  options?: IGoatOption[];
+  method: (command: TGoatTaskMethodConfig) => Promise<void>;
+  watch?: (command: TGoatTaskMethodConfig) => void;
+  options?: IGoatTaskOption[];
 }
 
 /**
  * Class defining all Goat tasks
  */
-export default class Goat {
+export default class GoatTask {
   public name: string;
 
   private key: string;
@@ -52,15 +52,15 @@ export default class Goat {
 
   private readonly command: Command;
 
-  public readonly method: (command: TGoatMethodConfig) => Promise<void>;
+  public readonly method: (command: TGoatTaskMethodConfig) => Promise<void>;
 
-  public readonly watch?: (command: TGoatMethodConfig) => void;
+  public readonly watch?: (command: TGoatTaskMethodConfig) => void;
 
   public events: GoatEvents;
 
-  public options: IGoatOption[];
+  public options: IGoatTaskOption[];
 
-  constructor(build: IGoatConfig) {
+  constructor(build: IGoatTaskConfig) {
     this.name = build.name;
     this.key = build.command;
     this.description = build.description;

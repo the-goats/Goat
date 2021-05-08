@@ -1,16 +1,10 @@
 import { ProgressPlugin, version } from 'webpack';
-// @ts-ignore
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-// @ts-ignore
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
-// @ts-ignore
 import FixStyleOnlyEntriesPlugin from 'webpack-fix-style-only-entries';
-// @ts-ignore
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
-// @ts-ignore
 import BabelEsmPlugin from 'babel-esm-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-// @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { TGoatCompileTaskConfig } from './index';
 

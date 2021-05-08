@@ -1,4 +1,4 @@
-import { Goat, notify as Notifier } from '@the-goat/core';
+import { GoatTask, notify as Notifier } from '@the-goat/core';
 import { promises } from 'fs';
 import mkdirp from 'mkdirp';
 
@@ -21,7 +21,7 @@ function copyPackageFiles(
 /**
  * Check if a package has any project files
  */
-export default function processPackageFiles(packages: Goat[]) {
+export default function processPackageFiles(packages: GoatTask[]) {
   packages.forEach((pckg) => {
     if (!pckg.init || !pckg.init.files) {
       return;

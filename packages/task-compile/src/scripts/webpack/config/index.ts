@@ -1,10 +1,10 @@
-import { TGoatMethodConfig } from '@the-goat/core';
+import { TGoatTaskMethodConfig } from '@the-goat/core';
 import { flattenDeep, get } from 'lodash';
 import { sync } from 'glob';
 import { normalize, resolve as pathResolve } from 'path';
 import minimatch from 'minimatch';
 
-export type TGoatCompileTaskConfig = TGoatMethodConfig & {
+export type TGoatCompileTaskConfig = TGoatTaskMethodConfig & {
   entryFiles: {};
   files: string[];
   path: string;
@@ -17,7 +17,7 @@ export type TGoatCompileTaskConfig = TGoatMethodConfig & {
 /**
  * Get the destination for each file
  */
-function getDest(config: TGoatMethodConfig, el: string): string {
+function getDest(config: TGoatTaskMethodConfig, el: string): string {
   const { dist, patterns } = config.configuration.locations;
   const { path } = config;
   const name = el.substring(0, el.lastIndexOf('.')).replace(`${path}/`, '').replace('.es6', '');
@@ -36,7 +36,7 @@ function getDest(config: TGoatMethodConfig, el: string): string {
 }
 
 export function getCompileTaskConfig(
-  config: TGoatMethodConfig,
+  config: TGoatTaskMethodConfig,
 ): TGoatCompileTaskConfig {
   const files = flattenDeep<string>(
     config.configuration.locations.patterns.map((pattern) => sync(`${normalize(config.path)}/${pattern.directory}/${pattern.pattern}`)),

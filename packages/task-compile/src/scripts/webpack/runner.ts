@@ -1,5 +1,5 @@
 import { Stats } from 'webpack';
-import { TGoatMethodConfig } from '@the-goat/core';
+import { TGoatTaskMethodConfig } from '@the-goat/core';
 import { getCompileTaskConfig, TGoatCompileTaskConfig } from './config';
 import getWebpackSetup from './webpack';
 
@@ -74,7 +74,7 @@ export function watch(config: TGoatCompileTaskConfig) {
  * Entry for all file mode
  * @param {Object} config
  */
-export function runAll(config: TGoatMethodConfig) {
+export function runAll(config: TGoatTaskMethodConfig) {
   return run(getCompileTaskConfig(config));
 }
 
@@ -82,7 +82,7 @@ export function runAll(config: TGoatMethodConfig) {
  * Entry for watching
  * @param {Object} config
  */
-export function runWatch(config: TGoatMethodConfig) {
+export function runWatch(config: TGoatTaskMethodConfig) {
   watch({
     ...getCompileTaskConfig(config),
     settings: {

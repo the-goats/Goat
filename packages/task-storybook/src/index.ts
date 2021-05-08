@@ -1,9 +1,9 @@
-import { Goat, notify as notifier } from '@the-goat/core';
+import { GoatTask, notify as notifier } from '@the-goat/core';
 import runStory from './scripts/storybook/runStory';
 import buildStory from './scripts/storybook/buildStory';
 import files from './init/files';
 
-export default () => new Goat({
+export default () => new GoatTask({
   name: 'Storybook',
   command: 'story',
   description: 'Manage a design system using storybook',
