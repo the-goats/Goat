@@ -37,8 +37,6 @@ function logWebpack(error: Error, stats: Stats) {
  * Run webpack
  */
 function run(config: TGoatCompileTaskConfig) {
-  // eslint-disable-next-line no-param-reassign
-
   const compiler = getWebpackSetup(config);
   return new Promise<void>((resolve, reject) => {
     compiler.run((error: Error, stats: Stats) => {

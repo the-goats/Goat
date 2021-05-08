@@ -26,7 +26,7 @@ export default function getCommon(config: TGoatCompileTaskConfig) {
     },
     plugins: getPlugins(config),
     resolve: {
-      extensions: ['.js', '.json', '.twig'],
+      extensions: ['.js', '.json', '.twig', '.ts', '.tsx'],
       alias: {
         Goat: resolve(join(path, '/.goat')),
       },
