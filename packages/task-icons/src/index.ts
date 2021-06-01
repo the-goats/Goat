@@ -1,14 +1,16 @@
-import { GoatTask } from '@the-goat/core';
+import { GoatTask, TGoatTaskMethodConfig } from '@the-goat/core';
+
+const method = async (config: TGoatTaskMethodConfig) => {
+  const { runAll } = require('./scripts/generateIconfont');
+  return runAll(config);
+};
 
 export default () => new GoatTask({
   name: 'Icons',
   command: 'icons',
   description: 'Generate icon font files based on svg files',
   schema: require('./schema/schema.js'),
-  async method(config) {
-    const { runAll } = require('./scripts/generateIconfont');
-    return runAll(config);
-  },
+  method,
   watch(config) {
     if (!config.configuration.locations.icons) {
       throw new Error('Missing icons location');
@@ -29,3 +31,5 @@ export default () => new GoatTask({
     });
   },
 });
+
+export { method };

@@ -11,6 +11,9 @@
     "prepublishOnly": "npm run build",
     "test": "npm run build"
   },
+  "bin": {
+    "task-icons": "./bin/task-icons.js"
+  },
   "author": "Stef Spakman <goat@stefspakman.com>",
   "license": "MIT",
   "dependencies": {
