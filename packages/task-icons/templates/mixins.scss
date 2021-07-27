@@ -1,11 +1,12 @@
 @mixin <%=classNamePrefix%>() {
-  font-family: '<%=fontName%>' !important;
-  speak: never;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
   text-transform: none;
+  // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
+  font-family: '<%=fontName%>' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
   line-height: 1;
+  speak: never;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
