@@ -17,6 +17,29 @@ require('../dist/index')
           dist: destinationFolder,
         },
       },
+      icons: {
+        fontName: 'icons',
+        prefix: 'icon',
+        fontDirectory: 'fonts',
+        styles: {
+          filename: 'style',
+        },
+        generate: {
+          woff: true,
+          eot: false,
+          ttf: false,
+          woff2: true,
+          preview: true,
+          json: true,
+          variables: true,
+          mixins: true,
+          css: true,
+          styles: true,
+          selection: true,
+          svg: true,
+          symbol: true,
+        },
+      },
     },
   })
   .then(() => {

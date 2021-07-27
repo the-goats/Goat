@@ -412,6 +412,7 @@ function writeFiles(options, files) {
 async function generateIconfont(options) {
   const files = {};
   files.src = getSourceFiles(options);
+  console.log(`Found ${files.src.length} icons in set ${options.fontName}, generating font now`);
   files.unicode = getUnicode(options, files); // Source => Unicode
   files.svg = await createSVG(options, files); // Source => SVG
   files.symbol = await createSvgSymbol(options, files); // Source => Symbol SVG
