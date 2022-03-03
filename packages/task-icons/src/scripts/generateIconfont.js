@@ -54,6 +54,7 @@ async function createCSS(options, files) {
     hash: generateHash(files),
     path: options.fontDirectory || '.',
     generate: options.generate,
+    isCss: true,
   });
   return prettier.format(file, {
     ...prettierSettings,
@@ -81,6 +82,7 @@ async function createStyles(options, files) {
     hash: generateHash(files),
     path: `#{$${options.classNamePrefix}-font-path}`,
     generate: options.generate,
+    isCss: false,
   });
   return prettier.format(file, {
     ...prettierSettings,
@@ -426,6 +428,7 @@ async function generateIconfont(options) {
   files.mixins = await createMixinsScss(options); // Options => Mixins
   files.css = await createCSS(options, files); // Unicode => CSS
   files.styles = await createStyles(options, files); // Unicode => Styles
+  files.compiledStyles = await createStyles(options, files); // Unicode => Styles
   files.preview = await createPreview(options, files); // Unicode => Preview
 
   writeFiles(options, files);

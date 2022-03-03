@@ -13,7 +13,7 @@ src: url('<%=path%>/<%=fontName%>.eot?<%=hash%>');<% } %>
 [class^="<%=classNamePrefix%>-"]::before,
 [class*=" <%=classNamePrefix%>-"]::before {
   text-transform: none;
-  // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
+  <% if (!isCss) { %>// stylelint-disable-next-line font-family-no-missing-generic-family-keyword <% } %>
   font-family: '<%=fontName%>' !important;
   font-weight: normal;
   font-style: normal;
