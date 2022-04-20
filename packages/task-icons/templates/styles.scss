@@ -1,0 +1,27 @@
+@font-face {font-family: "<%=fontName%>";<% if (generate.eot) { %>
+src: url('<%=path%>/<%=fontName%>.eot?<%=hash%>');<% } %>
+  src: <% if (generate.eot) { %>url('<%=path%>/<%=fontName%>.eot?<%=hash%>#iefix') format('embedded-opentype'),<% } %>
+<% if (generate.woff2) { %>url("<%=path%>/<%=fontName%>.woff2?<%=hash%>") format("woff2"),<% } %>
+<% if (generate.woff) { %>url("<%=path%>/<%=fontName%>.woff?<%=hash%>") format("woff"),<% } %>
+<% if (generate.ttf) { %>url('<%=path%>/<%=fontName%>.ttf?<%=hash%>') format('truetype'),<% } %>
+<% if (generate.svg) { %>url('<%=path%>/<%=fontName%>.svg?<%=hash%>#<%=fontName%>') format('svg')<% } %>;
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="<%=classNamePrefix%>-"]::before,
+[class*=" <%=classNamePrefix%>-"]::before {
+  text-transform: none;
+  <% if (!isCss) { %>// stylelint-disable-next-line font-family-no-missing-generic-family-keyword <% } %>
+  font-family: '<%=fontName%>' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  speak: never;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+<%-styles%>
